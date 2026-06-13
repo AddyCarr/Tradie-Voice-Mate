@@ -1,0 +1,68 @@
+---
+const {
+  title = 'Tradie Voice Mate — Your Digital Receptionist, 24/7',
+  description = 'Never miss a job again. Tradie Voice Mate answers your missed calls, captures lead details, and texts you a summary — 24/7, while you\'re on the tools.',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en-AU">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Primary meta -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href="https://tradievoicemate.com.au" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Tradie Voice Mate — Your Digital Receptionist, 24/7" />
+    <meta
+      property="og:description"
+      content="Never miss a job again. Tradie Voice Mate answers your missed calls, captures lead details, and texts you a summary — 24/7."
+    />
+    <meta property="og:image" content="/assets/Tradie_Voice_Mate_Icon.png" />
+    <meta property="og:url" content="https://tradievoicemate.com.au" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/assets/Tradie_Voice_Mate_Icon.png" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Staatliches&family=DM+Sans:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- GSAP (animation) -->
+    <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script
+      is:inline
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"
+    ></script>
+
+    <!-- Alpine.js (state) — deferred so it inits after DOM -->
+    <script is:inline defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
+  </head>
+  <body class="bg-near-black font-body text-white antialiased">
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    overflow-x: hidden;
+  }
+  /* Alpine cloak — hide elements until Alpine initialises */
+  [x-cloak] {
+    display: none !important;
+  }
+</style>

@@ -1,0 +1,68 @@
+---
+const columns = [
+  {
+    icon: '📵',
+    lines: [
+      "You're on site, can't answer.",
+      'They call your competitor instead.',
+      "The job's gone before you even know about it.",
+    ],
+  },
+  {
+    icon: '⏰',
+    lines: [
+      "You're chasing leads at 9pm.",
+      'Writing down details on the back of your hand.',
+      'Playing phone tag all the next day.',
+    ],
+  },
+  {
+    icon: '💸',
+    lines: [
+      'In trades, the first one to answer gets the job.',
+      "Every time you miss a call, that's someone else's invoice.",
+      'It adds up fast.',
+    ],
+  },
+];
+---
+
+<section class="bg-pale-mint py-20 md:py-28">
+  <div class="mx-auto max-w-7xl px-5 md:px-8">
+    <p class="font-body text-sm font-medium uppercase tracking-[0.2em] text-forest-green">
+      The call you missed today
+    </p>
+    <h2 class="mt-4 max-w-2xl font-display text-4xl leading-[0.95] tracking-wide text-near-black sm:text-5xl lg:text-6xl">
+      One Missed Call Is<br />One Lost Job.
+    </h2>
+
+    <div class="mt-14 grid gap-8 md:grid-cols-3 md:gap-10">
+      {
+        columns.map((col) => (
+          <div class="rounded-2xl bg-white/60 p-7 ring-1 ring-near-black/5">
+            <div class="text-4xl" aria-hidden="true">
+              {col.icon}
+            </div>
+            <div class="mt-5 space-y-2">
+              {col.lines.map((line, i) => (
+                <p
+                  class={
+                    i === 0
+                      ? 'font-body text-lg font-semibold text-near-black'
+                      : 'font-body text-base leading-relaxed text-near-black/70'
+                  }
+                >
+                  {line}
+                </p>
+              ))}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <p class="mx-auto mt-14 max-w-2xl text-center font-body text-xl font-semibold text-near-black md:text-2xl">
+      A digital receptionist doesn't care what time it is. It's always ready.
+    </p>
+  </div>
+</section>

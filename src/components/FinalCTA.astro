@@ -1,0 +1,37 @@
+---
+const STRIPE_URL =
+  'https://buy.stripe.com/8x24gAf7seyOgki0Ir3ks00?prefilled_promo_code=FIRSTMONTH80';
+const CALENDLY_URL = 'https://calendly.com/tradievoicemate';
+---
+
+<section class="bg-deep-teal py-20 md:py-28">
+  <div class="mx-auto max-w-4xl px-5 text-center md:px-8">
+    <h2 class="font-display text-4xl leading-[0.95] tracking-wide text-white sm:text-5xl lg:text-6xl">
+      Stop Missing Jobs.<br />Start Your Trial Today.
+    </h2>
+
+    <p class="mx-auto mt-6 max-w-xl font-body text-lg leading-relaxed text-white">
+      $58 for your first month. No setup fee. No lock-in. If it doesn't earn its keep, walk
+      away — no hard feelings.
+    </p>
+
+    <div class="mt-9 flex flex-col justify-center gap-4 sm:flex-row">
+      <a
+        href={STRIPE_URL}
+        class="inline-flex items-center justify-center rounded-full bg-white px-7 py-3.5 font-body font-semibold text-near-black transition-transform hover:scale-105"
+      >
+        Start your trial →
+      </a>
+      <a
+        href={CALENDLY_URL}
+        class="inline-flex items-center justify-center rounded-full border border-white px-7 py-3.5 font-body font-semibold text-white transition-colors hover:bg-white/10"
+      >
+        Reserve your demo
+      </a>
+    </div>
+
+    <p class="mt-7 font-body text-sm text-white/75">
+      Or call us directly: <a href="tel:0419720285" class="font-semibold underline-offset-2 hover:underline">0419 720 285</a> — we're real people, always happy to chat.
+    </p>
+  </div>
+</section>

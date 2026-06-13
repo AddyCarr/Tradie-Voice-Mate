@@ -1,0 +1,77 @@
+---
+const navLinks = [
+  { label: 'How It Works', href: '#how-it-works' },
+  { label: 'Features', href: '#features' },
+  { label: 'Integrations', href: '#integrations' },
+  { label: 'Pricing', href: '#pricing' },
+  { label: 'FAQ', href: '#faq' },
+];
+const legalLinks = [
+  { label: 'Privacy Policy', href: '#' },
+  { label: 'Terms of Service', href: '#' },
+];
+---
+
+<footer class="border-t border-white/10 bg-near-black py-14">
+  <div class="mx-auto max-w-7xl px-5 md:px-8">
+    <div class="grid gap-10 md:grid-cols-3">
+      <!-- Left — brand -->
+      <div>
+        <div class="flex items-center gap-3">
+          <img
+            src="/assets/Tradie_Voice_Mate_Icon.png"
+            alt="Tradie Voice Mate"
+            class="h-12 w-12"
+            width="48"
+            height="48"
+          />
+          <span class="font-body text-lg font-semibold text-white">Tradie Voice Mate</span>
+        </div>
+        <p class="mt-3 font-body text-sm text-white/40">Your calls, covered.</p>
+      </div>
+
+      <!-- Centre — quick links -->
+      <div>
+        <ul class="flex flex-wrap gap-x-5 gap-y-2">
+          {
+            navLinks.map((link) => (
+              <li>
+                <a href={link.href} class="font-body text-sm text-white/60 transition-colors hover:text-white">
+                  {link.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+        <ul class="mt-3 flex flex-wrap gap-x-5 gap-y-2">
+          {
+            legalLinks.map((link) => (
+              <li>
+                <a href={link.href} class="font-body text-sm text-white/40 transition-colors hover:text-white">
+                  {link.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <!-- Right — parent brand + contact -->
+      <div class="font-body text-sm text-white/60 md:text-right">
+        <p>
+          A <a href="https://tradiewebmate.com.au" class="text-white/80 underline-offset-2 hover:underline">Tradie Web Mate</a> product.
+        </p>
+        <p class="text-white/40">tradiewebmate.com.au</p>
+        <p class="mt-4">📞 <a href="tel:0419720285" class="hover:underline">0419 720 285</a></p>
+        <p>📧 <a href="mailto:info@tradiewebmate.com.au" class="hover:underline">info@tradiewebmate.com.au</a></p>
+      </div>
+    </div>
+
+    <div class="mt-12 border-t border-white/10 pt-6">
+      <p class="font-body text-xs leading-relaxed text-white/30">
+        © 2026 Tradie Voice Mate. ABN XX XXX XXX XXX. Built for Australian businesses. Calls are
+        answered on a recorded line. See Privacy Policy for full details.
+      </p>
+    </div>
+  </div>
+</footer>

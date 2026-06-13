@@ -1,0 +1,43 @@
+---
+const trades = [
+  { icon: '🔧', label: 'Plumbers' },
+  { icon: '⚡', label: 'Electricians' },
+  { icon: '🌳', label: 'Arborists' },
+  { icon: '🐛', label: 'Pest Control' },
+  { icon: '🏗️', label: 'Builders' },
+  { icon: '🍽️', label: 'Restaurants' },
+  { icon: '💈', label: 'Salons' },
+  { icon: '🔩', label: 'Mechanics' },
+];
+---
+
+<section class="bg-deep-violet py-20 md:py-28">
+  <div class="mx-auto max-w-7xl px-5 md:px-8">
+    <p class="font-body text-sm font-medium uppercase tracking-[0.2em] text-white/70">
+      Not just for tradies
+    </p>
+    <h2 class="mt-4 max-w-3xl font-display text-4xl leading-[0.95] tracking-wide text-white sm:text-5xl lg:text-6xl">
+      Any Aussie Business That Lives Or Dies By The Phone.
+    </h2>
+
+    <p class="mt-6 max-w-2xl font-body text-lg leading-relaxed text-white/80">
+      Tradie Voice Mate was built for the tools-in-hand, on-site world — but a digital
+      receptionist works for any small business that can't always pick up. Restaurants, salons,
+      clinics, landscapers, cleaners, vets, mechanics. If a missed call means a missed customer,
+      this is for you.
+    </p>
+
+    <div class="mt-12 grid grid-cols-2 gap-5 sm:grid-cols-4">
+      {
+        trades.map((t) => (
+          <div class="flex items-center gap-3 rounded-xl bg-white/5 px-4 py-3.5 ring-1 ring-white/10">
+            <span class="text-2xl" aria-hidden="true">
+              {t.icon}
+            </span>
+            <span class="font-body text-base font-medium text-white">{t.label}</span>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

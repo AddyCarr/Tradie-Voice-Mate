@@ -1,0 +1,84 @@
+---
+const STRIPE_URL =
+  'https://buy.stripe.com/8x24gAf7seyOgki0Ir3ks00?prefilled_promo_code=FIRSTMONTH80';
+const CALENDLY_URL = 'https://calendly.com/tradievoicemate';
+
+const includes = [
+  'Unlimited call answering, 24/7',
+  'SMS summaries after every call',
+  'CRM integration included',
+  'Custom setup for your business',
+  'No setup fee',
+  'No lock-in contract — cancel any time',
+];
+---
+
+<section id="pricing" class="bg-near-black py-20 md:py-28">
+  <div class="mx-auto max-w-7xl px-5 md:px-8">
+    <p class="font-body text-sm font-medium uppercase tracking-[0.2em] text-forest-green">
+      Pricing
+    </p>
+    <h2 class="mt-4 font-display text-4xl leading-[0.95] tracking-wide text-white sm:text-5xl lg:text-6xl">
+      Dead Simple.<br />No Surprises.
+    </h2>
+
+    <div class="mt-12 flex justify-center">
+      <div class="w-full max-w-xl rounded-3xl bg-white p-8 ring-1 ring-white/10 md:p-10">
+        <div class="font-body text-sm font-semibold uppercase tracking-[0.2em] text-near-black/50">
+          Tradie Voice Mate
+        </div>
+
+        <div class="mt-5 flex flex-wrap items-end gap-4">
+          <div class="flex items-baseline gap-2">
+            <span class="font-display text-3xl text-near-black/40 line-through">$290</span>
+            <span class="font-body text-sm text-near-black/40">/month</span>
+          </div>
+          <span
+            class="rounded-full bg-gradient-to-r from-deep-violet to-deep-teal px-4 py-1.5 font-body text-sm font-semibold text-white"
+          >
+            ★ First month: $58
+          </span>
+        </div>
+        <p class="mt-2 font-body text-sm text-near-black/60">
+          80% off — no promo code needed.
+        </p>
+
+        <ul class="mt-7 space-y-3">
+          {
+            includes.map((item) => (
+              <li class="flex items-start gap-3 font-body text-base text-near-black">
+                <span class="mt-0.5 font-semibold text-forest-green">✓</span>
+                <span>{item}</span>
+              </li>
+            ))
+          }
+        </ul>
+
+        <div class="mt-8 flex flex-col gap-3">
+          <a
+            href={STRIPE_URL}
+            class="inline-flex items-center justify-center rounded-full bg-deep-teal px-7 py-3.5 font-body font-semibold text-white transition-transform hover:scale-[1.02]"
+          >
+            Start your $58 trial →
+          </a>
+          <a
+            href={CALENDLY_URL}
+            class="inline-flex items-center justify-center rounded-full border border-near-black/20 px-7 py-3.5 font-body font-semibold text-near-black transition-colors hover:bg-near-black/5"
+          >
+            Reserve your demo
+          </a>
+        </div>
+
+        <p class="mt-7 border-t border-near-black/10 pt-6 font-body text-base italic leading-relaxed text-near-black/70">
+          “We hand-pick a small number of businesses to work with. If we reach out, take us up
+          on it.”
+        </p>
+      </div>
+    </div>
+
+    <p class="mx-auto mt-8 max-w-2xl text-center font-body text-sm text-forest-green">
+      After the trial month, it's $290/month. No contracts, no lock-in. If it's not making you
+      money, cancel. Simple as that.
+    </p>
+  </div>
+</section>

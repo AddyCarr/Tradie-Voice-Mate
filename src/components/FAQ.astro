@@ -1,0 +1,80 @@
+---
+const faqs = [
+  {
+    q: 'How does the call forwarding work?',
+    a: 'You set up a simple call-forward from your existing business number so that when a call goes unanswered (after a few rings), it forwards to your Tradie Voice Mate line. Your existing number stays the same. Most providers take 2 minutes to set this up. We walk you through it.',
+  },
+  {
+    q: "Will my customers know they're not talking to a real person?",
+    a: 'It discloses that it\'s a digital receptionist in the greeting — legally required and the right thing to do. What surprises people is how natural the conversation feels. Most callers say it sounds more helpful than being put on hold.',
+  },
+  {
+    q: 'What if someone has a really unusual request?',
+    a: "It's built to handle the common scenarios — new jobs, follow-ups, urgent calls, message-taking. Anything it can't confidently handle gets flagged for you to call back. It won't make things up.",
+  },
+  {
+    q: 'What job management software does it work with?',
+    a: "Right now, ServiceM8, Monday.com, and Formitize. More on the way. If you're using something else, get in touch — we'll let you know what's coming.",
+  },
+  {
+    q: 'What if I want to cancel?',
+    a: 'No problem. No contracts, no lock-in, no awkward cancellation process. Just let us know.',
+  },
+  {
+    q: 'Is this just for tradies?',
+    a: 'Nope. It works for any small business that relies on inbound calls — restaurants, salons, clinics, any service-based business. The setup gets tailored to your industry and the calls you typically receive.',
+  },
+  {
+    q: 'How long does setup take?',
+    a: "We build and configure your system — usually live within 24 hours of signing up. The only thing you do is set up call forwarding, which takes about 2 minutes. We'll walk you through it.",
+  },
+];
+---
+
+<section id="faq" class="bg-pale-mint py-20 md:py-28">
+  <div class="mx-auto max-w-4xl px-5 md:px-8">
+    <p class="font-body text-sm font-medium uppercase tracking-[0.2em] text-forest-green">
+      Fair questions
+    </p>
+    <h2 class="mt-4 font-display text-4xl leading-[0.95] tracking-wide text-near-black sm:text-5xl lg:text-6xl">
+      Got A Question?<br />Good — Here's The Answers.
+    </h2>
+
+    <div class="mt-12 space-y-3">
+      {
+        faqs.map((faq) => (
+          <div
+            x-data="{ open: false }"
+            class="overflow-hidden rounded-2xl bg-white ring-1 ring-near-black/5"
+          >
+            <button
+              @click="open = !open"
+              class="flex w-full items-center justify-between gap-4 px-6 py-5 text-left"
+              :aria-expanded="open"
+            >
+              <span class="font-body text-lg font-semibold text-near-black">{faq.q}</span>
+              <span
+                class="flex h-7 w-7 flex-none items-center justify-center text-2xl font-light text-deep-teal transition-transform duration-300"
+                :class="open ? 'rotate-45' : ''"
+                aria-hidden="true"
+              >
+                +
+              </span>
+            </button>
+            <div
+              x-show="open"
+              x-cloak
+              x-transition:enter="transition ease-out duration-200"
+              x-transition:enter-start="opacity-0 -translate-y-2"
+              x-transition:enter-end="opacity-100 translate-y-0"
+            >
+              <p class="px-6 pb-5 font-body text-base leading-relaxed text-near-black/70">
+                {faq.a}
+              </p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

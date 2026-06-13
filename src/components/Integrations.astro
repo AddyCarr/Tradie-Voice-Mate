@@ -1,0 +1,37 @@
+---
+const logos = ['ServiceM8', 'Monday.com', 'Formitize'];
+---
+
+<section id="integrations" class="bg-pale-mint py-20 md:py-28">
+  <div class="mx-auto max-w-7xl px-5 md:px-8">
+    <p class="font-body text-sm font-medium uppercase tracking-[0.2em] text-forest-green">
+      Works with your setup
+    </p>
+    <h2 class="mt-4 max-w-3xl font-display text-4xl leading-[0.95] tracking-wide text-near-black sm:text-5xl lg:text-6xl">
+      Already Using Job Management Software? Even Better.
+    </h2>
+
+    <p class="mt-6 max-w-2xl font-body text-lg leading-relaxed text-near-black/70">
+      Tradie Voice Mate plugs straight into the tools you're already running. No data re-entry.
+      No double handling. The call happens, the details land in your system automatically, and
+      you get on with the job.
+    </p>
+
+    <div class="mt-10 flex flex-wrap items-center gap-4">
+      {
+        logos.map((logo) => (
+          <div class="rounded-xl bg-white px-7 py-4 font-body text-lg font-semibold text-near-black ring-1 ring-near-black/5">
+            {logo}
+          </div>
+        ))
+      }
+      <div class="rounded-xl border border-dashed border-near-black/20 px-7 py-4 font-body text-base font-medium text-near-black/50">
+        and more — ask us
+      </div>
+    </div>
+
+    <p class="mt-8 font-body text-sm text-near-black/50">
+      Don't see your software? Get in touch — we're adding integrations regularly.
+    </p>
+  </div>
+</section>

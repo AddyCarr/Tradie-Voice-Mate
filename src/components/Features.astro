@@ -1,0 +1,59 @@
+---
+const features = [
+  {
+    num: '01',
+    heading: '24/7 coverage',
+    body: 'On site, in the ute, or 10pm Sunday — every call answered.',
+  },
+  {
+    num: '02',
+    heading: 'SMS in 30 seconds',
+    body: 'Full lead details to your phone the moment the call ends.',
+  },
+  {
+    num: '03',
+    heading: 'Sounds like a real person',
+    body: "A natural, Australian-accented conversation. Callers don't feel processed.",
+  },
+  {
+    num: '04',
+    heading: 'Flags urgent jobs',
+    body: 'Emergency calls get priority-flagged so you know what to action first.',
+  },
+  {
+    num: '05',
+    heading: 'Handles message taking too',
+    body: 'For existing customers calling back, it switches to quick message-taking mode.',
+  },
+  {
+    num: '06',
+    heading: 'CRM connected',
+    body: 'Plugs into ServiceM8, Monday.com, Formitize. Job details land automatically.',
+  },
+];
+---
+
+<section id="features" class="bg-near-black pb-20 pt-4 md:pb-28">
+  <div class="mx-auto max-w-7xl px-5 md:px-8">
+    <p class="font-body text-sm font-medium uppercase tracking-[0.2em] text-forest-green">
+      What it does for you
+    </p>
+    <h2 class="mt-4 max-w-2xl font-display text-4xl leading-[0.95] tracking-wide text-white sm:text-5xl lg:text-6xl">
+      A Receptionist That<br />Actually Earns Its Keep.
+    </h2>
+
+    <div class="mt-14 grid grid-cols-1 divide-y divide-white/10 sm:grid-cols-2 sm:divide-y-0 lg:grid-cols-3">
+      {
+        features.map((f) => (
+          <div class="border-white/10 py-8 sm:border-b sm:px-6 sm:[&:nth-child(odd)]:pl-0 lg:[&:nth-child(3n+1)]:pl-0 sm:[&:nth-child(2n)]:border-l lg:[&:nth-child(3n+2)]:border-l lg:[&:nth-child(3n)]:border-l">
+            <div class="font-display text-6xl tracking-wide text-deep-teal md:text-7xl">
+              {f.num}
+            </div>
+            <h3 class="mt-3 font-body text-xl font-semibold text-white">{f.heading}</h3>
+            <p class="mt-2 font-body text-base leading-relaxed text-white/60">{f.body}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

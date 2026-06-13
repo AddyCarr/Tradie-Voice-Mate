@@ -1,0 +1,71 @@
+---
+import DemoWidget from './DemoWidget.astro';
+
+const STRIPE_URL =
+  'https://buy.stripe.com/8x24gAf7seyOgki0Ir3ks00?prefilled_promo_code=FIRSTMONTH80';
+const CALENDLY_URL = 'https://calendly.com/tradievoicemate';
+---
+
+<section
+  id="top"
+  class="relative flex min-h-screen items-center overflow-hidden bg-near-black pb-16 pt-28 md:pb-20 md:pt-32"
+>
+  <!-- Subtle violet glow accent (brand depth, not decorative noise) -->
+  <div
+    class="pointer-events-none absolute -left-40 top-20 h-96 w-96 rounded-full bg-deep-violet/20 blur-[120px]"
+    aria-hidden="true"
+  >
+  </div>
+  <div
+    class="pointer-events-none absolute -right-32 bottom-0 h-96 w-96 rounded-full bg-deep-teal/10 blur-[120px]"
+    aria-hidden="true"
+  >
+  </div>
+
+  <div class="mx-auto grid w-full max-w-7xl items-center gap-12 px-5 md:px-8 lg:grid-cols-[55fr_45fr] lg:gap-10">
+    <!-- LEFT COLUMN — copy -->
+    <div class="relative z-10">
+      <p class="font-body text-sm font-medium uppercase tracking-[0.2em] text-forest-green">
+        Your digital receptionist · 24/7
+      </p>
+
+      <h1 class="mt-5 font-display text-5xl leading-[0.95] tracking-wide text-white sm:text-6xl lg:text-7xl">
+        While You're On The Job,<br />It's Got The Phone.
+      </h1>
+
+      <p class="mt-6 max-w-xl font-body text-lg leading-relaxed text-white/70 md:text-xl">
+        Tradie Voice Mate answers every missed call for you — takes down the job details,
+        handles the questions, and texts you a summary. Whether you're on the tools, in the
+        ute, or it's 10pm on a Sunday.
+      </p>
+
+      <div class="mt-8 flex flex-col gap-4 sm:flex-row">
+        <a
+          href={STRIPE_URL}
+          class="inline-flex items-center justify-center rounded-full bg-deep-teal px-7 py-3.5 font-body font-semibold text-white transition-transform hover:scale-105"
+        >
+          Start your trial →
+        </a>
+        <a
+          href={CALENDLY_URL}
+          class="inline-flex items-center justify-center rounded-full border border-white/40 px-7 py-3.5 font-body font-semibold text-white transition-colors hover:bg-white/10"
+        >
+          Reserve your demo
+        </a>
+      </div>
+
+      <p class="mt-7 font-body text-sm font-medium text-forest-green">
+        <span class="whitespace-nowrap">✓ No setup fee</span>
+        <span class="mx-2 text-white/20">·</span>
+        <span class="whitespace-nowrap">✓ No lock-in contract</span>
+        <span class="mx-2 text-white/20">·</span>
+        <span class="whitespace-nowrap">✓ First month 80% off</span>
+      </p>
+    </div>
+
+    <!-- RIGHT COLUMN — interactive demo widget -->
+    <div class="relative z-10">
+      <DemoWidget />
+    </div>
+  </div>
+</section>

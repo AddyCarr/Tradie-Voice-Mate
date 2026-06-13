@@ -1,0 +1,70 @@
+---
+const testimonials = [
+  { quote: 'Pays for itself the first week.', who: 'Plumber, QLD' },
+  {
+    quote: 'It handled 6 calls on Saturday while I was flat out on a job. Legends.',
+    who: 'Pest Control, NSW',
+  },
+  { quote: 'My guys thought it was a real person answering.', who: 'Arborist, VIC' },
+  { quote: 'Set up in 10 minutes. Works perfectly.', who: 'Building Contractor, WA' },
+];
+
+// Duplicate the list so the marquee loops seamlessly.
+const ticker = [...testimonials, ...testimonials];
+---
+
+<section class="overflow-hidden bg-deep-teal py-5" aria-label="Customer testimonials">
+  <!-- Desktop / tablet: scrolling marquee -->
+  <div class="group hidden md:block">
+    <div class="tvm-marquee flex w-max items-center gap-12 whitespace-nowrap">
+      {
+        ticker.map((t) => (
+          <div class="flex items-center gap-3 px-2">
+            <span class="font-body text-base font-medium text-white">
+              “{t.quote}” <span class="text-white/80">— {t.who}</span>
+            </span>
+            <span class="text-pale-mint tracking-tight" aria-hidden="true">
+              ★★★★★
+            </span>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+
+  <!-- Mobile: static stacked -->
+  <div class="flex flex-col gap-3 px-5 md:hidden">
+    {
+      testimonials.map((t) => (
+        <div class="flex flex-col">
+          <span class="font-body text-sm font-medium text-white">“{t.quote}”</span>
+          <span class="text-xs text-white/80">
+            — {t.who} <span class="text-pale-mint">★★★★★</span>
+          </span>
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .tvm-marquee {
+    animation: tvm-scroll 38s linear infinite;
+  }
+  .group:hover .tvm-marquee {
+    animation-play-state: paused;
+  }
+  @keyframes tvm-scroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .tvm-marquee {
+      animation: none;
+    }
+  }
+</style>
