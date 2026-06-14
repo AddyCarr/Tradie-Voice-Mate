@@ -6,7 +6,13 @@
       "Bash(npm run *)",
       "Bash(git init *)",
       "Bash(git add *)",
-      "Bash(git -c user.name=Claude -c user.email=noreply@anthropic.com commit -q -m 'Project setup + all sections built \\(widget stubbed\\) *)"
+      "Bash(git -c user.name=Claude -c user.email=noreply@anthropic.com commit -q -m 'Project setup + all sections built \\(widget stubbed\\) *)",
+      "Bash(tee /tmp/devout.txt)",
+      "Read(//tmp/**)",
+      "mcp__Claude_Preview__preview_start",
+      "PowerShell(Stop-Process -Id 35372 -Force -ErrorAction SilentlyContinue)",
+      "PowerShell(Get-NetTCPConnection -LocalPort 4321 -ErrorAction SilentlyContinue)",
+      "Bash(git -c user.name=Claude -c user.email=noreply@anthropic.com commit -q -m 'Hero demo widget complete + final QA *)"
     ]
   }
 }

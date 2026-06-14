@@ -15,9 +15,9 @@
 - [x] FAQ (Alpine accordion) — done
 - [x] Final CTA (Deep Teal) — done
 - [x] Footer (dark, brand + links + contact) — done
-- [ ] Hero demo widget (DemoWidget.astro) — IN PROGRESS — currently a placeholder stub
-- [ ] Mobile responsiveness pass — not started
-- [ ] Final QA (links, audio, scroll fade, animations) — not started
+- [x] Hero demo widget (DemoWidget.astro) — done — 4 phases, real Web Audio waveform, transcript sync, data pills, SMS payoff, scroll fade-out
+- [x] Mobile responsiveness pass — done — verified hero, nav hamburger, features stack at 375px
+- [x] Final QA — done — verified all 4 widget phases (live waveform, transcript, pills, SMS), CTAs link to Stripe/Calendly, pricing/features/mobile via preview. `npm run build` passes.
 
 ## Notes
 - Verified transcript data for SMS/data pills: Name John, red gum removal (urgent/ASAP),

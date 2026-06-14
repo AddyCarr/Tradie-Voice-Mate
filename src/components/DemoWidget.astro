@@ -1,9 +1,398 @@
 ---
-// Placeholder — full interactive demo widget is built in the final step.
+const AUDIO_SRC = '/assets/Digital_Voice_Receptionist_-_Arborist_Full_Example.mp3';
+const DEMO_PHONE = '(07) 4519 0301';
+
+// Transcript lines with their appearance time (seconds into the audio).
+// Derived verbatim from tvm_arborist_call_transcript.md.
+const messages = [
+  { t: 1, who: 'agent', text: "Hi, you've reached Tall Timber Tree Services on a recorded line. I'm their digital receptionist — the team's busy now but I'll take your details to pass on. Can I grab your first name to start?" },
+  { t: 11, who: 'caller', text: "Yeah, my name's John, I'm just calling because I've got a red gum that's leaning over the house and I need it taken down ASAP." },
+  { t: 17, who: 'agent', text: "Thanks John. So that's a red gum leaning over the house, and you need it removed ASAP. What's the postcode for the job?" },
+  { t: 24, who: 'caller', text: 'Yeah, 3144.' },
+  { t: 25, who: 'agent', text: "Great, that's 3144 — is that right?" },
+  { t: 27, who: 'caller', text: 'Yeah.' },
+  { t: 29, who: 'agent', text: "Is the number you're calling on the best one to reach you on?" },
+  { t: 32, who: 'caller', text: 'Nah actually, give me a buzz back on 0437 414 424.' },
+  { t: 38, who: 'agent', text: "Perfect, I've got 0437 414 424 — is that correct?" },
+  { t: 42, who: 'caller', text: 'Yep.' },
+  { t: 44, who: 'agent', text: 'Thanks John. Is there a preferred time for the team to give you a call back?' },
+  { t: 48, who: 'caller', text: 'Give me a buzz back next Thursday after about 5pm would be fantastic.' },
+  { t: 52, who: 'agent', text: "No worries — I've got you down for a removal of a red gum leaning near the house in 3144, and we'll call you next Thursday around 5pm on 0437 414 424 — sound good?" },
+  { t: 63, who: 'caller', text: 'Yeah perfect.' },
+  { t: 65, who: 'agent', text: 'Beauty — the team will be in touch next Thursday around 5pm. Have a good one.' },
+];
+
+// Data pills populate as the relevant detail is spoken.
+const pills = [
+  { t: 13, label: 'Name', value: 'John' },
+  { t: 15, label: 'Job', value: 'Red gum removal — leaning near house', urgent: true },
+  { t: 26, label: 'Postcode', value: '3144' },
+  { t: 39, label: 'Phone', value: '0437 414 424' },
+  { t: 50, label: 'Callback', value: 'Next Thursday ~5pm' },
+];
 ---
 
 <div
-  class="flex aspect-[4/5] w-full items-center justify-center rounded-3xl border border-deep-violet/20 bg-near-black/60 text-white/40"
+  x-data="demoWidget()"
+  x-init="init()"
+  class="relative mx-auto w-full max-w-md overflow-hidden rounded-3xl border border-deep-violet/25 bg-gradient-to-b from-[#0d0d24] to-near-black p-5 shadow-2xl shadow-black/50"
 >
-  Demo widget — coming in final build step
+  <!-- subtle inner violet edge highlight -->
+  <div class="pointer-events-none absolute inset-0 rounded-3xl ring-1 ring-inset ring-white/5" aria-hidden="true"></div>
+
+  <audio x-ref="audio" src={AUDIO_SRC} preload="auto"></audio>
+
+  <!-- Header: call status -->
+  <div class="flex items-center justify-between">
+    <div class="flex items-center gap-2.5">
+      <span class="relative flex h-2.5 w-2.5">
+        <span
+          x-show="phase !== 'ended'"
+          class="absolute inline-flex h-full w-full animate-ping rounded-full bg-forest-green opacity-75"
+        ></span>
+        <span
+          class="relative inline-flex h-2.5 w-2.5 rounded-full"
+          :class="phase === 'ended' ? 'bg-white/30' : 'bg-forest-green'"
+        ></span>
+      </span>
+      <span class="font-body text-xs font-semibold uppercase tracking-[0.18em] text-white/70" x-text="statusLabel()"></span>
+    </div>
+    <span class="font-display text-lg tracking-wider text-white/80" x-text="formattedTime()"></span>
+  </div>
+
+  <!-- Waveform -->
+  <div class="relative mt-5 h-28">
+    <svg x-ref="wave" class="h-full w-full" viewBox="0 0 480 112" preserveAspectRatio="none" aria-hidden="true"></svg>
+
+    <!-- Play button overlay (idle only) -->
+    <div
+      x-show="phase === 'idle'"
+      x-transition:leave="transition ease-in duration-300"
+      x-transition:leave-start="opacity-100"
+      x-transition:leave-end="opacity-0"
+      class="absolute inset-0 flex flex-col items-center justify-center"
+    >
+      <button
+        @click="play()"
+        class="group relative flex h-20 w-20 items-center justify-center rounded-full bg-deep-teal text-white shadow-lg shadow-deep-teal/30 transition-transform hover:scale-105"
+        aria-label="Hear a live call"
+      >
+        <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-deep-teal opacity-40"></span>
+        <svg class="relative ml-1 h-8 w-8" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
+      </button>
+      <span class="mt-4 font-body text-sm font-semibold text-white">▶ Hear a live call</span>
+    </div>
+  </div>
+
+  <!-- Secondary demo line note (idle) -->
+  <p x-show="phase === 'idle'" class="mt-2 text-center font-body text-xs text-white/40">
+    Or call our demo line: {DEMO_PHONE}
+  </p>
+
+  <!-- Transcript + data pills (during/after call) -->
+  <div x-show="phase !== 'idle'" x-cloak class="mt-3">
+    <!-- Data pills -->
+    <div class="flex flex-wrap gap-2" x-show="anyPill()">
+      {pills.map((p, i) => (
+        <span
+          x-show={`pillShown[${i}]`}
+          x-cloak
+          x-transition:enter="transition ease-out duration-300"
+          x-transition:enter-start="opacity-0 scale-90"
+          x-transition:enter-end="opacity-100 scale-100"
+          class:list={[
+            'inline-flex items-center gap-1.5 rounded-full px-3 py-1 font-body text-xs font-medium',
+            p.urgent ? 'bg-forest-green/15 text-forest-green ring-1 ring-forest-green/30' : 'bg-white/8 text-white/80 ring-1 ring-white/10',
+          ]}
+        >
+          <span class="font-semibold opacity-60">{p.label}:</span>
+          <span>{p.value}</span>
+          {p.urgent && <span class="font-bold uppercase tracking-wide">· Urgent</span>}
+        </span>
+      ))}
+    </div>
+
+    <!-- Transcript scroll area -->
+    <div x-ref="transcript" class="mt-3 max-h-56 space-y-2.5 overflow-y-auto pr-1 [scrollbar-width:thin]">
+      {messages.map((m, i) => (
+        <div
+          x-show={`msgShown[${i}]`}
+          x-cloak
+          x-transition:enter="transition ease-out duration-300"
+          x-transition:enter-start="opacity-0 translate-y-2"
+          x-transition:enter-end="opacity-100 translate-y-0"
+          class:list={['flex', m.who === 'agent' ? 'justify-end' : 'justify-start']}
+        >
+          <div
+            class:list={[
+              'max-w-[85%] rounded-2xl px-3.5 py-2 font-body text-sm leading-snug',
+              m.who === 'agent' ? 'bg-deep-teal text-white' : 'bg-white/8 text-white/85',
+            ]}
+          >
+            {m.text}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- SMS notification -->
+  <div class="pointer-events-none absolute inset-x-4 bottom-4">
+    <div
+      x-show="smsShown"
+      x-cloak
+      x-transition:enter="transition ease-out duration-500"
+      x-transition:enter-start="opacity-0 translate-y-8 scale-95"
+      x-transition:enter-end="opacity-100 translate-y-0 scale-100"
+      class="pointer-events-auto rounded-2xl border border-white/10 bg-[#1a1a2e]/95 p-4 shadow-2xl shadow-black/60 backdrop-blur"
+    >
+      <div class="flex items-center gap-2 border-b border-white/10 pb-2">
+        <span class="text-base">📋</span>
+        <span class="font-body text-xs font-semibold text-white">New lead — Tall Timber Tree Services</span>
+        <span class="ml-auto font-body text-[10px] text-white/40">now</span>
+      </div>
+      <dl class="mt-2.5 grid grid-cols-[auto_1fr] gap-x-3 gap-y-1 font-body text-xs">
+        <dt class="text-white/40">Name</dt><dd class="text-white/90">John</dd>
+        <dt class="text-white/40">Job</dt><dd class="text-white/90">Large red gum removal — leaning near house</dd>
+        <dt class="text-white/40">Urgency</dt><dd class="font-semibold text-forest-green">ASAP</dd>
+        <dt class="text-white/40">Postcode</dt><dd class="text-white/90">3144</dd>
+        <dt class="text-white/40">Callback</dt><dd class="text-white/90">Next Thursday ~5pm</dd>
+        <dt class="text-white/40">Phone</dt><dd class="text-white/90">0437 414 424</dd>
+      </dl>
+    </div>
+  </div>
 </div>
+
+<script is:inline define:vars={{ messages, pills }}>
+  function demoWidget() {
+    return {
+      phase: 'idle', // idle | connecting | live | ended
+      currentTime: 0,
+      msgShown: messages.map(() => false),
+      pillShown: pills.map(() => false),
+      smsShown: false,
+      // non-reactive internals
+      _audioCtx: null,
+      _analyser: null,
+      _data: null,
+      _sourceMade: false,
+      _bars: [],
+      _raf: null,
+      _phase0: 0,
+
+      init() {
+        this.buildBars();
+        this.idleLoop();
+        this.setupScrollFade();
+        const a = this.$refs.audio;
+        a.addEventListener('timeupdate', () => this.onTime());
+        a.addEventListener('ended', () => this.onEnded());
+      },
+
+      buildBars() {
+        const svg = this.$refs.wave;
+        const COUNT = 56;
+        const W = 480, H = 112;
+        const gap = 2;
+        const bw = (W - gap * (COUNT - 1)) / COUNT;
+        const ns = 'http://www.w3.org/2000/svg';
+        for (let i = 0; i < COUNT; i++) {
+          const r = document.createElementNS(ns, 'rect');
+          r.setAttribute('x', (i * (bw + gap)).toFixed(2));
+          r.setAttribute('width', bw.toFixed(2));
+          r.setAttribute('rx', (bw / 2).toFixed(2));
+          r.setAttribute('fill', i % 7 === 0 ? '#4C1D95' : '#00A87C');
+          svg.appendChild(r);
+          this._bars.push(r);
+        }
+        this.setBars(this._bars.map(() => 0.06));
+      },
+
+      setBars(values) {
+        const H = 112;
+        for (let i = 0; i < this._bars.length; i++) {
+          const v = Math.max(0.04, Math.min(1, values[i]));
+          const h = v * H;
+          this._bars[i].setAttribute('height', h.toFixed(1));
+          this._bars[i].setAttribute('y', ((H - h) / 2).toFixed(1));
+        }
+      },
+
+      idleLoop() {
+        const tick = () => {
+          if (this.phase === 'idle') {
+            const now = performance.now() / 1000;
+            const vals = this._bars.map((_, i) => {
+              const wave = Math.sin(now * 1.4 + i * 0.35);
+              return 0.10 + (wave * 0.5 + 0.5) * 0.16;
+            });
+            this.setBars(vals);
+            this._raf = requestAnimationFrame(tick);
+          }
+        };
+        cancelAnimationFrame(this._raf);
+        this._raf = requestAnimationFrame(tick);
+      },
+
+      liveLoop() {
+        const tick = () => {
+          if (this.phase === 'connecting' || this.phase === 'live') {
+            if (this._analyser) {
+              this._analyser.getByteFrequencyData(this._data);
+              const n = this._bars.length;
+              const step = Math.floor(this._data.length / n);
+              const vals = [];
+              for (let i = 0; i < n; i++) {
+                let sum = 0;
+                for (let j = 0; j < step; j++) sum += this._data[i * step + j];
+                vals.push((sum / step / 255) * 1.4);
+              }
+              this.setBars(vals);
+            } else {
+              // Fallback synthetic motion
+              const now = performance.now() / 1000;
+              this.setBars(this._bars.map((_, i) => 0.2 + Math.abs(Math.sin(now * 6 + i)) * 0.6 * Math.random()));
+            }
+            this._raf = requestAnimationFrame(tick);
+          }
+        };
+        cancelAnimationFrame(this._raf);
+        this._raf = requestAnimationFrame(tick);
+      },
+
+      setupAudioGraph() {
+        if (this._sourceMade) return;
+        try {
+          const Ctx = window.AudioContext || window.webkitAudioContext;
+          if (!Ctx) return;
+          this._audioCtx = new Ctx();
+          const src = this._audioCtx.createMediaElementSource(this.$refs.audio);
+          this._analyser = this._audioCtx.createAnalyser();
+          this._analyser.fftSize = 256;
+          this._data = new Uint8Array(this._analyser.frequencyBinCount);
+          src.connect(this._analyser);
+          this._analyser.connect(this._audioCtx.destination);
+          this._sourceMade = true;
+        } catch (e) {
+          this._analyser = null;
+        }
+      },
+
+      play() {
+        const a = this.$refs.audio;
+        this.setupAudioGraph();
+        if (this._audioCtx && this._audioCtx.state === 'suspended') this._audioCtx.resume();
+        a.volume = 1;
+        a.currentTime = 0;
+        this.phase = 'connecting';
+        this._phase0 = performance.now();
+        a.play().catch(() => {});
+        this.liveLoop();
+      },
+
+      onTime() {
+        const a = this.$refs.audio;
+        this.currentTime = a.currentTime;
+        if (this.phase === 'connecting' && a.currentTime >= 1.5) this.phase = 'live';
+        messages.forEach((m, i) => {
+          if (!this.msgShown[i] && a.currentTime >= m.t) {
+            this.msgShown[i] = true;
+            this.$nextTick(() => this.scrollTranscript());
+          }
+        });
+        pills.forEach((p, i) => {
+          if (!this.pillShown[i] && a.currentTime >= p.t) this.pillShown[i] = true;
+        });
+      },
+
+      scrollTranscript() {
+        const el = this.$refs.transcript;
+        if (el) el.scrollTop = el.scrollHeight;
+      },
+
+      onEnded() {
+        this.phase = 'ended';
+        cancelAnimationFrame(this._raf);
+        this.dropBars();
+        setTimeout(() => { this.smsShown = true; }, 800);
+      },
+
+      dropBars() {
+        const start = performance.now();
+        const from = this._bars.map((r) => parseFloat(r.getAttribute('height')) / 112);
+        const anim = (now) => {
+          const k = Math.min(1, (now - start) / 500);
+          this.setBars(from.map((v) => v * (1 - k) + 0.04 * k));
+          if (k < 1) requestAnimationFrame(anim);
+        };
+        requestAnimationFrame(anim);
+      },
+
+      reset() {
+        const a = this.$refs.audio;
+        a.pause();
+        a.currentTime = 0;
+        a.volume = 1;
+        this.phase = 'idle';
+        this.currentTime = 0;
+        this.msgShown = messages.map(() => false);
+        this.pillShown = pills.map(() => false);
+        this.smsShown = false;
+        this.idleLoop();
+      },
+
+      fadeOutAndStop() {
+        const a = this.$refs.audio;
+        if (a.paused) return;
+        const startVol = a.volume;
+        const start = performance.now();
+        const dur = 1500;
+        const step = (now) => {
+          const k = Math.min(1, (now - start) / dur);
+          a.volume = startVol * (1 - k);
+          if (k < 1 && !a.paused) {
+            requestAnimationFrame(step);
+          } else {
+            this.reset();
+          }
+        };
+        requestAnimationFrame(step);
+      },
+
+      setupScrollFade() {
+        const section = this.$root.closest('section');
+        if (!section) return;
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting && (this.phase === 'live' || this.phase === 'connecting')) {
+                this.fadeOutAndStop();
+              }
+            });
+          },
+          { threshold: 0.25 }
+        );
+        io.observe(section);
+      },
+
+      // --- display helpers ---
+      statusLabel() {
+        if (this.phase === 'idle') return 'Incoming call';
+        if (this.phase === 'connecting') return 'Connecting…';
+        if (this.phase === 'ended') return 'Call ended';
+        return 'Live call';
+      },
+      formattedTime() {
+        const s = Math.floor(this.currentTime);
+        const m = Math.floor(s / 60);
+        const sec = s % 60;
+        return m + ':' + String(sec).padStart(2, '0');
+      },
+      anyPill() {
+        return this.pillShown.some(Boolean);
+      },
+    };
+  }
+  // Register for Alpine (loaded deferred)
+  window.demoWidget = demoWidget;
+</script>
