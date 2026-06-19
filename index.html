@@ -1,0 +1,1766 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Tradie Voice Mate answers every missed call for you — takes down the job details, handles the questions, and texts you a summary. 24/7 digital receptionist for Australian trade businesses.">
+<title>Tradie Voice Mate — Your Digital Receptionist, 24/7</title>
+<link rel="icon" type="image/png" href="assets/Tradie_Voice_Mate_Icon.png">
+
+<style>
+/* ============================================================
+   FONTS
+   ============================================================ */
+@font-face {
+  font-family: "Staatliches";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("fonts/Staatliches-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("fonts/DMSans-Regular.ttf") format("truetype");
+}
+
+/* ============================================================
+   DESIGN TOKENS
+   ============================================================ */
+:root {
+  --tvm-near-black:    #08081A;
+  --tvm-deep-teal:     #00A87C;
+  --tvm-forest-green:  #16A34A;
+  --tvm-deep-violet:   #4C1D95;
+  --tvm-pale-mint:     #ECFDF5;
+  --tvm-white:         #FFFFFF;
+  --tvm-teal-700:      #008463;
+  --tvm-teal-300:      #4FC9AB;
+  --tvm-mint-200:      #D6F7E8;
+  --tvm-violet-700:    #3A1570;
+  --tvm-ink-800:       #12122B;
+  --tvm-ink-700:       #1B1B38;
+  --tvm-on-dark:       #FFFFFF;
+  --tvm-on-dark-70:    rgba(255,255,255,0.72);
+  --tvm-on-dark-50:    rgba(255,255,255,0.50);
+  --tvm-on-dark-15:    rgba(255,255,255,0.14);
+  --tvm-on-light:      #08081A;
+  --tvm-on-light-70:   rgba(8,8,26,0.70);
+  --tvm-on-light-45:   rgba(8,8,26,0.45);
+  --tvm-on-light-12:   rgba(8,8,26,0.10);
+  --surface-dark:       var(--tvm-near-black);
+  --surface-dark-card:  var(--tvm-ink-800);
+  --surface-light:      var(--tvm-pale-mint);
+  --surface-light-card: var(--tvm-white);
+  --accent-action:      var(--tvm-deep-teal);
+  --accent-action-hover:var(--tvm-teal-700);
+  --accent-eyebrow:     var(--tvm-forest-green);
+  --border-on-dark:     var(--tvm-on-dark-15);
+  --border-on-light:    var(--tvm-on-light-12);
+  --font-display: "Staatliches", "Arial Narrow", sans-serif;
+  --font-body:    "DM Sans", system-ui, -apple-system, sans-serif;
+  --type-hero:        clamp(2.5rem, 6vw, 5.5rem);
+  --type-display:     clamp(2rem, 4.5vw, 4rem);
+  --type-headline:    clamp(1.75rem, 3vw, 2.75rem);
+  --type-numeral:     clamp(3rem, 6vw, 6rem);
+  --type-lead:        clamp(1.125rem, 2vw, 1.375rem);
+  --type-body-lg:     clamp(1rem, 1.5vw, 1.1875rem);
+  --type-body:        1.0625rem;
+  --type-ui:          0.9375rem;
+  --type-eyebrow:     0.8125rem;
+  --type-small:       0.8125rem;
+  --leading-display:  0.95;
+  --leading-snug:     1.15;
+  --leading-body:     1.55;
+  --tracking-display: 0.01em;
+  --tracking-eyebrow: 0.18em;
+  --tracking-cta:     0.02em;
+  --weight-regular:   400;
+  --weight-medium:    500;
+  --weight-semibold:  600;
+  --weight-bold:      700;
+  --space-1:  0.25rem;
+  --space-2:  0.5rem;
+  --space-3:  0.75rem;
+  --space-4:  1rem;
+  --space-5:  1.5rem;
+  --space-6:  2rem;
+  --space-7:  3rem;
+  --space-8:  4rem;
+  --space-9:  6rem;
+  --space-10: 8rem;
+  --section-y:    clamp(3rem, 9vw, 8rem);
+  --section-x:    clamp(1.25rem, 5vw, 5rem);
+  --content-max:  1300px;
+  --radius-sm:    8px;
+  --radius-md:    14px;
+  --radius-lg:    22px;
+  --radius-pill:  999px;
+  --border-hairline: 1px;
+  --shadow-card:   0 18px 40px -24px rgba(8,8,26,0.45);
+  --shadow-lift:   0 24px 60px -28px rgba(8,8,26,0.55);
+  --shadow-teal:   0 14px 34px -16px rgba(0,168,124,0.5);
+  --ease-out:    cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-soft:   cubic-bezier(0.4, 0, 0.2, 1);
+  --dur-fast:    160ms;
+  --dur-base:    280ms;
+  --dur-slow:    600ms;
+}
+
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  background: var(--tvm-near-black);
+  color: var(--tvm-on-dark);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+h1, h2, h3 { font-family: var(--font-display); font-weight: 400; margin: 0; }
+p { margin: 0; }
+a { color: inherit; }
+img { display: block; max-width: 100%; }
+button { font-family: inherit; }
+
+.wrap {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding-left: var(--section-x);
+  padding-right: var(--section-x);
+  position: relative;
+  z-index: 1;
+}
+.section {
+  padding-top: var(--section-y);
+  padding-bottom: var(--section-y);
+  position: relative;
+  overflow: hidden;
+}
+
+.accent-teal { color: var(--tvm-deep-teal); }
+.eyebrow {
+  font-size: var(--type-eyebrow);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-eyebrow);
+  color: var(--accent-eyebrow);
+}
+.h-display {
+  font-size: var(--type-display);
+  line-height: var(--leading-display);
+  letter-spacing: var(--tracking-display);
+}
+.h-hero {
+  font-size: var(--type-hero);
+  line-height: var(--leading-display);
+  letter-spacing: var(--tracking-display);
+}
+.lead { font-size: var(--type-lead); font-weight: 600; line-height: 1.3; }
+.muted-dark { color: var(--tvm-on-dark-70); }
+.muted-light { color: var(--tvm-on-light-70); }
+
+/* ============================================================
+   HERO BACKGROUND SYSTEM
+   ============================================================ */
+.hero-bg { position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+#top .hero-lines { inset: -40px; }
+.hero-lines {
+  position: absolute; inset: -2px;
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.045) 1px, transparent 1px);
+  background-size: 60px 60px;
+  -webkit-mask-image: radial-gradient(125% 90% at 70% 8%, #000 0%, rgba(0,0,0,0.35) 45%, transparent 78%);
+          mask-image: radial-gradient(125% 90% at 70% 8%, #000 0%, rgba(0,0,0,0.35) 45%, transparent 78%);
+}
+.hero-bg.subtle .hero-lines {
+  -webkit-mask-image: radial-gradient(120% 120% at 50% 0%, #000 0%, transparent 70%);
+          mask-image: radial-gradient(120% 120% at 50% 0%, #000 0%, transparent 70%);
+  opacity: 0.7;
+}
+.hero-glow {
+  position: absolute; left: 50%; bottom: -420px; transform: translateX(-50%);
+  width: 1375px; height: 750px; border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(0,168,124,0.34), rgba(0,168,124,0.10) 55%, transparent 75%);
+  filter: blur(8px);
+  opacity: 0.7;
+}
+.hero-glow.soft { opacity: 0.55; bottom: -380px; }
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-body); font-weight: 600; letter-spacing: var(--tracking-cta);
+  border-radius: var(--radius-pill); border: 2px solid transparent; cursor: pointer;
+  padding: 14px 26px; font-size: 16px; text-decoration: none; line-height: 1;
+  transition: transform var(--dur-fast) var(--ease-out), filter var(--dur-fast) var(--ease-out), box-shadow var(--dur-base) var(--ease-out);
+  -webkit-tap-highlight-color: transparent;
+  position: relative;
+  overflow: hidden;
+}
+/* Ripple effect on click */
+.btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.18);
+  border-radius: inherit;
+  opacity: 0;
+  transform: scale(0.5);
+  transition: transform 0.4s var(--ease-out), opacity 0.4s var(--ease-out);
+  pointer-events: none;
+}
+.btn:active::after { opacity: 1; transform: scale(1); transition-duration: 0ms; }
+
+@media (hover: hover) {
+  .btn:hover { transform: translateY(-1px); filter: brightness(0.94); }
+  .btn:active { transform: translateY(0); }
+}
+.btn-lg { padding: 18px 34px; font-size: 18px; }
+.btn-primary { background: var(--tvm-deep-teal); color: #fff; box-shadow: var(--shadow-teal); }
+@media (hover: hover) {
+  .btn-primary:hover { box-shadow: 0 18px 42px -14px rgba(0,168,124,0.65); }
+}
+.btn-secondary { background: transparent; color: #fff; border-color: var(--tvm-on-dark-15); }
+@media (hover: hover) {
+  .btn-secondary:hover { border-color: rgba(255,255,255,0.4); filter: none; }
+}
+.btn-inverted { background: #fff; color: var(--tvm-near-black); }
+.btn-inverted-ghost { background: transparent; color: #fff; border-color: rgba(255,255,255,0.6); }
+@media (hover: hover) {
+  .btn-inverted-ghost:hover { background: rgba(255,255,255,0.08); filter: none; }
+}
+
+/* ============================================================
+   NAV
+   ============================================================ */
+.nav {
+  position: sticky; top: 0; z-index: 50;
+  transition: background var(--dur-base) var(--ease-soft), border-color var(--dur-base);
+  border-bottom: 1px solid transparent;
+}
+.nav.scrolled {
+  background: rgba(8,8,26,0.92);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom-color: var(--tvm-on-dark-15);
+}
+.nav-inner { display: flex; align-items: center; gap: 28px; height: 72px; }
+.brand { display: flex; align-items: center; gap: 11px; text-decoration: none; flex-shrink: 0; }
+.brand img { width: 36px; height: 36px; }
+.brand span { font-weight: 600; font-size: 18px; color: #fff; letter-spacing: -0.01em; }
+.nav-links { display: flex; gap: 26px; margin-left: auto; }
+.nav-links a {
+  font-size: 15px; color: var(--tvm-on-dark-70); text-decoration: none;
+  transition: color var(--dur-fast);
+  position: relative; padding-bottom: 2px;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px; left: 0; right: 0;
+  height: 1px;
+  background: var(--tvm-deep-teal);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s var(--ease-out);
+}
+@media (hover: hover) {
+  .nav-links a:hover { color: #fff; }
+  .nav-links a:hover::after { transform: scaleX(1); }
+}
+.nav .btn { padding: 11px 20px; font-size: 15px; }
+
+/* Mobile nav burger */
+.nav-burger {
+  display: none;
+  margin-left: auto;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  color: #fff;
+  -webkit-tap-highlight-color: transparent;
+}
+.nav-burger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: currentColor;
+  border-radius: 2px;
+  transition: transform var(--dur-base) var(--ease-out), opacity var(--dur-base);
+  margin: 5px 0;
+}
+.nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Mobile nav overlay */
+.nav-mobile-menu {
+  display: none;
+  position: fixed;
+  top: 72px; left: 0; right: 0; bottom: 0;
+  background: rgba(8,8,26,0.97);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 49;
+  flex-direction: column;
+  padding: 32px var(--section-x);
+  gap: 8px;
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: opacity var(--dur-base) var(--ease-out), transform var(--dur-base) var(--ease-out);
+  pointer-events: none;
+}
+.nav-mobile-menu.open {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+.nav-mobile-menu a {
+  display: block;
+  font-size: 28px;
+  font-family: var(--font-display);
+  font-weight: 400;
+  color: rgba(255,255,255,0.72);
+  text-decoration: none;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--tvm-on-dark-15);
+  transition: color var(--dur-fast);
+  letter-spacing: 0.02em;
+}
+.nav-mobile-menu a:hover { color: #fff; }
+.nav-mobile-menu .btn { margin-top: 20px; justify-content: center; }
+.nav .nav-cta-desktop { display: inline-flex; }
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero { position: relative; overflow: hidden; }
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 56px;
+  align-items: end;
+  padding-top: 130px;
+  padding-bottom: 110px;
+}
+.hero-copy { position: relative; z-index: 2; }
+.hero-copy .eyebrow { display: block; margin-bottom: 16px; }
+.hero h1 { color: #fff; margin: 0 0 28px; }
+.hero .sub {
+  font-size: var(--type-body-lg); line-height: 1.55;
+  color: var(--tvm-on-dark-70); max-width: 30em;
+}
+.hero-cta { display: flex; gap: 14px; margin: 32px 0 22px; flex-wrap: wrap; }
+.trust { display: flex; gap: 22px; flex-wrap: wrap; }
+.trust .t {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-size: 14.5px; font-weight: 500; color: var(--tvm-on-dark-70);
+}
+.trust .t svg { color: var(--tvm-forest-green); flex-shrink: 0; }
+
+/* ============================================================
+   DEMO WIDGET
+   ============================================================ */
+.widget-col { position: relative; z-index: 2; }
+.hero-people {
+  position: absolute; left: 0; top: 0; width: 100%; height: auto;
+  transform: translateY(calc(-100% + 24px));
+  z-index: 2; pointer-events: none;
+  filter: drop-shadow(0 28px 44px rgba(0,0,0,0.42));
+}
+.hero-people-glow {
+  position: absolute; left: 50%; top: 48px; width: 122%; aspect-ratio: 1 / 1;
+  transform: translate(-50%, -82%);
+  z-index: 1; pointer-events: none;
+  background: radial-gradient(circle at 50% 50%, rgba(0,168,124,0.44), rgba(76,29,149,0.22) 46%, transparent 70%);
+  filter: blur(28px);
+  animation: peopleGlowFloat 22s ease-in-out infinite;
+}
+.widget-aura {
+  position: absolute; top: calc(-28% + 48px); right: -22%; bottom: -28%; left: -22%; z-index: 0; pointer-events: none;
+  background:
+    radial-gradient(60% 55% at 50% 42%, rgba(0,168,124,0.28), transparent 70%),
+    radial-gradient(70% 60% at 72% 78%, rgba(76,29,149,0.085), transparent 72%);
+  filter: blur(34px);
+  animation: auraFloat 15s ease-in-out infinite;
+}
+@keyframes auraFloat {
+  0%   { transform: translate(0px, 0px) scale(1.00); opacity: 0.80; }
+  25%  { transform: translate(28px, -18px) scale(1.07); opacity: 0.96; }
+  50%  { transform: translate(6px, 24px) scale(1.02); opacity: 1; }
+  75%  { transform: translate(-24px, 10px) scale(1.08); opacity: 0.86; }
+  100% { transform: translate(0px, 0px) scale(1.00); opacity: 0.80; }
+}
+@keyframes peopleGlowFloat {
+  0%   { transform: translate(-50%, -82%); }
+  50%  { transform: translate(calc(-50% + 20px), calc(-82% - 14px)); }
+  100% { transform: translate(-50%, -82%); }
+}
+
+.widget {
+  position: relative; z-index: 3;
+  background: linear-gradient(180deg, var(--tvm-ink-800), #0d0d24);
+  border: 1px solid rgba(124,58,237,0.22);
+  border-radius: var(--radius-lg);
+  padding: 22px;
+  box-shadow: var(--shadow-lift), inset 0 1px 0 rgba(255,255,255,0.04);
+  min-height: 408px;
+  display: flex; flex-direction: column;
+  cursor: default;
+  transition: box-shadow var(--dur-slow) var(--ease-out);
+}
+.widget.calling {
+  box-shadow: var(--shadow-lift), 0 0 0 1px rgba(0,168,124,0.35), inset 0 1px 0 rgba(255,255,255,0.04);
+}
+.widget.ended { cursor: pointer; }
+
+/* Widget control button */
+.widget-ctrl {
+  position: absolute; right: -16px; bottom: -16px; z-index: 6;
+  width: 52px; height: 52px; border-radius: 50%;
+  background: var(--tvm-deep-teal); border: 3px solid var(--tvm-ink-800);
+  display: grid; place-items: center; cursor: pointer; padding: 0;
+  box-shadow: var(--shadow-teal);
+  opacity: 0; transform: scale(0.4); pointer-events: none;
+  transition: opacity var(--dur-base) var(--ease-out), transform var(--dur-base) var(--ease-out), background var(--dur-base);
+}
+.widget-ctrl.show { opacity: 1; transform: scale(1); pointer-events: auto; }
+@media (hover: hover) {
+  .widget-ctrl:hover { transform: scale(1.08); filter: brightness(1.04); }
+  .widget-ctrl:active { transform: scale(0.95); }
+}
+.ctrl-ic {
+  grid-area: 1 / 1; display: grid; place-items: center; color: #fff;
+  opacity: 0; transform: scale(0.5) rotate(-35deg);
+  transition: opacity var(--dur-base) var(--ease-out), transform var(--dur-base) var(--ease-out);
+}
+.ctrl-play svg { margin-left: 2px; }
+.widget-ctrl[data-state="pause"] .ctrl-pause,
+.widget-ctrl[data-state="play"] .ctrl-play,
+.widget-ctrl[data-state="restart"] .ctrl-restart {
+  opacity: 1; transform: scale(1) rotate(0);
+}
+.widget-top { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.live-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--tvm-forest-green); position: relative; }
+.live-dot.pulsing::after {
+  content: ""; position: absolute; inset: -5px; border-radius: 50%;
+  border: 2px solid var(--tvm-forest-green);
+  animation: ring 1.6s var(--ease-out) infinite;
+}
+@keyframes ring { 0% { transform: scale(0.7); opacity: 0.9; } 100% { transform: scale(1.8); opacity: 0; } }
+.widget-status {
+  font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em;
+  color: var(--tvm-on-dark-70); transition: color var(--dur-base);
+}
+.widget-timer { margin-left: auto; font-size: 13px; font-variant-numeric: tabular-nums; color: var(--tvm-on-dark-50); }
+
+.wave { display: flex; align-items: center; justify-content: center; gap: 4px; height: 56px; }
+.wave span { width: 4px; height: 12px; border-radius: 3px; background: var(--tvm-deep-teal); transform-origin: center; }
+
+.widget-stage { flex: 1; position: relative; }
+
+.play-wrap {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px;
+  transition: opacity var(--dur-base);
+}
+.widget.calling .play-wrap { opacity: 0; pointer-events: none; }
+.play-btn {
+  width: 86px; height: 86px; border-radius: 50%;
+  background: var(--tvm-deep-teal); border: none;
+  cursor: pointer; display: grid; place-items: center;
+  position: relative; box-shadow: var(--shadow-teal);
+  margin-bottom: 24px;
+  transition: transform var(--dur-fast) var(--ease-out), box-shadow var(--dur-base) var(--ease-out);
+  -webkit-tap-highlight-color: transparent;
+}
+@media (hover: hover) {
+  .play-btn:hover { transform: scale(1.05); box-shadow: 0 20px 50px -16px rgba(0,168,124,0.75); }
+  .play-btn:active { transform: scale(0.96); }
+}
+.play-ring { position: absolute; inset: 0; border-radius: 50%; border: 2px solid var(--tvm-deep-teal); animation: ring 2s var(--ease-out) infinite; }
+.play-btn svg { color: #fff; margin-left: 4px; }
+.play-label { font-family: var(--font-display); font-size: 20px; letter-spacing: 0.02em; color: #fff; }
+.play-note { font-size: 13px; color: var(--tvm-on-dark-50); text-align: center; }
+
+.caption-wrap {
+  position: absolute; left: 0; right: 0; top: 0; bottom: 54px; transform: none;
+  opacity: 0; transition: opacity var(--dur-base) var(--ease-out);
+  display: flex; align-items: center; pointer-events: none;
+}
+.caption-wrap.show { opacity: 1; }
+.caption-wrap.agent { justify-content: flex-start; }
+.caption-wrap.caller { justify-content: flex-end; }
+.caption {
+  max-width: 86%; padding: 16px 18px; border-radius: 16px;
+  font-size: 16px; line-height: 1.5; position: relative;
+  transition: opacity 0.18s var(--ease-out), transform 0.18s var(--ease-out);
+  display: flex; flex-direction: column; gap: 6px;
+}
+.caption-wrap.agent .caption {
+  background: rgba(0,168,124,0.10); color: #fff;
+  border-bottom-left-radius: 5px; border: 1px solid rgba(0,168,124,0.24);
+}
+.caption-wrap.caller .caption {
+  background: var(--tvm-ink-700); color: #fff;
+  border-bottom-right-radius: 5px; border: 1px solid var(--tvm-on-dark-15);
+}
+.caption-label { font-family: var(--font-body); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.13em; }
+.caption-wrap.agent .caption-label { color: var(--tvm-teal-300); }
+.caption-wrap.caller .caption-label { color: var(--tvm-teal-300); }
+.caption-text { font-weight: 500; }
+
+.pills { position: absolute; left: 0; right: 0; bottom: 0; display: flex; flex-wrap: wrap; gap: 7px; }
+.pill {
+  font-size: 12.5px; font-weight: 600; padding: 6px 11px;
+  border-radius: var(--radius-pill);
+  background: rgba(0,168,124,0.16); color: var(--tvm-teal-300);
+  border: 1px solid rgba(0,168,124,0.32);
+  animation: pillIn 0.34s var(--ease-out) both;
+}
+@keyframes pillIn { from { opacity: 0; transform: scale(0.88) translateY(4px); } to { opacity: 1; transform: none; } }
+@keyframes captionPop { from { transform: scale(0.92) translateY(9px); } to { transform: none; } }
+.caption-wrap.show .caption { animation: captionPop 0.52s cubic-bezier(0.22,1,0.36,1) both; }
+.pill.urgent { background: rgba(124,58,237,0.2); color: #c4b5fd; border-color: rgba(124,58,237,0.45); }
+
+.sms {
+  position: absolute; right: 0; bottom: 0; left: 0;
+  transform: translateY(20px); opacity: 0; pointer-events: none;
+  transition: opacity var(--dur-slow) var(--ease-out), transform var(--dur-slow) var(--ease-out);
+}
+.sms.show { opacity: 1; transform: none; pointer-events: auto; }
+.sms-card { background: #fff; border-radius: 18px; padding: 14px 16px; box-shadow: 0 24px 60px -20px rgba(0,0,0,0.6); color: var(--tvm-near-black); }
+.sms-head { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+.sms-app { width: 26px; height: 26px; border-radius: 7px; background: var(--tvm-forest-green); display: grid; place-items: center; flex-shrink: 0; }
+.sms-app svg { color: #fff; }
+.sms-title { font-weight: 600; font-size: 13px; flex: 1; }
+.sms-time { font-size: 12px; color: var(--tvm-on-light-45); }
+.sms-fields { display: grid; grid-template-columns: auto 1fr; gap: 4px 14px; font-size: 13.5px; line-height: 1.45; }
+.sms-fields .k { color: var(--tvm-on-light-45); font-weight: 500; }
+.sms-fields .v { font-weight: 500; }
+.sms-fields .v.strong { font-weight: 700; }
+.sms-fields .v.accent { color: var(--tvm-forest-green); font-weight: 600; }
+
+/* ============================================================
+   SOCIAL PROOF TICKER
+   ============================================================ */
+.social { background: var(--tvm-deep-teal); overflow: hidden; padding: 22px 0; }
+.ticker { display: flex; gap: 60px; width: max-content; animation: scroll 38s linear infinite; }
+.social:hover .ticker { animation-play-state: paused; }
+@keyframes scroll { to { transform: translateX(-50%); } }
+.quote { display: inline-flex; align-items: center; gap: 14px; white-space: nowrap; }
+.quote .q { color: #fff; font-weight: 600; font-size: 16px; }
+.quote .src { color: rgba(255,255,255,0.8); font-size: 14px; }
+.stars { display: inline-flex; gap: 2px; }
+
+/* ============================================================
+   LIGHT SECTIONS
+   ============================================================ */
+.light { background: var(--surface-light); color: var(--tvm-on-light); }
+.light h2 { color: var(--tvm-near-black); }
+.section-head { max-width: 32em; margin-bottom: 56px; }
+.section-head.center { margin-left: auto; margin-right: auto; text-align: center; }
+.section-head .eyebrow { display: block; margin-bottom: 14px; }
+
+/* ============================================================
+   PROBLEM SECTION
+   ============================================================ */
+.cols-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+.problem-col { display: flex; align-items: flex-start; gap: 18px; }
+.problem-col .ic {
+  width: 56px; height: 56px; border-radius: var(--radius-md);
+  background: #fff; border: 1px solid var(--tvm-mint-200);
+  display: grid; place-items: center; flex-shrink: 0; box-shadow: var(--shadow-card);
+}
+.problem-col .ic svg { color: var(--tvm-deep-teal); width: 26px; height: 26px; }
+.problem-col p { font-size: var(--type-body); line-height: 1.55; color: var(--tvm-on-light-70); }
+.closing { text-align: center; margin-top: 56px; font-size: var(--type-lead); font-weight: 600; color: var(--tvm-near-black); }
+
+/* Problem V2 — scroll-driven hero title */
+.problem-header-v2 {
+  text-align: center;
+  padding-bottom: clamp(3rem, 5.5vw, 5rem);
+  border-bottom: 1px solid var(--tvm-on-light-12);
+  margin-bottom: 0;
+}
+.problem-header-v2 .eyebrow { display: block; margin-bottom: 28px; }
+.problem-h-v2 {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 9vw, 8rem);
+  line-height: 0.91;
+  letter-spacing: 0.01em;
+  color: var(--tvm-near-black);
+  margin: 0;
+}
+.pw { display: inline-block; position: relative; }
+.pw-horizon { clip-path: inset(-45% -22% -0.04em -22%); }
+.pw-in {
+  display: inline-block; position: relative;
+  will-change: transform, filter, opacity;
+}
+.pw-in::after {
+  content: '';
+  position: absolute; inset: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23g)'/%3E%3C/svg%3E");
+  background-size: 160px 160px;
+  mix-blend-mode: overlay;
+  opacity: var(--grain-op, 0);
+}
+.pw-accent { color: var(--tvm-deep-teal); }
+.problem-trio-v2 { display: grid; grid-template-columns: repeat(3, 1fr); }
+.problem-item-v2 {
+  display: flex; flex-direction: column; gap: 18px;
+  padding: clamp(2.5rem, 5vw, 4.5rem) clamp(1rem, 3vw, 2.75rem);
+  border-right: 1px solid var(--tvm-on-light-12);
+}
+.problem-item-v2:first-child { padding-left: 0; }
+.problem-item-v2:last-child { padding-right: 0; border-right: none; }
+.problem-item-num-v2 {
+  font-family: var(--font-display); font-size: 11px;
+  letter-spacing: 0.26em; color: var(--tvm-on-light-45); text-transform: uppercase;
+}
+.problem-item-ic-v2 {
+  width: 52px; height: 52px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--tvm-deep-teal); flex-shrink: 0;
+}
+.problem-item-ic-v2 svg { width: 34px; height: 34px; }
+.problem-item-head-row { display: flex; flex-direction: row; gap: 16px; align-items: center; }
+.problem-item-title-v2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 2.5vw, 2.35rem);
+  line-height: 1.0; letter-spacing: 0.01em;
+  color: var(--tvm-near-black); margin: 0; font-weight: 400;
+}
+.problem-item-body-v2 {
+  font-size: var(--type-body); line-height: 1.65;
+  color: var(--tvm-on-light-70); margin: 0;
+}
+
+/* ============================================================
+   HOW IT WORKS
+   ============================================================ */
+.steps {
+  display: flex; flex-direction: column;
+  position: relative; max-width: 900px;
+  margin-left: auto; margin-right: auto;
+}
+.steps::before {
+  content: ""; position: absolute;
+  left: 31px; top: 50px; bottom: 50px; width: 2px;
+  background: linear-gradient(180deg, var(--tvm-deep-teal), var(--tvm-forest-green));
+  opacity: 0.5; border-radius: 2px;
+}
+.step {
+  position: relative;
+  display: grid;
+  grid-template-columns: 64px minmax(190px, 250px) 1fr;
+  align-items: center; gap: 28px; padding: 18px 0;
+}
+.step-ic {
+  width: 64px; height: 64px; flex-shrink: 0;
+  border-radius: var(--radius-md);
+  background: linear-gradient(180deg, var(--tvm-ink-800), #101028);
+  border: 1px solid var(--tvm-on-dark-15);
+  display: grid; place-items: center;
+  box-shadow: var(--shadow-card); position: relative; z-index: 1;
+  transition: box-shadow var(--dur-base) var(--ease-out), border-color var(--dur-base);
+}
+.step-ic svg { color: var(--tvm-deep-teal); width: 30px; height: 30px; }
+@media (hover: hover) {
+  .step:hover .step-ic {
+    box-shadow: var(--shadow-teal);
+    border-color: rgba(0,168,124,0.4);
+  }
+}
+.step-title { display: flex; flex-direction: column; gap: 6px; }
+.step-num { font-size: 12px; font-weight: 600; letter-spacing: 0.14em; color: var(--tvm-forest-green); text-transform: uppercase; }
+.step-title h3 { color: #fff; font-size: 28px; letter-spacing: 0.01em; line-height: 1.05; }
+.step p { color: var(--tvm-on-dark-70); font-size: var(--type-body); line-height: 1.55; }
+.step + .step::before {
+  content: '';
+  position: absolute; left: 92px; right: 0; top: 0;
+  height: 1px; background: rgba(255,255,255,0.08);
+}
+.center-note { text-align: center; margin-top: 48px; color: var(--tvm-on-dark-70); font-size: var(--type-body); line-height: 1.6; }
+
+/* ============================================================
+   FEATURES
+   ============================================================ */
+#features { position: relative; overflow: hidden; }
+#features .wrap { position: relative; }
+.features-glow {
+  position: absolute; left: 50%; top: 100%; transform: translate(-50%, -50%);
+  width: 150%; height: 1300px; border-radius: 50%; z-index: 0; pointer-events: none;
+  background: radial-gradient(closest-side, rgba(0,168,124,0.16), rgba(0,168,124,0.09) 40%, rgba(0,168,124,0.035) 66%, transparent 84%);
+  filter: blur(46px);
+}
+.features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; position: relative; z-index: 1; }
+.feature {
+  background: rgba(18,18,43,0.56);
+  border: 1px solid var(--tvm-on-dark-15);
+  border-radius: var(--radius-md);
+  padding: 28px;
+  transition: transform var(--dur-base) var(--ease-out), border-color var(--dur-base), box-shadow var(--dur-base);
+  box-shadow: 0 18px 40px -28px rgba(0,0,0,0.7);
+}
+@media (hover: hover) {
+  .feature:hover {
+    transform: translateY(-4px);
+    border-color: rgba(0,168,124,0.45);
+    box-shadow: 0 24px 50px -24px rgba(0,168,124,0.25);
+  }
+}
+.feature-ic {
+  width: 56px; height: 56px; border-radius: 14px;
+  background: rgba(0,168,124,0.12); border: 1px solid rgba(0,168,124,0.3);
+  display: grid; place-items: center; margin-bottom: 20px;
+  transition: background var(--dur-base), border-color var(--dur-base);
+}
+.feature-ic svg { color: var(--tvm-deep-teal); width: 28px; height: 28px; }
+@media (hover: hover) {
+  .feature:hover .feature-ic {
+    background: rgba(0,168,124,0.2);
+    border-color: rgba(0,168,124,0.5);
+  }
+}
+.feature h3 { color: #fff; font-size: 24px; letter-spacing: 0.01em; margin-bottom: 8px; }
+.feature p { color: var(--tvm-on-dark-70); font-size: var(--type-body); line-height: 1.5; }
+
+/* ============================================================
+   INTEGRATIONS
+   ============================================================ */
+#integrations { padding-bottom: var(--section-y); }
+.int-grid { display: grid; grid-template-columns: 1fr 0.92fr; gap: 56px; align-items: start; }
+.int-main .section-head { margin-bottom: 40px; }
+.int-visual {
+  position: relative; min-height: 520px; margin-top: 48px;
+  display: flex; align-items: flex-end; justify-content: center;
+}
+.int-glow {
+  position: absolute; z-index: 0; top: 36px; left: 50%; transform: translateX(-50%);
+  width: 878px; height: 764px; pointer-events: none;
+  background:
+    radial-gradient(46% 44% at 50% 38%, rgba(0,168,124,0.34), transparent 72%),
+    radial-gradient(38% 34% at 64% 60%, rgba(22,163,74,0.22), transparent 74%),
+    radial-gradient(34% 32% at 36% 56%, rgba(0,168,124,0.14), transparent 74%);
+  filter: blur(44px);
+  animation: intGlowFloat 17s ease-in-out infinite;
+}
+.int-glow-warm {
+  position: absolute; z-index: 0; top: 70px; left: 50%; transform: translateX(-50%);
+  width: 688px; height: 576px; pointer-events: none;
+  background: radial-gradient(50% 50% at 50% 48%, rgba(250,204,21,0.55), rgba(245,158,11,0.40) 38%, rgba(251,146,60,0.22) 60%, transparent 78%);
+  filter: blur(34px);
+  animation: intGlowFloat 17s ease-in-out infinite;
+}
+@keyframes intGlowFloat {
+  0%   { transform: translateX(-50%) translateY(0) scale(1.00); opacity: 0.82; }
+  50%  { transform: translateX(-50%) translateY(-12px) scale(1.05); opacity: 1; }
+  100% { transform: translateX(-50%) translateY(0) scale(1.00); opacity: 0.82; }
+}
+.int-people {
+  position: absolute; top: 5px; left: 50%; transform: translateX(-50%);
+  z-index: 1; width: 112%; max-width: 570px; height: auto; object-fit: contain;
+  filter: drop-shadow(0 30px 40px rgba(8,8,26,0.16));
+}
+.booked-ui {
+  position: absolute; z-index: 2; left: 50%; bottom: 0; transform: translateX(-50%);
+  width: min(495px, 120%);
+  background: #fff; border: 1px solid var(--tvm-on-light-12); border-radius: var(--radius-md);
+  box-shadow: 0 30px 60px -22px rgba(8,8,26,0.4); overflow: hidden;
+}
+.booked-bar {
+  display: flex; align-items: center; gap: 10px;
+  padding: 11px 18px; background: #f6fbf9; border-bottom: 1px solid var(--tvm-on-light-12);
+}
+.booked-dots { display: inline-flex; gap: 5px; }
+.booked-dots i { width: 8px; height: 8px; border-radius: 50%; background: #d6e2dd; display: block; }
+.booked-app { display: inline-flex; align-items: center; gap: 7px; font-size: 12px; font-weight: 600; color: var(--tvm-on-light-70); }
+.booked-sync { margin-left: auto; display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 600; color: var(--tvm-forest-green); }
+.booked-sync-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--tvm-forest-green); box-shadow: 0 0 0 3px rgba(22,163,74,0.16); }
+.booked-body { display: flex; align-items: center; gap: 16px; padding: 18px 20px; }
+.booked-check { width: 40px; height: 40px; flex-shrink: 0; border-radius: 50%; background: var(--tvm-deep-teal); display: grid; place-items: center; box-shadow: var(--shadow-teal); }
+.booked-detail { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.booked-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.13em; color: var(--tvm-forest-green); }
+.booked-title { font-size: 15px; font-weight: 700; color: var(--tvm-near-black); line-height: 1.25; }
+.booked-meta { font-size: 12.5px; color: var(--tvm-on-light-45); }
+.booked-new { margin-left: auto; align-self: flex-start; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; color: var(--tvm-deep-teal); background: rgba(0,168,124,0.12); border: 1px solid rgba(0,168,124,0.28); border-radius: var(--radius-pill); padding: 3px 8px; }
+.booked-week { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; padding: 0 20px 18px; }
+.booked-week span { text-align: center; font-size: 11px; font-weight: 600; color: var(--tvm-on-light-45); padding: 7px 0; border-radius: 7px; background: #f3f6f5; }
+.booked-week span.on { background: var(--tvm-deep-teal); color: #fff; box-shadow: var(--shadow-teal); }
+
+.crm-logos { display: flex; flex-wrap: wrap; gap: 16px; align-items: stretch; }
+.crm-logo {
+  display: flex; align-items: center; gap: 11px;
+  background: #fff; border: 1px solid var(--tvm-mint-200);
+  border-radius: var(--radius-md); padding: 18px 26px;
+  box-shadow: var(--shadow-card); min-height: 64px;
+  transition: box-shadow var(--dur-base) var(--ease-out), transform var(--dur-fast) var(--ease-out);
+}
+@media (hover: hover) {
+  .crm-logo:hover { box-shadow: 0 22px 48px -24px rgba(8,8,26,0.3); transform: translateY(-2px); }
+}
+.crm-name { font-weight: 700; font-size: 20px; color: var(--tvm-near-black); letter-spacing: -0.02em; }
+.crm-name.lower { text-transform: lowercase; }
+.crm-m8 { color: var(--tvm-deep-teal); }
+.crm-dim { color: var(--tvm-on-light-45); font-weight: 600; }
+.crm-mark { width: 34px; height: 34px; object-fit: contain; flex-shrink: 0; }
+.crm-mark.rounded { border-radius: 8px; }
+.crm-formitize { color: #0095f1; }
+.crm-logo.more { background: transparent; border-style: dashed; color: var(--tvm-on-light-45); font-weight: 600; font-size: 15px; box-shadow: none; align-items: center; }
+.int-note { margin-top: 22px; font-size: 14px; color: var(--tvm-on-light-45); }
+
+/* ============================================================
+   WIDER THAN TRADES
+   ============================================================ */
+.violet { background: var(--tvm-deep-violet); color: #fff; }
+.violet .hero-lines {
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.06) 1px, transparent 1px);
+}
+.violet .eyebrow { color: rgba(255,255,255,0.7); }
+.violet h2 { color: #fff; }
+.violet .body { font-size: var(--type-body-lg); line-height: 1.6; color: rgba(255,255,255,0.85); max-width: 38em; margin-top: 20px; }
+.wider-left { display: flex; flex-direction: column; }
+.wider-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+.wider-tabs { display: flex; flex-direction: column; gap: 0; }
+.wider-tabs .trade {
+  display: flex; align-items: center; gap: 12px;
+  width: 100%; background: none; border: none; border-radius: 0;
+  border-bottom: 1px solid rgba(255,255,255,0.12);
+  padding: 14px 0; color: rgba(255,255,255,0.75);
+  transition: color 0.22s cubic-bezier(0.22,1,0.36,1), padding-left 0.22s var(--ease-out);
+  cursor: default;
+}
+.wider-tabs .trade:first-child { border-top: 1px solid rgba(255,255,255,0.12); }
+@media (hover: hover) {
+  .wider-tabs .trade:hover { color: rgba(255,255,255,1); padding-left: 6px; }
+}
+.wider-tabs .trade svg { color: inherit; }
+.wider-tabs .trade span { font-family: var(--font-display); font-size: 22px; font-weight: 400; letter-spacing: 0.01em; color: inherit; }
+.wider-more { margin-top: 14px; font-size: 13px; color: rgba(255,255,255,0.38); font-style: italic; }
+.wider-copy { text-align: right; }
+.wider-copy .eyebrow { display: block; margin-bottom: 14px; }
+.wider-copy .body { margin-left: auto; margin-top: 20px; }
+
+/* ============================================================
+   PRICING
+   ============================================================ */
+.pricing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+.pricing-aside .eyebrow { display: block; margin-bottom: 14px; }
+.pricing-lede { font-size: var(--type-body-lg); line-height: 1.6; color: var(--tvm-on-dark-70); margin-top: 20px; max-width: 26em; }
+.pricing-photo { position: relative; margin-top: 36px; border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--tvm-on-dark-15); box-shadow: var(--shadow-lift); }
+.pricing-photo img { width: 100%; height: 300px; object-fit: cover; object-position: center 30%; }
+.pricing-badge {
+  position: absolute; left: 18px; bottom: 18px; right: 18px;
+  display: flex; align-items: center; gap: 11px;
+  background: rgba(255,255,255,0.96); backdrop-filter: blur(6px);
+  border-radius: 14px; padding: 12px 14px;
+  box-shadow: 0 16px 40px -18px rgba(0,0,0,0.6);
+  animation: badgeFloat 4s ease-in-out infinite;
+}
+@keyframes badgeFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+.pricing-badge .sms-app { background: var(--tvm-forest-green); }
+.pricing-badge-text { display: flex; flex-direction: column; line-height: 1.3; }
+.pricing-badge-text strong { font-size: 13.5px; color: var(--tvm-near-black); }
+.pricing-badge-text span { font-size: 12.5px; color: var(--tvm-on-light-45); }
+
+.pricing-main { display: flex; flex-direction: column; position: relative; }
+.price-card {
+  background: #fff; color: var(--tvm-near-black);
+  border: 1.5px solid rgba(0,168,124,0.55);
+  border-radius: var(--radius-lg); padding: 44px 40px 40px;
+  box-shadow: 0 34px 80px -34px rgba(8,8,26,0.5), 0 12px 34px -20px rgba(0,168,124,0.42), inset 0 1px 0 rgba(255,255,255,0.7);
+  position: relative;
+  transition: box-shadow var(--dur-slow) var(--ease-out), transform var(--dur-base) var(--ease-out);
+}
+@media (hover: hover) {
+  .price-card:hover {
+    box-shadow: 0 40px 90px -30px rgba(8,8,26,0.55), 0 16px 40px -16px rgba(0,168,124,0.5), inset 0 1px 0 rgba(255,255,255,0.7);
+    transform: translateY(-2px);
+  }
+}
+.price-card::before {
+  content: ''; position: absolute; inset: -20px; z-index: -1;
+  border-radius: calc(var(--radius-lg) + 14px);
+  background:
+    radial-gradient(58% 52% at 50% 0%, rgba(0,168,124,0.20), transparent 70%),
+    radial-gradient(70% 60% at 50% 100%, rgba(76,29,149,0.14), transparent 72%);
+  filter: blur(16px); opacity: 0.9;
+  animation: priceAura 14s ease-in-out infinite;
+}
+@keyframes priceAura { 0%,100% { opacity: 0.82; transform: scale(1); } 50% { opacity: 1; transform: scale(1.03); } }
+.price-badge {
+  position: absolute; top: 0; left: 50%; transform: translate(-50%, -50%);
+  display: inline-flex; align-items: center; gap: 7px;
+  background: linear-gradient(90deg, var(--tvm-deep-teal), var(--tvm-forest-green));
+  color: #fff; font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 9px 18px; border-radius: var(--radius-pill);
+  box-shadow: 0 12px 26px -10px rgba(0,168,124,0.7); white-space: nowrap; z-index: 3;
+}
+.price-badge svg { width: 14px; height: 14px; }
+.price-card .name { font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--tvm-forest-green); }
+.price-row { display: flex; align-items: baseline; gap: 14px; margin: 14px 0 4px; }
+.price-was { font-family: var(--font-display); font-size: 30px; color: var(--tvm-on-light-45); text-decoration: line-through; }
+.price-now { font-family: var(--font-display); font-size: 64px; line-height: 1; color: var(--tvm-near-black); }
+.price-now small { font-size: 22px; }
+.price-tag { font-size: 14px; font-weight: 600; color: var(--tvm-forest-green); margin-bottom: 24px; }
+.price-list { display: grid; gap: 12px; margin: 0 0 28px; padding: 0; list-style: none; }
+.price-list li { display: flex; align-items: center; gap: 10px; font-size: 15.5px; font-weight: 500; }
+.price-list svg { color: var(--tvm-forest-green); flex-shrink: 0; }
+.price-cta { display: flex; flex-direction: column; gap: 12px; }
+.price-cta .btn { justify-content: center; }
+.price-cta .btn-secondary { color: var(--tvm-near-black); border-color: var(--tvm-on-light-12); }
+@media (hover: hover) {
+  .price-cta .btn-secondary:hover { border-color: var(--tvm-on-light-45); }
+}
+.price-foot { margin-top: 24px; font-size: 14px; color: var(--tvm-on-dark-70); line-height: 1.6; }
+
+/* ============================================================
+   FAQ
+   ============================================================ */
+.faq-list { max-width: 760px; margin: 0 auto; }
+.faq-item { border-bottom: 1px solid var(--tvm-on-light-12); }
+.faq-q {
+  width: 100%; background: none; border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  padding: 24px 0; text-align: left;
+  font-family: var(--font-body); font-size: 19px; font-weight: 600; color: var(--tvm-near-black);
+  transition: color var(--dur-fast);
+  -webkit-tap-highlight-color: transparent;
+}
+@media (hover: hover) {
+  .faq-q:hover { color: var(--tvm-deep-teal); }
+}
+.faq-q .pm { flex-shrink: 0; transition: transform var(--dur-base) var(--ease-out); color: var(--tvm-deep-teal); }
+.faq-item.open .pm { transform: rotate(45deg); }
+.faq-a { max-height: 0; overflow: hidden; transition: max-height var(--dur-base) var(--ease-soft); }
+.faq-a p { padding: 0 0 24px; font-size: var(--type-body); line-height: 1.6; color: var(--tvm-on-light-70); max-width: 62ch; }
+
+/* ============================================================
+   FINAL CTA
+   ============================================================ */
+.final { background: var(--tvm-deep-teal); text-align: center; position: relative; overflow: hidden; }
+.final-bg { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(60% 80% at 50% 0%, rgba(255,255,255,0.16), transparent 60%); }
+.final h2 { color: #fff; position: relative; }
+.final .sub { font-size: var(--type-body-lg); color: rgba(255,255,255,0.92); max-width: 30em; margin: 20px auto 0; line-height: 1.55; position: relative; }
+.final-cta { display: flex; gap: 14px; justify-content: center; margin: 32px 0 18px; flex-wrap: wrap; position: relative; }
+.final .phone { font-size: 14.5px; color: rgba(255,255,255,0.85); position: relative; }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer { background: var(--tvm-near-black); border-top: 1px solid var(--tvm-on-dark-15); }
+.footer-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 40px; padding: 60px 0 40px; }
+.footer-brand { display: flex; flex-direction: column; height: 100%; }
+.footer .brand img { width: 48px; height: 48px; }
+.footer .brand span { font-size: 20px; }
+.footer .footer-feature {
+  margin-top: auto; padding-top: 40px;
+  font-family: var(--font-display); font-size: clamp(28px, 3.2vw, 46px);
+  line-height: 1.0; letter-spacing: -0.02em; color: #fff;
+}
+.footer h4 { font-family: var(--font-body); font-size: 13px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--tvm-on-dark-50); margin: 0 0 16px; font-weight: 600; }
+.footer-col a, .footer-col p { display: block; font-size: 15px; color: var(--tvm-on-dark-70); text-decoration: none; margin-bottom: 10px; transition: color var(--dur-fast); }
+@media (hover: hover) {
+  .footer-col a:hover { color: #fff; }
+}
+.footer-bottom { border-top: 1px solid var(--tvm-on-dark-15); padding: 24px 0; font-size: 12.5px; color: var(--tvm-on-dark-50); line-height: 1.6; }
+
+/* ============================================================
+   SCROLL REVEAL
+   ============================================================ */
+.reveal {
+  opacity: 0; transform: translateY(26px);
+  transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+  will-change: opacity, transform;
+}
+.reveal.in { opacity: 1; transform: none; }
+.sec-divider { height: 1px; background: var(--tvm-on-dark-15); margin: 0 0 var(--section-y); }
+
+/* ============================================================
+   RESPONSIVE — TABLET (≤ 920px)
+   ============================================================ */
+@media (max-width: 920px) {
+  .nav-links { display: none; }
+  .nav-cta-desktop { display: none !important; }
+  .nav-burger { display: flex; flex-direction: column; align-items: center; }
+
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding-top: 80px;
+    padding-bottom: 60px;
+  }
+  .hero-people {
+    max-width: 70%;
+    left: 50%;
+    transform: translateX(-50%) translateY(calc(-100% + 24px));
+  }
+  .widget-col { order: 2; }
+  .hero-copy { order: 1; }
+
+  .cols-3, .features-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+
+  .step { grid-template-columns: 56px 1fr; align-items: start; gap: 6px 18px; padding: 16px 0; }
+  .step p { grid-column: 2; }
+  .step-ic { grid-row: span 2; width: 56px; height: 56px; }
+  .step-ic svg { width: 26px; height: 26px; }
+  .step-title h3 { font-size: 24px; }
+  .steps::before { left: 27px; top: 44px; bottom: 44px; }
+
+  .wider-grid { grid-template-columns: 1fr; gap: 36px; }
+  .wider-copy { text-align: left; }
+  .wider-copy .body { margin-left: 0; }
+
+  .pricing-grid { grid-template-columns: 1fr; gap: 36px; }
+
+  .int-grid { grid-template-columns: 1fr; gap: 12px; }
+  .int-visual { min-height: 380px; margin-top: 8px; }
+
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px 24px; }
+}
+
+/* ============================================================
+   RESPONSIVE — TABLET SMALL (≤ 768px)
+   ============================================================ */
+@media (max-width: 768px) {
+  :root {
+    --section-y: clamp(2.5rem, 7vw, 5rem);
+    --section-x: clamp(1rem, 4vw, 2rem);
+  }
+
+  .problem-h-v2 { font-size: clamp(2.5rem, 9vw, 5rem); }
+
+  .cols-3, .features-grid { grid-template-columns: 1fr; }
+
+  .faq-q { font-size: 17px; }
+
+  .int-visual { min-height: 300px; }
+  .booked-ui { width: min(420px, 105%); }
+
+  .pricing-photo img { height: 240px; }
+  .price-card { padding: 36px 28px 32px; }
+  .price-now { font-size: 54px; }
+
+  .footer-grid { grid-template-columns: 1fr; }
+  .footer-brand { padding-bottom: 20px; border-bottom: 1px solid var(--tvm-on-dark-15); }
+  .footer .footer-feature { font-size: clamp(24px, 8vw, 36px); padding-top: 24px; }
+}
+
+/* ============================================================
+   RESPONSIVE — MOBILE (≤ 600px)
+   ============================================================ */
+@media (max-width: 600px) {
+  :root {
+    --section-x: 1.125rem;
+  }
+
+  .brand span { font-size: 16px; }
+
+  .hero-grid { padding-top: 60px; padding-bottom: 48px; gap: 32px; }
+  .hero h1 { margin-bottom: 20px; }
+  .hero .sub { font-size: 1rem; }
+  .hero-cta { gap: 10px; }
+  .btn-lg { padding: 16px 24px; font-size: 16px; }
+  .trust { gap: 14px; }
+
+  .widget { padding: 16px; min-height: 360px; }
+  .play-btn { width: 72px; height: 72px; }
+  .play-btn svg { width: 28px; height: 28px; }
+  .caption { font-size: 14px; padding: 12px 14px; }
+
+  .problem-h-v2 { font-size: clamp(2.25rem, 12vw, 4rem); }
+  .problem-trio-v2 { grid-template-columns: 1fr; }
+  .problem-item-v2 {
+    border-right: none;
+    border-bottom: 1px solid var(--tvm-on-light-12);
+    padding: 2rem 0;
+  }
+  .problem-item-v2:first-child { padding-top: 1.5rem; }
+  .problem-item-v2:last-child { border-bottom: none; padding-bottom: 0; }
+
+  .step { gap: 4px 14px; }
+  .step-title h3 { font-size: 21px; }
+
+  .features-grid { gap: 16px; }
+  .feature { padding: 22px; }
+
+  .crm-logos { gap: 10px; }
+  .crm-logo { padding: 14px 18px; }
+  .crm-name { font-size: 17px; }
+  .booked-ui { width: min(340px, 110%); }
+  .int-visual { min-height: 260px; }
+
+  .wider-tabs .trade span { font-size: 18px; }
+  .wider-grid { gap: 24px; }
+
+  .price-card { padding: 36px 22px 28px; }
+  .price-now { font-size: 48px; }
+  .price-was { font-size: 26px; }
+
+  .faq-q { font-size: 16px; padding: 20px 0; }
+
+  .final h2 { font-size: clamp(2.25rem, 8vw, 4rem); }
+  .final-cta { gap: 10px; }
+
+  .footer-grid { padding-top: 40px; }
+  .section-head { margin-bottom: 40px; }
+}
+
+/* ============================================================
+   RESPONSIVE — SMALL MOBILE (≤ 400px)
+   ============================================================ */
+@media (max-width: 400px) {
+  .hero-cta { flex-direction: column; }
+  .hero-cta .btn { justify-content: center; }
+  .final-cta { flex-direction: column; align-items: center; }
+  .price-now { font-size: 42px; }
+}
+
+/* ============================================================
+   ACCESSIBILITY & REDUCED MOTION
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .ticker, .widget-aura, .hero-people-glow, .int-glow, .int-glow-warm,
+  .price-card::before, .pricing-badge { animation: none !important; }
+  .wave span { animation: none !important; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .caption-wrap.show .caption { animation: none; }
+  html { scroll-behavior: auto; }
+  * { transition-duration: 50ms !important; }
+}
+
+:focus-visible {
+  outline: 2px solid var(--tvm-deep-teal);
+  outline-offset: 3px;
+}
+</style>
+
+<script src="assets/lucide.min.js"></script>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="#top">
+      <img src="assets/Tradie_Voice_Mate_Icon.png" alt="Tradie Voice Mate" width="36" height="36">
+      <span>Tradie Voice Mate</span>
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="#how">How It Works</a>
+      <a href="#features">Features</a>
+      <a href="#integrations">Integrations</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <a class="btn btn-primary nav-cta-desktop" href="#pricing">Start your trial</a>
+    <button class="nav-burger" id="navBurger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile nav overlay -->
+<nav class="nav-mobile-menu" id="navMobileMenu" aria-label="Mobile navigation">
+  <a href="#how" class="mobile-link">How It Works</a>
+  <a href="#features" class="mobile-link">Features</a>
+  <a href="#integrations" class="mobile-link">Integrations</a>
+  <a href="#pricing" class="mobile-link">Pricing</a>
+  <a href="#faq" class="mobile-link">FAQ</a>
+  <a class="btn btn-primary" href="#pricing">Start your trial →</a>
+</nav>
+
+<!-- HERO -->
+<header id="top" class="hero">
+  <div class="hero-bg" aria-hidden="true">
+    <div class="hero-lines"></div>
+    <div class="hero-glow"></div>
+  </div>
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow">Your digital receptionist · 24/7</span>
+      <h1 class="h-hero">While You're On The Job,<br>It's Got The <span class="accent-teal">Phone.</span></h1>
+      <p class="sub">Tradie Voice Mate answers every missed call for you — takes down the job details, handles the questions, and texts you a summary. Whether you're on the tools, in the ute, or it's 10pm on a Sunday.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary btn-lg" href="#pricing">Start your trial <span aria-hidden="true">→</span></a>
+        <a class="btn btn-secondary btn-lg" href="https://calendly.com/tradievoicemate/15min" target="_blank" rel="noopener">Reserve your demo</a>
+      </div>
+      <div class="trust">
+        <span class="t"><i data-lucide="check" width="17" height="17"></i> No setup fee</span>
+        <span class="t"><i data-lucide="check" width="17" height="17"></i> No lock-in contract</span>
+        <span class="t"><i data-lucide="check" width="17" height="17"></i> First month 80% off</span>
+      </div>
+    </div>
+
+    <div class="widget-col">
+      <div class="widget-aura" aria-hidden="true"></div>
+      <div class="hero-people-glow" aria-hidden="true"></div>
+      <img class="hero-people" src="assets/img/hero-receptionist-2.png" alt="The Tradie Voice Mate digital receptionist team" loading="eager">
+      <div class="widget" id="widget">
+        <audio id="demoAudio" src="assets/audio/arborist-call.mp3" preload="auto"></audio>
+        <button class="widget-ctrl" id="widgetCtrl" aria-label="Pause" data-state="pause">
+          <span class="ctrl-ic ctrl-pause" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <rect x="6" y="5" width="4" height="14" rx="1.6"></rect>
+              <rect x="14" y="5" width="4" height="14" rx="1.6"></rect>
+            </svg>
+          </span>
+          <span class="ctrl-ic ctrl-play" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg>
+          </span>
+          <span class="ctrl-ic ctrl-restart" aria-hidden="true">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 12a9 9 0 1 0 2.6-6.3"></path><path d="M3 4v5h5"></path>
+            </svg>
+          </span>
+        </button>
+        <div class="widget-top">
+          <span class="live-dot pulsing" id="liveDot"></span>
+          <span class="widget-status" id="status">Incoming call</span>
+          <span class="widget-timer" id="timer">0:00</span>
+        </div>
+        <div class="wave" id="wave"></div>
+        <div class="widget-stage">
+          <div class="play-wrap" id="playWrap">
+            <button class="play-btn" id="playBtn" aria-label="Hear a live call example">
+              <span class="play-ring" aria-hidden="true"></span>
+              <i data-lucide="play" width="34" height="34" fill="#fff"></i>
+            </button>
+            <span class="play-label">Hear a live call</span>
+            <span class="play-note">Or call our demo line: (07) 4519 0301</span>
+          </div>
+          <div class="caption-wrap" id="captionWrap">
+            <div class="caption" id="caption"></div>
+          </div>
+          <div class="pills" id="pills"></div>
+          <div class="sms" id="sms">
+            <div class="sms-card">
+              <div class="sms-head">
+                <span class="sms-app"><i data-lucide="message-square" width="15" height="15"></i></span>
+                <span class="sms-title">New lead — Tall Timber Tree Services</span>
+                <span class="sms-time">now</span>
+              </div>
+              <div class="sms-fields">
+                <span class="k">Name</span><span class="v">John</span>
+                <span class="k">Job</span><span class="v strong">Red gum removal — leaning near house</span>
+                <span class="k">Urgency</span><span class="v accent">ASAP</span>
+                <span class="k">Postcode</span><span class="v">3144</span>
+                <span class="k">Callback</span><span class="v">Next Thursday ~5pm</span>
+                <span class="k">Phone</span><span class="v">0437 414 424</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- SOCIAL PROOF TICKER -->
+<section class="social" aria-label="Customer testimonials">
+  <div class="ticker" id="ticker"></div>
+</section>
+
+<!-- PROBLEM -->
+<section class="section light">
+  <div class="wrap">
+    <div class="problem-header-v2" id="problemHeader">
+      <span class="eyebrow">The call you missed today</span>
+      <h2 class="problem-h-v2" id="problemTitle">
+        <span class="pw">One</span> <span class="pw">Missed</span> <span class="pw pw-accent">Call</span> <span class="pw">Is</span><br>
+        <span class="pw">One</span> <span class="pw">Lost</span> <span class="pw pw-accent">Job.</span>
+      </h2>
+    </div>
+    <div class="problem-trio-v2" id="problemTrio">
+      <div class="problem-item-v2">
+        <span class="problem-item-num-v2">01</span>
+        <div class="problem-item-head-row">
+          <div class="problem-item-ic-v2"><i data-lucide="phone-missed"></i></div>
+          <h3 class="problem-item-title-v2">Gone Before<br>You Know It</h3>
+        </div>
+        <p class="problem-item-body-v2">You're on site, can't answer. They call your competitor instead. The job's gone before you even know about it.</p>
+      </div>
+      <div class="problem-item-v2">
+        <span class="problem-item-num-v2">02</span>
+        <div class="problem-item-head-row">
+          <div class="problem-item-ic-v2"><i data-lucide="clock"></i></div>
+          <h3 class="problem-item-title-v2">Chasing Leads<br>All Night</h3>
+        </div>
+        <p class="problem-item-body-v2">You're chasing leads at 9pm. Writing down details on the back of your hand. Playing phone tag all the next day.</p>
+      </div>
+      <div class="problem-item-v2">
+        <span class="problem-item-num-v2">03</span>
+        <div class="problem-item-head-row">
+          <div class="problem-item-ic-v2"><i data-lucide="trending-down"></i></div>
+          <h3 class="problem-item-title-v2">First To<br>Answer Wins</h3>
+        </div>
+        <p class="problem-item-body-v2">In trades, the first one to answer gets the job. Every time you miss a call, that's someone else's invoice. It adds up fast.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how" class="section">
+  <div class="hero-bg subtle" aria-hidden="true"><div class="hero-lines"></div></div>
+  <div class="wrap">
+    <div class="section-head center" style="max-width:46em">
+      <span class="eyebrow">Simple as</span>
+      <h2 class="h-display" style="color:#fff">Set Up In Minutes.<br>Runs Itself From There.</h2>
+      <p class="center-note" style="margin-top:24px">No scripts to write. No tech know-how needed.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal" style="transition-delay:0ms">
+        <div class="step-ic"><i data-lucide="phone-forwarded"></i></div>
+        <div class="step-title">
+          <span class="step-num">Step 1</span>
+          <h3>Forward your missed calls</h3>
+        </div>
+        <p>Takes 2 minutes. When a call goes unanswered, it forwards to your Tradie Voice Mate line. That's the setup done.</p>
+      </div>
+      <div class="step reveal" style="transition-delay:90ms">
+        <div class="step-ic"><i data-lucide="mic"></i></div>
+        <div class="step-title">
+          <span class="step-num">Step 2</span>
+          <h3>It has a real conversation</h3>
+        </div>
+        <p>It answers, talks naturally, and grabs the details. Name, job, suburb, callback time — all captured.</p>
+      </div>
+      <div class="step reveal" style="transition-delay:180ms">
+        <div class="step-ic"><i data-lucide="message-square-text"></i></div>
+        <div class="step-title">
+          <span class="step-num">Step 3</span>
+          <h3>You get an SMS summary</h3>
+        </div>
+        <p>The caller's name, job and number land on your phone. Your CRM updates automatically. Ready to call them back.</p>
+      </div>
+      <div class="step reveal" style="transition-delay:270ms">
+        <div class="step-ic"><i data-lucide="calendar-check"></i></div>
+        <div class="step-title">
+          <span class="step-num">Step 4</span>
+          <h3>Job gets booked in your system</h3>
+        </div>
+        <p>We integrate with the leading CRMs to book jobs right into your system. No missed jobs, no mucking around.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section id="features" class="section" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-divider"></div>
+    <div class="features-glow" aria-hidden="true"></div>
+    <div class="section-head">
+      <span class="eyebrow">What it does for you</span>
+      <h2 class="h-display" style="color:#fff">A Receptionist That<br>Actually Earns Its Keep.</h2>
+    </div>
+    <div class="features-grid">
+      <div class="feature reveal">
+        <div class="feature-ic"><i data-lucide="calendar-clock"></i></div>
+        <h3>24/7 coverage</h3>
+        <p>On site, in the ute, or 10pm Sunday — every call answered.</p>
+      </div>
+      <div class="feature reveal" style="transition-delay:60ms">
+        <div class="feature-ic"><i data-lucide="message-square-text"></i></div>
+        <h3>SMS in 30 seconds</h3>
+        <p>Full lead details to your phone the moment the call ends.</p>
+      </div>
+      <div class="feature reveal" style="transition-delay:120ms">
+        <div class="feature-ic"><i data-lucide="audio-lines"></i></div>
+        <h3>Sounds like a real person</h3>
+        <p>A natural, Australian-accented conversation. Callers don't feel processed.</p>
+      </div>
+      <div class="feature reveal" style="transition-delay:60ms">
+        <div class="feature-ic"><i data-lucide="siren"></i></div>
+        <h3>Flags urgent jobs</h3>
+        <p>Emergency calls get priority-flagged so you know what to action first.</p>
+      </div>
+      <div class="feature reveal" style="transition-delay:120ms">
+        <div class="feature-ic"><i data-lucide="voicemail"></i></div>
+        <h3>Handles message taking</h3>
+        <p>For existing customers calling back, it switches to quick message-taking mode.</p>
+      </div>
+      <div class="feature reveal" style="transition-delay:180ms">
+        <div class="feature-ic"><i data-lucide="workflow"></i></div>
+        <h3>CRM connected</h3>
+        <p>Plugs into ServiceM8, Monday.com and Formitize. Job details land automatically.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INTEGRATIONS -->
+<section id="integrations" class="section light">
+  <div class="wrap int-grid">
+    <div class="int-main">
+      <div class="section-head">
+        <span class="eyebrow">Works with your setup</span>
+        <h2 class="h-display">Already Using Job Management<br>Software? Even Better.</h2>
+        <p class="muted-light" style="margin-top:18px; font-size:var(--type-body); line-height:1.6;">Tradie Voice Mate plugs straight into the tools you're already running. No data re-entry. No double handling. The call happens, the details land in your system, and you get on with the job.</p>
+      </div>
+      <div class="crm-logos">
+        <div class="crm-logo reveal">
+          <img class="crm-mark rounded" src="assets/img/crm/servicem8.png" alt="ServiceM8" width="34" height="34" loading="lazy">
+          <span class="crm-name">Service<span class="crm-m8">M8</span></span>
+        </div>
+        <div class="crm-logo reveal" style="transition-delay:60ms">
+          <img class="crm-mark" src="assets/img/crm/mondaycom.png" alt="monday.com" width="34" height="34" loading="lazy">
+          <span class="crm-name lower">monday<span class="crm-dim">.com</span></span>
+        </div>
+        <div class="crm-logo reveal" style="transition-delay:120ms">
+          <img class="crm-mark rounded" src="assets/img/crm/formitize.jpeg" alt="Formitize" width="34" height="34" loading="lazy">
+          <span class="crm-name crm-formitize">Formitize</span>
+        </div>
+        <div class="crm-logo more reveal" style="transition-delay:180ms">+ more — ask us</div>
+      </div>
+      <p class="int-note">Don't see your software? Get in touch — we're adding integrations regularly.</p>
+    </div>
+
+    <div class="int-visual">
+      <div class="int-glow" aria-hidden="true"></div>
+      <div class="int-glow-warm" aria-hidden="true"></div>
+      <img class="int-people" src="assets/img/team-cutout.png" alt="Tradie team" loading="lazy">
+      <div class="booked-ui" aria-hidden="true">
+        <div class="booked-bar">
+          <span class="booked-dots"><i></i><i></i><i></i></span>
+          <span class="booked-app">
+            <img class="crm-mark rounded" style="width:18px;height:18px" src="assets/img/crm/servicem8.png" alt="">
+            ServiceM8 · Schedule
+          </span>
+          <span class="booked-sync"><span class="booked-sync-dot"></span> Synced</span>
+        </div>
+        <div class="booked-body">
+          <div class="booked-check">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          </div>
+          <div class="booked-detail">
+            <span class="booked-label">Job booked</span>
+            <strong class="booked-title">Red gum removal — leaning near house</strong>
+            <span class="booked-meta">John · 3144 · Thu ~5pm · 0437 414 424</span>
+          </div>
+          <span class="booked-new">NEW</span>
+        </div>
+        <div class="booked-week">
+          <span>Mon</span><span>Tue</span><span>Wed</span><span class="on">Thu</span><span>Fri</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WIDER THAN TRADES -->
+<section class="section violet">
+  <div class="hero-bg" aria-hidden="true"><div class="hero-lines"></div></div>
+  <div class="wrap wider-grid">
+    <div class="wider-left">
+      <div class="wider-tabs">
+        <div class="trade reveal" style="transition-delay:0ms"><i data-lucide="wrench"></i><span>Plumbers</span></div>
+        <div class="trade reveal" style="transition-delay:70ms"><i data-lucide="zap"></i><span>Electricians</span></div>
+        <div class="trade reveal" style="transition-delay:140ms"><i data-lucide="trees"></i><span>Arborists</span></div>
+        <div class="trade reveal" style="transition-delay:210ms"><i data-lucide="bug"></i><span>Pest Control</span></div>
+        <div class="trade reveal" style="transition-delay:280ms"><i data-lucide="hard-hat"></i><span>Builders</span></div>
+        <div class="trade reveal" style="transition-delay:350ms"><i data-lucide="utensils"></i><span>Restaurants</span></div>
+        <div class="trade reveal" style="transition-delay:420ms"><i data-lucide="scissors"></i><span>Salons</span></div>
+        <div class="trade reveal" style="transition-delay:490ms"><i data-lucide="car"></i><span>Mechanics</span></div>
+      </div>
+      <div class="wider-more">+ more — we're always regularly adding industries</div>
+    </div>
+    <div class="wider-copy">
+      <span class="eyebrow">Not just for tradies</span>
+      <h2 class="h-display">Any Aussie Business<br>That Lives Or Dies<br>By The Phone.</h2>
+      <p class="body">Tradie Voice Mate was built for the tools-in-hand, on-site world — but a digital receptionist works for any small business that can't always pick up. Restaurants, salons, clinics, landscapers, cleaners, vets, mechanics. If a missed call means a missed customer, this is for you.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing" class="section">
+  <div class="hero-bg subtle" aria-hidden="true"><div class="hero-lines"></div><div class="hero-glow soft"></div></div>
+  <div class="wrap pricing-grid">
+    <div class="pricing-aside">
+      <span class="eyebrow">Pricing</span>
+      <h2 class="h-display" style="color:#fff">Dead Simple.<br>No Surprises.</h2>
+      <p class="pricing-lede">One plan. Everything included. Your first month is 80% off — then it's month-to-month, and you can walk any time.</p>
+      <div class="pricing-photo">
+        <img src="assets/img/tradie-phone-3.jpg" alt="A tradie calling a lead back after the receptionist captured the job" loading="lazy">
+        <div class="pricing-badge">
+          <span class="sms-app"><i data-lucide="message-square" width="14" height="14"></i></span>
+          <div class="pricing-badge-text">
+            <strong>New lead — John</strong>
+            <span>Red gum removal · ASAP · 3144</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pricing-main">
+      <div class="price-card">
+        <span class="price-badge"><i data-lucide="sparkles"></i> First month 80% off</span>
+        <span class="name">Tradie Voice Mate</span>
+        <div class="price-row">
+          <span class="price-was">$290</span>
+          <span class="price-now">$58<small>/first month</small></span>
+        </div>
+        <p class="price-tag">80% off — no promo code needed</p>
+        <ul class="price-list">
+          <li><i data-lucide="check" width="18" height="18"></i> Unlimited call answering, 24/7</li>
+          <li><i data-lucide="check" width="18" height="18"></i> SMS summaries after every call</li>
+          <li><i data-lucide="check" width="18" height="18"></i> CRM Integration unlocked after trial period</li>
+          <li><i data-lucide="check" width="18" height="18"></i> Custom setup for your business</li>
+          <li><i data-lucide="check" width="18" height="18"></i> No setup fee</li>
+          <li><i data-lucide="check" width="18" height="18"></i> No lock-in contract — cancel any time</li>
+        </ul>
+        <div class="price-cta">
+          <a class="btn btn-primary" href="https://buy.stripe.com/8x24gAf7seyOgki0Ir3ks00?prefilled_promo_code=FIRSTMONTH80" target="_blank" rel="noopener">Start your $58 trial <span aria-hidden="true">→</span></a>
+          <a class="btn btn-secondary" href="https://calendly.com/tradievoicemate/15min" target="_blank" rel="noopener">Reserve your demo</a>
+        </div>
+      </div>
+      <p class="price-foot">After the trial month, it's $290/month. No contracts, no lock-in. If it's not making you money, cancel. Simple as that.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="section light">
+  <div class="wrap">
+    <div class="section-head center">
+      <span class="eyebrow">Fair questions</span>
+      <h2 class="h-display">Got A Question?<br>Good — Here's The Answers.</h2>
+    </div>
+    <div class="faq-list" id="faqList">
+      <div class="faq-item">
+        <button class="faq-q">How does the call forwarding work? <i class="pm" data-lucide="plus"></i></button>
+        <div class="faq-a"><p>You set up a simple call-forward from your existing business number so that when a call goes unanswered, it forwards to your Tradie Voice Mate line. Your existing number stays the same. Most providers take 2 minutes to set this up. We walk you through it.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Will my customers know they're not talking to a real person? <i class="pm" data-lucide="plus"></i></button>
+        <div class="faq-a"><p>It discloses that it's a digital receptionist in the greeting — legally required and the right thing to do. What surprises people is how natural the conversation feels. Most callers say it sounds more helpful than being put on hold.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">What if someone has a really unusual request? <i class="pm" data-lucide="plus"></i></button>
+        <div class="faq-a"><p>It's built to handle the common scenarios — new jobs, follow-ups, urgent calls, message-taking. Anything it can't confidently handle gets flagged for you to call back. It won't make things up.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">What job management software does it work with? <i class="pm" data-lucide="plus"></i></button>
+        <div class="faq-a"><p>Right now, ServiceM8, Monday.com, and Formitize. More on the way. If you're using something else, get in touch — we'll let you know what's coming.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">What if I want to cancel? <i class="pm" data-lucide="plus"></i></button>
+        <div class="faq-a"><p>No problem. No contracts, no lock-in, no awkward cancellation process. Just let us know.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">How long does setup take? <i class="pm" data-lucide="plus"></i></button>
+        <div class="faq-a"><p>We build and configure your system — usually live within 24 hours of signing up. The only thing you do is set up call forwarding, which takes about 2 minutes. We'll walk you through it.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="section final">
+  <div class="final-bg" aria-hidden="true"></div>
+  <div class="wrap">
+    <h2 class="h-hero">Stop Missing Jobs.<br>Start Your Trial Today.</h2>
+    <p class="sub">$58 for your first month. No setup fee. No lock-in. If it doesn't earn its keep, walk away — no hard feelings.</p>
+    <div class="final-cta">
+      <a class="btn btn-inverted btn-lg" href="https://buy.stripe.com/8x24gAf7seyOgki0Ir3ks00?prefilled_promo_code=FIRSTMONTH80" target="_blank" rel="noopener">Start your trial <span aria-hidden="true">→</span></a>
+      <a class="btn btn-inverted-ghost btn-lg" href="https://calendly.com/tradievoicemate/15min" target="_blank" rel="noopener">Reserve your demo</a>
+    </div>
+    <p class="phone">Or call us directly: 0422 999 097 — we're real people, always happy to chat.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="wrap footer-grid">
+    <div class="footer-brand">
+      <a class="brand" href="#top">
+        <img src="assets/Tradie_Voice_Mate_Icon.png" alt="Tradie Voice Mate" width="48" height="48" loading="lazy">
+        <span>Tradie Voice Mate</span>
+      </a>
+      <p class="footer-feature">Your calls,<br>covered.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Product</h4>
+      <a href="#how">How It Works</a>
+      <a href="#features">Features</a>
+      <a href="#integrations">Integrations</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact Us</h4>
+      <a href="mailto:Tradievoicemate@gmail.com">Tradievoicemate@gmail.com</a>
+      <a href="tel:0422999097">0422 999 097</a>
+    </div>
+    <div class="footer-col">
+      <h4>Tradie Web Mate</h4>
+      <p>A Tradie Web Mate product.</p>
+      <a href="#">tradiewebmate.com.au</a>
+      <a href="tel:0419720285">0419 720 285</a>
+      <a href="mailto:info@tradiewebmate.com.au">info@tradiewebmate.com.au</a>
+    </div>
+  </div>
+  <div class="wrap footer-bottom">
+    © 2026 Tradie Voice Mate. ABN 14 717 270 980. Built for Australian businesses.<br>
+    Calls are answered on a recorded line. See Privacy Policy for full details.
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script src="assets/app.js"></script>
+
+<script>
+(function () {
+  /* ---- Mobile nav ---- */
+  var burger = document.getElementById('navBurger');
+  var mobileMenu = document.getElementById('navMobileMenu');
+  var mobileLinks = document.querySelectorAll('.mobile-link');
+
+  function openMenu() {
+    burger.classList.add('open');
+    mobileMenu.style.display = 'flex';
+    requestAnimationFrame(function () {
+      mobileMenu.classList.add('open');
+    });
+    burger.setAttribute('aria-expanded', 'true');
+    burger.setAttribute('aria-label', 'Close menu');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMenu() {
+    burger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+    burger.setAttribute('aria-expanded', 'false');
+    burger.setAttribute('aria-label', 'Open menu');
+    document.body.style.overflow = '';
+    setTimeout(function () { mobileMenu.style.display = ''; }, 300);
+  }
+
+  burger.addEventListener('click', function () {
+    if (burger.classList.contains('open')) closeMenu();
+    else openMenu();
+  });
+
+  mobileLinks.forEach(function (link) {
+    link.addEventListener('click', closeMenu);
+  });
+
+  /* Close on escape */
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && mobileMenu.classList.contains('open')) closeMenu();
+  });
+
+  /* ---- Problem section: scroll-driven per-word blur-horizon reveal ---- */
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    var words = document.querySelectorAll('#problemTitle .pw');
+
+    words.forEach(function (w) {
+      var inner = document.createElement('span');
+      inner.className = 'pw-in';
+      while (w.firstChild) { inner.appendChild(w.firstChild); }
+      w.appendChild(inner);
+      w.classList.add('pw-horizon');
+      inner.style.filter    = 'blur(10px)';
+      inner.style.opacity   = '0';
+      inner.style.transform = 'translateY(115%)';
+      w.style.setProperty('--grain-op', '0.44');
+    });
+
+    function revealWords() {
+      var titleEl = document.getElementById('problemTitle');
+      if (!titleEl || !words.length) return;
+      var rect = titleEl.getBoundingClientRect();
+      var vh   = window.innerHeight;
+      var start = vh * 0.92;
+      var end   = vh * 0.20;
+      var totalP = Math.max(0, Math.min(1, (start - rect.top) / (start - end)));
+      var n = words.length;
+      words.forEach(function (word, i) {
+        var wStart = (i / n) * 0.58;
+        var wEnd   = wStart + 0.42;
+        var p = Math.max(0, Math.min(1, (totalP - wStart) / (wEnd - wStart)));
+        var e = 1 - Math.pow(1 - p, 3);
+        var inner = word.querySelector('.pw-in') || word;
+        inner.style.filter    = 'blur(' + (10 * (1 - e)).toFixed(2) + 'px)';
+        inner.style.opacity   = e.toFixed(4);
+        inner.style.transform = 'translateY(' + (115 * (1 - e)).toFixed(2) + '%)';
+        word.style.setProperty('--grain-op', (0.44 * (1 - e)).toFixed(4));
+      });
+    }
+
+    var ticking = false;
+    window.addEventListener('scroll', function () {
+      if (!ticking) {
+        window.requestAnimationFrame(function () { revealWords(); ticking = false; });
+        ticking = true;
+      }
+    }, { passive: true });
+    revealWords();
+
+    /* --- Trio cards: sequential staggered pop-in --- */
+    var trioItems = document.querySelectorAll('#problemTrio .problem-item-v2');
+    trioItems.forEach(function (item) {
+      item.style.opacity   = '0';
+      item.style.transform = 'translateY(32px)';
+    });
+    if (trioItems.length) {
+      var tObs = new IntersectionObserver(function (entries) {
+        if (!entries[0].isIntersecting) return;
+        trioItems.forEach(function (item, i) {
+          var delay = 0.08 + i * 0.11;
+          item.style.transition =
+            'opacity 0.6s cubic-bezier(0.22,1,0.36,1) ' + delay + 's,' +
+            'transform 0.65s cubic-bezier(0.22,1,0.36,1) ' + delay + 's';
+          item.style.opacity   = '1';
+          item.style.transform = 'translateY(0)';
+        });
+        tObs.unobserve(trioItems[0].closest('#problemTrio'));
+      }, { threshold: 0.08 });
+      tObs.observe(trioItems[0].closest('#problemTrio'));
+    }
+  }
+
+  /* ---- Active nav links on scroll ---- */
+  var sections = ['top', 'how', 'features', 'integrations', 'pricing', 'faq'];
+  var navAnchors = document.querySelectorAll('.nav-links a');
+
+  function updateActiveNav() {
+    var scrollY = window.scrollY;
+    var current = 'top';
+    sections.forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el && el.getBoundingClientRect().top <= 120) current = id;
+    });
+    navAnchors.forEach(function (a) {
+      var href = a.getAttribute('href');
+      if (href === '#' + current) a.style.color = '#fff';
+      else a.style.color = '';
+    });
+  }
+
+  window.addEventListener('scroll', updateActiveNav, { passive: true });
+})();
+</script>
+
+</body>
+</html>
