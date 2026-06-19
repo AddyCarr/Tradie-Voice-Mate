@@ -1,0 +1,29 @@
+<!-- @dsCard group="Brand" viewport="700x170" name="Iconography — Lucide" subtitle="Lucide line icons (2px stroke) replace the brief's emoji placeholders" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../styles.css" />
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<style>
+  body { margin: 0; font-family: var(--font-body); background: #fff; padding: 26px; }
+  .row { display: flex; gap: 26px; flex-wrap: wrap; }
+  .item { display: flex; flex-direction: column; align-items: center; gap: 8px; width: 84px; }
+  .ic { width: 52px; height: 52px; border-radius: var(--radius-md); background: var(--tvm-pale-mint); display: grid; place-items: center; }
+  .ic svg { width: 26px; height: 26px; color: var(--tvm-deep-teal); stroke-width: 2; }
+  .lbl { font-size: 11px; color: var(--tvm-on-light-45); text-align: center; }
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="item"><div class="ic"><i data-lucide="phone-incoming"></i></div><span class="lbl">missed call</span></div>
+    <div class="item"><div class="ic"><i data-lucide="message-square-text"></i></div><span class="lbl">SMS summary</span></div>
+    <div class="item"><div class="ic"><i data-lucide="clock"></i></div><span class="lbl">24/7</span></div>
+    <div class="item"><div class="ic"><i data-lucide="check"></i></div><span class="lbl">tick</span></div>
+    <div class="item"><div class="ic"><i data-lucide="zap"></i></div><span class="lbl">urgent</span></div>
+    <div class="item"><div class="ic"><i data-lucide="plug"></i></div><span class="lbl">CRM</span></div>
+    <div class="item"><div class="ic"><i data-lucide="audio-lines"></i></div><span class="lbl">waveform</span></div>
+  </div>
+  <script>lucide.createIcons();</script>
+</body>
+</html>

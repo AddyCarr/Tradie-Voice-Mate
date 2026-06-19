@@ -1,0 +1,24 @@
+<!-- @dsCard group="Colors" viewport="700x150" name="Section surfaces" subtitle="Dark and light alternate; teal and violet are bold accent sections" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin: 0; font-family: var(--font-body); background: #fff; padding: 22px; }
+  .row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  .surf { height: 96px; border-radius: var(--radius-md); display: flex; align-items: flex-end; padding: 12px; border: 1px solid var(--tvm-on-light-12); }
+  .lbl { font-family: var(--font-display); font-size: 17px; letter-spacing: .02em; }
+  .sub { font-size: 11px; opacity: .7; font-family: var(--font-body); margin-top: 2px; }
+  .b { display: flex; flex-direction: column; }
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="surf" style="background:var(--surface-dark)"><div class="b"><span class="lbl" style="color:#fff">HERO / NAV</span><span class="sub" style="color:#fff">Near Black</span></div></div>
+    <div class="surf" style="background:var(--surface-light)"><div class="b"><span class="lbl" style="color:var(--tvm-near-black)">LIGHT BREAK</span><span class="sub" style="color:var(--tvm-near-black)">Pale Mint</span></div></div>
+    <div class="surf" style="background:var(--surface-teal)"><div class="b"><span class="lbl" style="color:#fff">ACTION</span><span class="sub" style="color:#fff">Deep Teal</span></div></div>
+    <div class="surf" style="background:var(--surface-violet)"><div class="b"><span class="lbl" style="color:#fff">WIDER THAN TRADES</span><span class="sub" style="color:#fff">Deep Violet</span></div></div>
+  </div>
+</body>
+</html>

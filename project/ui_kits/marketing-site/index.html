@@ -1,0 +1,457 @@
+<!-- @dsCard group="Marketing Site" viewport="1280x860" name="One-page marketing site" -->
+<!-- @startingPoint section="Marketing Site" subtitle="Full Tradie Voice Mate one-pager with live demo widget" viewport="1280x860" -->
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Tradie Voice Mate — Your Digital Receptionist, 24/7</title>
+<link rel="icon" type="image/png" href="../../assets/Tradie_Voice_Mate_Icon.png" />
+<link rel="stylesheet" href="../../styles.css" />
+<link rel="stylesheet" href="site.css?v=5" />
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="#top">
+      <img src="../../assets/Tradie_Voice_Mate_Icon.png" alt="Tradie Voice Mate" />
+      <span>Tradie Voice Mate</span>
+    </a>
+    <div class="nav-links">
+      <a href="#how">How It Works</a>
+      <a href="#features">Features</a>
+      <a href="#integrations">Integrations</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <a class="btn btn-primary" href="#pricing">Start your trial</a>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header id="top" class="hero">
+  <div class="hero-bg" aria-hidden="true">
+    <div class="hero-lines"></div>
+    <div class="hero-glow"></div>
+  </div>
+  <div class="wrap hero-grid" data-comment-anchor="275a58aa5d-div">
+    <div class="hero-copy">
+      <span class="eyebrow">Your digital receptionist · 24/7</span>
+      <h1 class="h-hero">While You're On The Job,<br />It's Got The <span class="accent-teal">Phone.</span></h1>
+      <p class="sub">Tradie Voice Mate answers every missed call for you — takes down the job details, handles the questions, and texts you a summary. Whether you're on the tools, in the ute, or it's 10pm on a Sunday.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary btn-lg" href="#pricing">Start your trial <span aria-hidden="true">→</span></a>
+        <a class="btn btn-secondary btn-lg" href="#how">Reserve your demo</a>
+      </div>
+      <div class="trust">
+        <span class="t"><i data-lucide="check" width="17" height="17"></i> No setup fee</span>
+        <span class="t"><i data-lucide="check" width="17" height="17"></i> No lock-in contract</span>
+        <span class="t"><i data-lucide="check" width="17" height="17"></i> First month 80% off</span>
+      </div>
+    </div>
+
+    <!-- Demo widget -->
+    <div class="widget-col">
+      <div class="widget-aura" aria-hidden="true"></div>
+      <div class="hero-people-glow" aria-hidden="true"></div>
+      <img class="hero-people" src="../../assets/img/hero-receptionist-2.png" alt="The Tradie Voice Mate digital receptionist team" />
+      <div class="widget" id="widget" data-comment-anchor="9b24f1cc94-div">
+        <audio id="demoAudio" src="../../assets/audio/arborist-call.mp3" preload="auto"></audio>
+        <button class="widget-ctrl" id="widgetCtrl" aria-label="Pause" data-state="pause">
+          <span class="ctrl-ic ctrl-pause" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1.6"></rect><rect x="14" y="5" width="4" height="14" rx="1.6"></rect></svg></span>
+          <span class="ctrl-ic ctrl-play" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg></span>
+          <span class="ctrl-ic ctrl-restart" aria-hidden="true"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 2.6-6.3"></path><path d="M3 4v5h5"></path></svg></span>
+        </button>
+        <div class="widget-top" data-comment-anchor="ea153fa7fc-div">
+          <span class="live-dot pulsing" id="liveDot"></span>
+          <span class="widget-status" id="status">Incoming call</span>
+          <span class="widget-timer" id="timer">0:00</span>
+        </div>
+        <div class="wave" id="wave"></div>
+        <div class="widget-stage" data-comment-anchor="8782617a8c-div">
+          <div class="play-wrap" id="playWrap">
+            <button class="play-btn" id="playBtn" aria-label="Hear a live call">
+              <span class="play-ring" aria-hidden="true"></span>
+              <i data-lucide="play" width="34" height="34" fill="#fff"></i>
+            </button>
+            <span class="play-label">Hear a live call</span>
+            <span class="play-note">Or call our demo line: (07) 4519 0301</span>
+          </div>
+          <div class="caption-wrap" id="captionWrap" data-comment-anchor="467a2282c8-div">
+            <div class="caption" id="caption"></div>
+          </div>
+          <div class="pills" id="pills"></div>
+          <div class="sms" id="sms">
+            <div class="sms-card">
+              <div class="sms-head">
+                <span class="sms-app"><i data-lucide="message-square" width="15" height="15"></i></span>
+                <span class="sms-title">New lead — Tall Timber Tree Services</span>
+                <span class="sms-time">now</span>
+              </div>
+              <div class="sms-fields">
+                <span class="k">Name</span><span class="v">John</span>
+                <span class="k">Job</span><span class="v strong">Red gum removal — leaning near house</span>
+                <span class="k">Urgency</span><span class="v accent">ASAP</span>
+                <span class="k">Postcode</span><span class="v">3144</span>
+                <span class="k">Callback</span><span class="v">Next Thursday ~5pm</span>
+                <span class="k">Phone</span><span class="v">0437 414 424</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ SOCIAL PROOF ============ -->
+<section class="social" aria-label="Customer testimonials">
+  <div class="ticker" id="ticker"></div>
+</section>
+
+<!-- ============ PROBLEM ============ -->
+<section class="problem-scroll light" id="problem">
+  <div class="problem-sticky">
+    <div class="wrap problem-stage">
+      <span class="eyebrow p-eyebrow">The call you missed today</span>
+      <h2 class="p-title">
+        <span class="p-ln">
+          <span class="w"><span class="wi">One</span></span> <span class="w"><span class="wi accent">Missed</span></span> <span class="w"><span class="wi">Call</span></span> <span class="w"><span class="wi">Is</span></span>
+        </span>
+        <span class="p-ln">
+          <span class="w"><span class="wi">One</span></span> <span class="w"><span class="wi accent">Lost</span></span> <span class="w"><span class="wi">Job.</span></span>
+        </span>
+      </h2>
+      <div class="cols-3 p-cols">
+        <div class="problem-col p-col">
+          <div class="ic ic-lg" data-comment-anchor="87ade394ee-div"><i data-lucide="phone-missed"></i></div>
+          <strong class="p-col-head">Gone Before You Know It</strong>
+          <p>You're on site, can't answer. They call your competitor — the job is lost before you even see a missed call.</p>
+        </div>
+        <div class="problem-col p-col" data-comment-anchor="4ba5b63382-div">
+          <div class="ic ic-lg"><i data-lucide="clock"></i></div>
+          <strong class="p-col-head">Chasing Leads All Evening</strong>
+          <p>Writing details on your hand, playing phone tag the next day. Your night shouldn't be admin.</p>
+        </div>
+        <div class="problem-col p-col">
+          <div class="ic ic-lg"><i data-lucide="trending-down"></i></div>
+          <strong class="p-col-head">Every Miss Costs Money</strong>
+          <p>In trades, first to answer gets the job. Every missed call is someone else's invoice — it adds up fast.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ HOW IT WORKS ============ -->
+<section id="how" class="section">
+  <div class="hero-bg subtle" aria-hidden="true"><div class="hero-lines"></div></div>
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Simple as</span>
+      <h2 class="h-display" style="color:#fff">Set Up In Minutes.<br />Runs Itself From There.</h2>
+    </div>
+    <div class="steps-list">
+      <div class="step-row" data-comment-anchor="13d1383ff7-div">
+        <span class="step-row-num">01</span>
+        <div class="step-row-head">
+          <div class="step-ic"><i data-lucide="phone-forwarded"></i></div>
+          <h3>Forward your missed calls</h3>
+        </div>
+        <p class="step-row-body">Takes 2 minutes. When a call goes unanswered, it routes to your Tradie Voice Mate line. Done.</p>
+      </div>
+      <div class="step-row" data-comment-anchor="2bf62f3e66-div">
+        <span class="step-row-num">02</span>
+        <div class="step-row-head">
+          <div class="step-ic"><i data-lucide="mic"></i></div>
+          <h3>It has a real conversation</h3>
+        </div>
+        <p class="step-row-body">Answers naturally and captures the details — name, job, suburb, callback time.</p>
+      </div>
+      <div class="step-row">
+        <span class="step-row-num">03</span>
+        <div class="step-row-head">
+          <div class="step-ic"><i data-lucide="message-square-text"></i></div>
+          <h3>You get an SMS summary</h3>
+        </div>
+        <p class="step-row-body">The caller's details land on your phone the moment the call ends. Ready to action.</p>
+      </div>
+      <div class="step-row">
+        <span class="step-row-num">04</span>
+        <div class="step-row-head" data-comment-anchor="3ccf2207ed-div">
+          <div class="step-ic"><i data-lucide="calendar-check"></i></div>
+          <h3>Job booked in your system</h3>
+        </div>
+        <p class="step-row-body">Plugs into your CRM automatically. No double handling, no missed jobs.</p>
+      </div>
+    </div>
+    <p class="center-note" data-comment-anchor="78aa35cc6e-p">No scripts to write. No tech know-how needed.</p>
+  </div>
+</section>
+
+<!-- ============ FEATURES ============ -->
+<section id="features" class="section section-sep">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">What it does for you</span>
+      <h2 class="h-display" style="color:#fff" data-comment-anchor="241f3a7e38-h2">Built To Handle Every Call.<br />Every Time.</h2>
+    </div>
+    <div class="features-grid">
+      <div class="feature">
+        <div class="feature-ic"><i data-lucide="calendar-clock"></i></div>
+        <h3>24/7 coverage</h3>
+        <p>On site, in the ute, or 10pm Sunday — every call answered.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-ic" data-comment-anchor="0ff7bc02c5-div"><i data-lucide="message-square-text"></i></div>
+        <h3>SMS in 30 seconds</h3>
+        <p>Full lead details to your phone the moment the call ends.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-ic"><i data-lucide="audio-lines"></i></div>
+        <h3>Sounds like a real person</h3>
+        <p>A natural, Australian-accented conversation. Callers don't feel processed.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-ic"><i data-lucide="siren"></i></div>
+        <h3>Flags urgent jobs</h3>
+        <p>Emergency calls get priority-flagged so you know what to action first.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-ic"><i data-lucide="voicemail"></i></div>
+        <h3>Handles message taking</h3>
+        <p>For existing customers calling back, it switches to quick message-taking mode.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-ic"><i data-lucide="workflow"></i></div>
+        <h3>CRM connected</h3>
+        <p>Plugs into ServiceM8, Monday.com and Formitize. Job details land automatically.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ INTEGRATIONS ============ -->
+<section id="integrations" class="section light">
+  <div class="wrap int-grid" data-comment-anchor="9292e18808-div">
+    <div class="int-main">
+      <div class="section-head">
+        <span class="eyebrow">Works with your setup</span>
+        <h2 class="h-display">Already Using Job Management<br />Software? Even Better.</h2>
+        <p class="muted-light" style="margin-top:18px; font-size:var(--type-body); line-height:1.6;">Tradie Voice Mate plugs straight into the tools you're already running. No data re-entry. No double handling. The call happens, the details land in your system, and you get on with the job.</p>
+      </div>
+      <div class="crm-logos">
+        <div class="crm-logo" data-comment-anchor="ca76eb2c6a-span">
+          <img class="crm-mark rounded" src="../../assets/img/crm/servicem8.png" alt="ServiceM8 logo" />
+          <span class="crm-name">Service<span class="crm-m8">M8</span></span>
+        </div>
+        <div class="crm-logo" data-comment-anchor="8972f53c3a-div">
+          <img class="crm-mark" src="../../assets/img/crm/mondaycom.png" alt="monday.com logo" />
+          <span class="crm-name lower">monday<span class="crm-dim">.com</span></span>
+        </div>
+        <div class="crm-logo">
+          <img class="crm-mark rounded" src="../../assets/img/crm/formitize.jpeg" alt="Formitize logo" />
+          <span class="crm-name crm-formitize">Formitize</span>
+        </div>
+        <div class="crm-logo more">+ more — ask us</div>
+      </div>
+      <p class="int-note">Don't see your software? Get in touch — we're adding integrations regularly.</p>
+    </div>
+
+    <div class="int-visual">
+      <img class="int-people" src="../../assets/img/team-cutout.png" alt="A tradie team — the people Tradie Voice Mate books jobs for" data-comment-anchor="bafb38dbc8-img" />
+      <div class="booked-ui" aria-hidden="true">
+        <div class="booked-bar">
+          <span class="booked-dots"><i></i><i></i><i></i></span>
+          <span class="booked-app">
+            <img class="crm-mark rounded" style="width:18px;height:18px" src="../../assets/img/crm/servicem8.png" alt="" />
+            ServiceM8 · Schedule
+          </span>
+          <span class="booked-sync"><span class="booked-sync-dot"></span> Synced</span>
+        </div>
+        <div class="booked-body">
+          <div class="booked-check">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" /></svg>
+          </div>
+          <div class="booked-detail">
+            <span class="booked-label">Job booked</span>
+            <strong class="booked-title">Red gum removal — leaning near house</strong>
+            <span class="booked-meta">John · 3144 · Thu ~5pm · 0437 414 424</span>
+          </div>
+          <span class="booked-new">NEW</span>
+        </div>
+        <div class="booked-week">
+          <span>Mon</span><span>Tue</span><span>Wed</span><span class="on">Thu</span><span>Fri</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</section>
+
+<!-- ============ WIDER THAN TRADES ============ -->
+<section class="section violet">
+  <div class="wrap wider-grid" data-comment-anchor="978a74a44a-div">
+    <div class="wider-trades">
+      <p class="ind-header">Industries served</p>
+      <ul class="industries-list">
+        <li class="ind-row"><span class="ind-row-left"><i data-lucide="wrench" class="ind-icon" width="13" height="13"></i><span class="ind-name" data-comment-anchor="ba6c10145b-span">Plumbers</span></span><span class="ind-num">01</span></li>
+        <li class="ind-row"><span class="ind-row-left"><i data-lucide="zap" class="ind-icon" width="13" height="13"></i><span class="ind-name">Electricians</span></span><span class="ind-num">02</span></li>
+        <li class="ind-row"><span class="ind-row-left"><i data-lucide="trees" class="ind-icon" width="13" height="13"></i><span class="ind-name">Arborists</span></span><span class="ind-num">03</span></li>
+        <li class="ind-row"><span class="ind-row-left"><i data-lucide="bug" class="ind-icon" width="13" height="13"></i><span class="ind-name">Pest Control</span></span><span class="ind-num">04</span></li>
+        <li class="ind-row"><span class="ind-row-left"><i data-lucide="hard-hat" class="ind-icon" width="13" height="13"></i><span class="ind-name">Builders</span></span><span class="ind-num">05</span></li>
+        <li class="ind-row"><span class="ind-row-left"><i data-lucide="utensils" class="ind-icon" width="13" height="13"></i><span class="ind-name" data-comment-anchor="91d3020834-span">Restaurants</span></span><span class="ind-num">06</span></li>
+        <li class="ind-row"><span class="ind-row-left"><i data-lucide="scissors" class="ind-icon" width="13" height="13"></i><span class="ind-name">Salons</span></span><span class="ind-num">07</span></li>
+        <li class="ind-row"><span class="ind-row-left"><i data-lucide="car" class="ind-icon" width="13" height="13"></i><span class="ind-name">Mechanics</span></span><span class="ind-num">08</span></li>
+      </ul>
+      <p class="ind-footer">+ many more Aussie businesses</p>
+    </div>
+    <div class="wider-copy">
+      <div class="wider-copy-bar" aria-hidden="true" data-comment-anchor="5c69b218b9-div"></div>
+      <span class="eyebrow">Not just for tradies</span>
+      <h2 class="h-display">Any Aussie Business That<br />Lives Or Dies By The Phone.</h2>
+      <p class="body">Tradie Voice Mate was built for the tools-in-hand, on-site world — but a digital receptionist works for any small business that can't always pick up. Restaurants, salons, clinics, landscapers, cleaners, vets, mechanics. If a missed call means a missed customer, this is for you.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRICING ============ -->
+<section id="pricing" class="section">
+  <div class="hero-bg subtle" aria-hidden="true"><div class="hero-lines"></div><div class="hero-glow soft"></div></div>
+  <div class="wrap pricing-grid">
+    <div class="pricing-aside">
+      <span class="eyebrow">Pricing</span>
+      <h2 class="h-display" style="color:#fff">Dead Simple.<br />No Surprises.</h2>
+      <p class="pricing-lede">One plan. Everything included. Your first month is 80% off — then it's month-to-month, and you can walk any time.</p>
+      <div class="pricing-photo">
+        <img src="../../assets/img/tradie-phone-3.jpg" alt="A tradie calling a lead back after the receptionist captured the job" />
+        <div class="pricing-badge">
+          <span class="sms-app"><i data-lucide="message-square" width="14" height="14"></i></span>
+          <div class="pricing-badge-text">
+            <strong>New lead — John</strong>
+            <span>Red gum removal · ASAP · 3144</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pricing-main">
+      <div class="price-card" data-comment-anchor="d1d14a6240-div">
+        <span class="name">Tradie Voice Mate</span>
+        <div class="price-row">
+          <span class="price-was">$290</span>
+          <span class="price-now">$58<small>/first month</small></span>
+        </div>
+        <p class="price-tag">80% off — no promo code needed</p>
+        <ul class="price-list">
+          <li><i data-lucide="check" width="18" height="18"></i> Unlimited call answering, 24/7</li>
+          <li><i data-lucide="check" width="18" height="18"></i> SMS summaries after every call</li>
+          <li data-comment-anchor="bbcd22ee25-li"><i data-lucide="check" width="18" height="18"></i> CRM Integration unlocked after trial period</li>
+          <li><i data-lucide="check" width="18" height="18"></i> Custom setup for your business</li>
+          <li><i data-lucide="check" width="18" height="18"></i> No setup fee</li>
+          <li><i data-lucide="check" width="18" height="18"></i> No lock-in contract — cancel any time</li>
+        </ul>
+        <div class="price-cta">
+          <a class="btn btn-primary" href="#">Start your $58 trial <span aria-hidden="true">→</span></a>
+          <a class="btn btn-secondary" href="#how">Reserve your demo</a>
+        </div>
+        <p class="price-quote" data-comment-anchor="4d20812eb0-p">Early-access pricing — available now to a limited number of Aussie small businesses while this offer lasts.</p>
+      </div>
+      <p class="price-foot">After the trial month, it's $290/month. No contracts, no lock-in. If it's not making you money, cancel. Simple as that.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section id="faq" class="section light">
+  <div class="wrap">
+    <div class="section-head center">
+      <span class="eyebrow">Fair questions</span>
+      <h2 class="h-display">Got A Question?<br />Good — Here's The Answers.</h2>
+    </div>
+    <div class="faq-list" id="faqList">
+      <div class="faq-item">
+        <button class="faq-q">How does the call forwarding work? <i class="pm" data-lucide="plus"></i></button>
+        <div class="faq-a"><p>You set up a simple call-forward from your existing business number so that when a call goes unanswered, it forwards to your Tradie Voice Mate line. Your existing number stays the same. Most providers take 2 minutes to set this up. We walk you through it.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Will my customers know they're not talking to a real person? <i class="pm" data-lucide="plus"></i></button>
+        <div class="faq-a"><p>It discloses that it's a digital receptionist in the greeting — legally required and the right thing to do. What surprises people is how natural the conversation feels. Most callers say it sounds more helpful than being put on hold.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">What if someone has a really unusual request? <i class="pm" data-lucide="plus"></i></button>
+        <div class="faq-a"><p>It's built to handle the common scenarios — new jobs, follow-ups, urgent calls, message-taking. Anything it can't confidently handle gets flagged for you to call back. It won't make things up.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">What job management software does it work with? <i class="pm" data-lucide="plus"></i></button>
+        <div class="faq-a"><p>Right now, ServiceM8, Monday.com, and Formitize. More on the way. If you're using something else, get in touch — we'll let you know what's coming.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">What if I want to cancel? <i class="pm" data-lucide="plus"></i></button>
+        <div class="faq-a"><p>No problem. No contracts, no lock-in, no awkward cancellation process. Just let us know.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">How long does setup take? <i class="pm" data-lucide="plus"></i></button>
+        <div class="faq-a"><p>We build and configure your system — usually live within 24 hours of signing up. The only thing you do is set up call forwarding, which takes about 2 minutes. We'll walk you through it.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FINAL CTA ============ -->
+<section class="section final">
+  <div class="final-bg" aria-hidden="true"></div>
+  <div class="wrap">
+    <h2 class="h-hero">Stop Missing Jobs.<br />Start Your Trial Today.</h2>
+    <p class="sub">$58 for your first month. No setup fee. No lock-in. If it doesn't earn its keep, walk away — no hard feelings.</p>
+    <div class="final-cta">
+      <a class="btn btn-inverted btn-lg" href="#pricing">Start your trial <span aria-hidden="true">→</span></a>
+      <a class="btn btn-inverted-ghost btn-lg" href="#how">Reserve your demo</a>
+    </div>
+    <p class="phone">Or call us directly: 0419 720 285 — we're real people, always happy to chat.</p>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="wrap footer-grid">
+    <div class="footer-brand">
+      <a class="brand" href="#top">
+        <img src="../../assets/Tradie_Voice_Mate_Icon.png" alt="Tradie Voice Mate" />
+        <span>Tradie Voice Mate</span>
+      </a>
+      <p class="footer-feature" data-comment-anchor="9d0c60620c-p">Your calls,<br />covered.</p>
+    </div>
+    <div class="footer-col">
+      <h4 data-comment-anchor="ee12306a8a-h4">Product</h4>
+      <a href="#how">How It Works</a>
+      <a href="#features">Features</a>
+      <a href="#integrations">Integrations</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact Us</h4>
+      <a href="mailto:Tradievoicemate@gmail.com">Tradievoicemate@gmail.com</a>
+      <a href="tel:0422999097">0422 999 097</a>
+    </div>
+    <div class="footer-col">
+      <h4>Tradie Web Mate</h4>
+      <p>A Tradie Web Mate product.</p>
+      <a href="#">tradiewebmate.com.au</a>
+      <a href="#">0419 720 285</a>
+      <a href="#">info@tradiewebmate.com.au</a>
+    </div>
+  </div>
+  <div class="wrap footer-bottom" data-comment-anchor="7288787265-div">
+    © 2026 Tradie Voice Mate. ABN 14 717 270 980. Built for Australian businesses.<br />
+    Calls are answered on a recorded line. See Privacy Policy for full details.
+  </div>
+</footer>
+
+<script src="site.js?v=5"></script>
+</body>
+</html>

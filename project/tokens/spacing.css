@@ -1,0 +1,45 @@
+/* ============================================================
+   Tradie Voice Mate — Spacing, radius, shadow, layout
+   Generous spacing. Pill CTAs (rounded-full). Flat surfaces.
+   ============================================================ */
+
+:root {
+  /* ---- Spacing scale (4px base) ---- */
+  --space-1:  0.25rem;   /*  4 */
+  --space-2:  0.5rem;    /*  8 */
+  --space-3:  0.75rem;   /* 12 */
+  --space-4:  1rem;      /* 16 */
+  --space-5:  1.5rem;    /* 24 */
+  --space-6:  2rem;      /* 32 */
+  --space-7:  3rem;      /* 48 */
+  --space-8:  4rem;      /* 64 */
+  --space-9:  6rem;      /* 96 */
+  --space-10: 8rem;      /* 128 — section vertical rhythm */
+
+  /* ---- Section padding ---- */
+  --section-y:    clamp(4rem, 9vw, 8rem);   /* @kind spacing */
+  --section-x:    clamp(1.25rem, 5vw, 5rem); /* @kind spacing */
+  --content-max:  1200px;                    /* @kind spacing */
+
+  /* ---- Radii ---- */
+  --radius-sm:    8px;
+  --radius-md:    14px;   /* cards */
+  --radius-lg:    22px;   /* large panels / demo widget */
+  --radius-pill:  999px;  /* CTAs, tags, chips */
+
+  /* ---- Borders ---- */
+  --border-hairline: 1px;
+  --border-strong:   2px;
+
+  /* ---- Shadows (used sparingly — flat brand) ---- */
+  --shadow-card:   0 18px 40px -24px rgba(8,8,26,0.45);
+  --shadow-lift:   0 24px 60px -28px rgba(8,8,26,0.55);
+  --shadow-teal:   0 14px 34px -16px rgba(0,168,124,0.5);  /* glow under teal CTA */
+
+  /* ---- Motion ---- */
+  --ease-out:    cubic-bezier(0.22, 1, 0.36, 1); /* @kind other */
+  --ease-soft:   cubic-bezier(0.4, 0, 0.2, 1);   /* @kind other */
+  --dur-fast:    160ms;  /* @kind other */
+  --dur-base:    280ms;  /* @kind other */
+  --dur-slow:    600ms;  /* @kind other */
+}

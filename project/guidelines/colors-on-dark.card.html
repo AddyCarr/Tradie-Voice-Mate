@@ -1,0 +1,25 @@
+<!-- @dsCard group="Colors" viewport="700x170" name="Text on near-black" subtitle="White ramp for copy, sub-copy, muted footer text and hairlines" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin: 0; font-family: var(--font-body); background: var(--tvm-near-black); padding: 26px; }
+  .stack { display: flex; flex-direction: column; gap: 14px; }
+  .line { display: flex; align-items: baseline; gap: 16px; }
+  .key { font-size: 12px; color: var(--tvm-on-dark-50); width: 130px; font-variant-numeric: tabular-nums; }
+  .demo-h { font-family: var(--font-display); font-size: 22px; letter-spacing: .02em; }
+  .demo-b { font-size: 15px; }
+  .rule { height: 1px; border: 0; }
+</style>
+</head>
+<body>
+  <div class="stack">
+    <div class="line"><span class="key">on-dark / 100%</span><span class="demo-h" style="color:var(--tvm-on-dark)">HEADLINE WHITE</span></div>
+    <div class="line"><span class="key">on-dark / 72%</span><span class="demo-b" style="color:var(--tvm-on-dark-70)">Sub-copy and descriptions sit at 72% white.</span></div>
+    <div class="line"><span class="key">on-dark / 50%</span><span class="demo-b" style="color:var(--tvm-on-dark-50)">Muted footer and fine print at 50%.</span></div>
+    <div class="line"><span class="key">on-dark / 14%</span><hr class="rule" style="flex:1; background:var(--tvm-on-dark-15)" /></div>
+  </div>
+</body>
+</html>

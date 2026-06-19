@@ -1,0 +1,21 @@
+/* ============================================================
+   Tradie Voice Mate — Webfonts
+   Staatliches  — display, headlines, large numerals, eyebrows
+   DM Sans      — body, UI, transcript (variable 400–700)
+   ============================================================ */
+
+@font-face {
+  font-family: "Staatliches";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/Staatliches-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("../fonts/DMSans-Regular.ttf") format("truetype");
+}

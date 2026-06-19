@@ -1,0 +1,58 @@
+<!-- @dsCard group="Components" viewport="700x360" name="Content — Card, FeatureColumn, StarRating" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../../styles.css" />
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>
+  body { margin: 0; font-family: var(--font-body); background: var(--tvm-near-black); padding: 26px; }
+  .feat { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .strip { background: var(--tvm-deep-teal); border-radius: 14px; padding: 14px 18px; display: flex; align-items: center; gap: 14px; margin-bottom: 22px; }
+  .strip .q { color: #fff; font-weight: 600; font-size: 15px; flex: 1; }
+  .strip .src { color: rgba(255,255,255,.8); font-size: 13px; }
+</style>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    const { Card, FeatureColumn, StarRating } = window.TradieVoiceMateDesignSystem_9e482f;
+    function Demo() {
+      return (
+        <div>
+          <div className="strip">
+            <span className="q">"It handled 6 calls on Saturday while I was flat out. Legends."</span>
+            <span className="src">Pest Control, NSW</span>
+            <StarRating rating={5} />
+          </div>
+          <div className="feat">
+            <FeatureColumn number="01" title="24/7 coverage" divider={false}>
+              On site, in the ute, or 10pm Sunday — every call answered.
+            </FeatureColumn>
+            <FeatureColumn number="02" title="SMS in 30 seconds">
+              Full lead details to your phone the moment the call ends.
+            </FeatureColumn>
+            <FeatureColumn number="03" title="CRM connected">
+              Plugs into ServiceM8, Monday.com and Formitize automatically.
+            </FeatureColumn>
+          </div>
+          <div style={{ display: 'flex', gap: 18, marginTop: 24 }}>
+            <Card variant="dark" style={{ flex: 1, padding: 18 }}>
+              <strong style={{ color: '#fff' }}>Dark card</strong>
+              <p style={{ color: 'var(--tvm-on-dark-70)', fontSize: 14, margin: '6px 0 0' }}>Raised ink surface on near-black.</p>
+            </Card>
+            <Card variant="pricing" style={{ flex: 1, padding: 18 }}>
+              <strong>Pricing card</strong>
+              <p style={{ color: 'var(--tvm-on-light-70)', fontSize: 14, margin: '6px 0 0' }}>Teal-bordered white feature card.</p>
+            </Card>
+          </div>
+        </div>
+      );
+    }
+    ReactDOM.createRoot(document.getElementById('root')).render(<Demo />);
+  </script>
+</body>
+</html>

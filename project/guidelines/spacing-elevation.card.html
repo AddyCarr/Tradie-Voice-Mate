@@ -1,0 +1,23 @@
+<!-- @dsCard group="Spacing" viewport="700x170" name="Elevation" subtitle="Shadows used sparingly — flat brand. Teal glow only under primary CTA" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin: 0; font-family: var(--font-body); background: #fff; padding: 30px; }
+  .row { display: flex; gap: 30px; align-items: center; }
+  .card { width: 130px; height: 80px; background: #fff; border-radius: var(--radius-md); display: grid; place-items: center; font-size: 12px; color: var(--tvm-on-light-45); border: 1px solid var(--tvm-on-light-12); }
+  .pill { background: var(--tvm-deep-teal); color: #fff; padding: 14px 26px; border-radius: var(--radius-pill); font-weight: 600; font-size: 14px; box-shadow: var(--shadow-teal); }
+  .lbl { font-size: 11px; color: var(--tvm-on-light-45); margin-top: 8px; text-align: center; }
+  .item { display: flex; flex-direction: column; align-items: center; }
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="item"><div class="card" style="box-shadow:var(--shadow-card)">card</div><div class="lbl">--shadow-card</div></div>
+    <div class="item"><div class="card" style="box-shadow:var(--shadow-lift)">lift</div><div class="lbl">--shadow-lift</div></div>
+    <div class="item"><div class="pill">Start your trial →</div><div class="lbl">--shadow-teal</div></div>
+  </div>
+</body>
+</html>

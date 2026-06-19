@@ -1,0 +1,56 @@
+/* ============================================================
+   Tradie Voice Mate — Colour tokens
+   Flat palette. No gradients anywhere except the logo mark.
+   ============================================================ */
+
+:root {
+  /* ---- Brand palette (base) ---- */
+  --tvm-near-black:    #08081A;  /* primary dark background */
+  --tvm-deep-teal:     #00A87C;  /* primary CTA, active, waveform */
+  --tvm-forest-green:  #16A34A;  /* eyebrows, ticks, accents */
+  --tvm-deep-violet:   #4C1D95;  /* logo origin, Wider section, borders */
+  --tvm-pale-mint:     #ECFDF5;  /* light section bg, card fills */
+  --tvm-white:         #FFFFFF;
+
+  /* ---- Tints / shades (derived, harmonious) ---- */
+  --tvm-teal-700:      #008463;  /* CTA hover (darker teal) */
+  --tvm-teal-300:      #4FC9AB;  /* waveform highlight */
+  --tvm-mint-200:      #D6F7E8;  /* card border on light */
+  --tvm-violet-700:    #3A1570;  /* deep violet shade */
+  --tvm-ink-800:       #12122B;  /* raised dark surface (cards on near-black) */
+  --tvm-ink-700:       #1B1B38;  /* dark hover / divider */
+
+  /* ---- Neutral text ramp on dark ---- */
+  --tvm-on-dark:       #FFFFFF;
+  --tvm-on-dark-70:    rgba(255,255,255,0.72);  /* sub-copy on dark */
+  --tvm-on-dark-50:    rgba(255,255,255,0.50);  /* muted / footer */
+  --tvm-on-dark-15:    rgba(255,255,255,0.14);  /* hairline on dark */
+
+  /* ---- Neutral text ramp on light ---- */
+  --tvm-on-light:      #08081A;
+  --tvm-on-light-70:   rgba(8,8,26,0.70);
+  --tvm-on-light-45:   rgba(8,8,26,0.45);
+  --tvm-on-light-12:   rgba(8,8,26,0.10);
+
+  /* ---- Semantic aliases ---- */
+  --surface-dark:       var(--tvm-near-black);
+  --surface-dark-card:  var(--tvm-ink-800);
+  --surface-light:      var(--tvm-pale-mint);
+  --surface-light-card: var(--tvm-white);
+  --surface-teal:       var(--tvm-deep-teal);
+  --surface-violet:     var(--tvm-deep-violet);
+
+  --text-on-dark:       var(--tvm-on-dark);
+  --text-on-dark-muted: var(--tvm-on-dark-70);
+  --text-on-light:      var(--tvm-on-light);
+  --text-on-light-muted:var(--tvm-on-light-70);
+
+  --accent-action:      var(--tvm-deep-teal);
+  --accent-action-hover:var(--tvm-teal-700);
+  --accent-eyebrow:     var(--tvm-forest-green);
+  --accent-tick:        var(--tvm-forest-green);
+
+  --border-on-dark:     var(--tvm-on-dark-15);
+  --border-on-light:    var(--tvm-on-light-12);
+  --border-violet:      rgba(76,29,149,0.15);
+}

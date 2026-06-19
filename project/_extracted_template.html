@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="en-AU"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tradie Voice Mate — Your Digital Receptionist, 24/7</title>
+<link rel="icon" type="image/png" href="2031c0b2-f0cc-446d-9c0a-b746d055c20a">
+<style>/* ============================================================
+   Tradie Voice Mate — Design System entry point
+   Consumers link THIS file. Imports only — no rules here.
+   ============================================================ */
+
+/* ============================================================
+   Tradie Voice Mate — Webfonts
+   Staatliches  — display, headlines, large numerals, eyebrows
+   DM Sans      — body, UI, transcript (variable 400–700)
+   ============================================================ */
+
+@font-face {
+  font-family: "Staatliches";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("7597b311-944d-497b-8cec-b0342a8cd725") format("truetype");
+}
+
+@font-face {
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("9e600883-898b-473a-9913-3c1948f53e5d") format("truetype");
+}
+
+/* ============================================================
+   Tradie Voice Mate — Colour tokens
+   Flat palette. No gradients anywhere except the logo mark.
+   ============================================================ */
+
+:root {
+  /* ---- Brand palette (base) ---- */
+  --tvm-near-black:    #08081A;  /* primary dark background */
+  --tvm-deep-teal:     #00A87C;  /* primary CTA, active, waveform */
+  --tvm-forest-green:  #16A34A;  /* eyebrows, ticks, accents */
+  --tvm-deep-violet:   #4C1D95;  /* logo origin, Wider section, borders */
+  --tvm-pale-mint:     #ECFDF5;  /* light section bg, card fills */
+  --tvm-white:         #FFFFFF;
+
+  /* ---- Tints / shades (derived, harmonious) ---- */
+  --tvm-teal-700:      #008463;  /* CTA hover (darker teal) */
+  --tvm-teal-300:      #4FC9AB;  /* waveform highlight */
+  --tvm-mint-200:      #D6F7E8;  /* card border on light */
+  --tvm-violet-700:    #3A1570;  /* deep violet shade */
+  --tvm-ink-800:       #12122B;  /* raised dark surface (cards on near-black) */
+  --tvm-ink-700:       #1B1B38;  /* dark hover / divider */
+
+  /* ---- Neutral text ramp on dark ---- */
+  --tvm-on-dark:       #FFFFFF;
+  --tvm-on-dark-70:    rgba(255,255,255,0.72);  /* sub-copy on dark */
+  --tvm-on-dark-50:    rgba(255,255,255,0.50);  /* muted / footer */
+  --tvm-on-dark-15:    rgba(255,255,255,0.14);  /* hairline on dark */
+
+  /* ---- Neutral text ramp on light ---- */
+  --tvm-on-light:      #08081A;
+  --tvm-on-light-70:   rgba(8,8,26,0.70);
+  --tvm-on-light-45:   rgba(8,8,26,0.45);
+  --tvm-on-light-12:   rgba(8,8,26,0.10);
+
+  /* ---- Semantic aliases ---- */
+  --surface-dark:       var(--tvm-near-black);
+  --surface-dark-card:  var(--tvm-ink-800);
+  --surface-light:      var(--tvm-pale-mint);
+  --surface-light-card: var(--tvm-white);
+  --surface-teal:       var(--tvm-deep-teal);
+  --surface-violet:     var(--tvm-deep-violet);
+
+  --text-on-dark:       var(--tvm-on-dark);
+  --text-on-dark-muted: var(--tvm-on-dark-70);
+  --text-on-light:      var(--tvm-on-light);
+  --text-on-light-muted:var(--tvm-on-light-70);
+
+  --accent-action:      var(--tvm-deep-teal);
+  --accent-action-hover:var(--tvm-teal-700);
+  --accent-eyebrow:     var(--tvm-forest-green);
+  --accent-tick:        var(--tvm-forest-green);
+
+  --border-on-dark:     var(--tvm-on-dark-15);
+  --border-on-light:    var(--tvm-on-light-12);
+  --border-violet:      rgba(76,29,149,0.15);
+}
+
+/* ============================================================
+   Tradie Voice Mate — Typography tokens
+   Staatliches = display / headlines / numerals / eyebrows
+   DM Sans     = body / UI / transcript
+   ============================================================ */
+
+:root {
+  /* ---- Families ---- */
+  --font-display: "Staatliches", "Arial Narrow", sans-serif;
+  --font-body:    "DM Sans", system-ui, -apple-system, sans-serif;
+
+  /* ---- Display scale (Staatliches, tight leading) ---- */
+  --type-hero:        clamp(3.25rem, 6vw, 5.5rem);   /* hero headline */
+  --type-display:     clamp(2.5rem, 4.5vw, 4rem);    /* section headlines */
+  --type-headline:    clamp(2rem, 3vw, 2.75rem);     /* sub-headlines */
+  --type-numeral:     clamp(3.5rem, 6vw, 6rem);      /* big feature 01/02/03 */
+
+  /* ---- Body scale (DM Sans) ---- */
+  --type-lead:        1.375rem;   /* 22px — lead / closing lines */
+  --type-body-lg:     1.1875rem;  /* 19px — hero sub-copy */
+  --type-body:        1.0625rem;  /* 17px — default body */
+  --type-ui:          0.9375rem;  /* 15px — UI labels, transcript */
+  --type-eyebrow:     0.8125rem;  /* 13px — eyebrow labels */
+  --type-small:       0.8125rem;  /* 13px — fine print */
+
+  /* ---- Leading ---- */
+  --leading-display:  0.95;       /* very tight for Staatliches */
+  --leading-snug:     1.15;
+  --leading-body:     1.55;
+
+  /* ---- Tracking ---- */
+  --tracking-display: 0.01em;
+  --tracking-eyebrow: 0.18em;     /* wide eyebrow tracking */
+  --tracking-cta:     0.02em;
+
+  /* ---- Weights (DM Sans) ---- */
+  --weight-regular:   400;
+  --weight-medium:    500;
+  --weight-semibold:  600;
+  --weight-bold:      700;
+}
+
+/* ============================================================
+   Tradie Voice Mate — Spacing, radius, shadow, layout
+   Generous spacing. Pill CTAs (rounded-full). Flat surfaces.
+   ============================================================ */
+
+:root {
+  /* ---- Spacing scale (4px base) ---- */
+  --space-1:  0.25rem;   /*  4 */
+  --space-2:  0.5rem;    /*  8 */
+  --space-3:  0.75rem;   /* 12 */
+  --space-4:  1rem;      /* 16 */
+  --space-5:  1.5rem;    /* 24 */
+  --space-6:  2rem;      /* 32 */
+  --space-7:  3rem;      /* 48 */
+  --space-8:  4rem;      /* 64 */
+  --space-9:  6rem;      /* 96 */
+  --space-10: 8rem;      /* 128 — section vertical rhythm */
+
+  /* ---- Section padding ---- */
+  --section-y:    clamp(4rem, 9vw, 8rem);   /* @kind spacing */
+  --section-x:    clamp(1.25rem, 5vw, 5rem); /* @kind spacing */
+  --content-max:  1200px;                    /* @kind spacing */
+
+  /* ---- Radii ---- */
+  --radius-sm:    8px;
+  --radius-md:    14px;   /* cards */
+  --radius-lg:    22px;   /* large panels / demo widget */
+  --radius-pill:  999px;  /* CTAs, tags, chips */
+
+  /* ---- Borders ---- */
+  --border-hairline: 1px;
+  --border-strong:   2px;
+
+  /* ---- Shadows (used sparingly — flat brand) ---- */
+  --shadow-card:   0 18px 40px -24px rgba(8,8,26,0.45);
+  --shadow-lift:   0 24px 60px -28px rgba(8,8,26,0.55);
+  --shadow-teal:   0 14px 34px -16px rgba(0,168,124,0.5);  /* glow under teal CTA */
+
+  /* ---- Motion ---- */
+  --ease-out:    cubic-bezier(0.22, 1, 0.36, 1); /* @kind other */
+  --ease-soft:   cubic-bezier(0.4, 0, 0.2, 1);   /* @kind other */
+  --dur-fast:    160ms;  /* @kind other */
+  --dur-base:    280ms;  /* @kind other */
+  --dur-slow:    600ms;  /* @kind other */
+}
+
+</style>
+<style>/* Tradie Voice Mate — marketing site (UI kit) styles
+   Consumes the design-system tokens via ../../styles.css */
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  background: var(--tvm-near-black);
+  color: var(--tvm-on-dark);
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3 { font-family: var(--font-display); font-weight: 400; margin: 0; }
+p { margin: 0; }
+a { color: inherit; }
+img { display: block; max-width: 100%; }
+
+.wrap { max-width: var(--content-max); margin: 0 auto; padding-left: var(--section-x); padding-right: var(--section-x); position: relative; z-index: 1; }
+.section { padding-top: var(--section-y); padding-bottom: var(--section-y); position: relative; overflow: hidden; }
+
+.accent-teal { color: var(--tvm-deep-teal); }
+.eyebrow {
+  font-size: var(--type-eyebrow); font-weight: 600; text-transform: uppercase;
+  letter-spacing: var(--tracking-eyebrow); color: var(--accent-eyebrow);
+}
+.h-display { font-size: var(--type-display); line-height: var(--leading-display); letter-spacing: var(--tracking-display); }
+.h-hero { font-size: var(--type-hero); line-height: var(--leading-display); letter-spacing: var(--tracking-display); }
+.lead { font-size: var(--type-lead); font-weight: 600; line-height: 1.3; }
+.muted-dark { color: var(--tvm-on-dark-70); }
+.muted-light { color: var(--tvm-on-light-70); }
+
+/* ---------- Shared dark-section background system ---------- */
+/* Subtle line grid — ~1.6cm squares (60px). More visible where the glow lightens the bg. */
+.hero-bg { position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+.hero-lines {
+  position: absolute; inset: -2px;
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.045) 1px, transparent 1px);
+  background-size: 60px 60px;
+  -webkit-mask-image: radial-gradient(125% 90% at 70% 8%, #000 0%, rgba(0,0,0,0.35) 45%, transparent 78%);
+          mask-image: radial-gradient(125% 90% at 70% 8%, #000 0%, rgba(0,0,0,0.35) 45%, transparent 78%);
+}
+.hero-bg.subtle .hero-lines {
+  -webkit-mask-image: radial-gradient(120% 120% at 50% 0%, #000 0%, transparent 70%);
+          mask-image: radial-gradient(120% 120% at 50% 0%, #000 0%, transparent 70%);
+  opacity: 0.7;
+}
+/* Bottom glow on the dark hero */
+.hero-glow {
+  position: absolute; left: 50%; bottom: -340px; transform: translateX(-50%);
+  width: 1100px; height: 600px; border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(0,168,124,0.34), rgba(0,168,124,0.10) 55%, transparent 75%);
+  filter: blur(8px);
+}
+.hero-glow.soft { opacity: 0.55; bottom: -380px; }
+
+/* ---------- Buttons (pill) ---------- */
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-body); font-weight: 600; letter-spacing: var(--tracking-cta);
+  border-radius: var(--radius-pill); border: 2px solid transparent; cursor: pointer;
+  padding: 14px 26px; font-size: 16px; text-decoration: none; line-height: 1;
+  transition: transform var(--dur-fast) var(--ease-out), filter var(--dur-fast) var(--ease-out), box-shadow var(--dur-base) var(--ease-out);
+}
+.btn:hover { transform: translateY(-1px); filter: brightness(0.94); }
+.btn:active { transform: translateY(0); }
+.btn-lg { padding: 18px 34px; font-size: 18px; }
+.btn-primary { background: var(--tvm-deep-teal); color: #fff; box-shadow: var(--shadow-teal); }
+.btn-primary:hover { box-shadow: 0 18px 42px -14px rgba(0,168,124,0.65); }
+.btn-secondary { background: transparent; color: #fff; border-color: var(--tvm-on-dark-15); }
+.btn-secondary:hover { border-color: rgba(255,255,255,0.4); filter: none; }
+.btn-inverted { background: #fff; color: var(--tvm-near-black); }
+.btn-inverted-ghost { background: transparent; color: #fff; border-color: rgba(255,255,255,0.6); }
+.btn-inverted-ghost:hover { background: rgba(255,255,255,0.08); filter: none; }
+
+/* ---------- Nav ---------- */
+.nav {
+  position: sticky; top: 0; z-index: 50; transition: background var(--dur-base) var(--ease-soft), border-color var(--dur-base);
+  border-bottom: 1px solid transparent;
+}
+.nav.scrolled { background: rgba(8,8,26,0.92); backdrop-filter: blur(10px); border-bottom-color: var(--tvm-on-dark-15); }
+.nav-inner { display: flex; align-items: center; gap: 28px; height: 76px; }
+.brand { display: flex; align-items: center; gap: 11px; text-decoration: none; }
+.brand img { width: 36px; height: 36px; }
+.brand span { font-weight: 600; font-size: 18px; color: #fff; letter-spacing: -0.01em; }
+.nav-links { display: flex; gap: 26px; margin-left: auto; }
+.nav-links a { font-size: 15px; color: var(--tvm-on-dark-70); text-decoration: none; transition: color var(--dur-fast); }
+.nav-links a:hover { color: #fff; }
+.nav .btn { padding: 11px 20px; font-size: 15px; }
+
+/* ---------- Hero ---------- */
+.hero { position: relative; overflow: hidden; }
+.hero-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 56px; align-items: end; padding-top: 130px; padding-bottom: 110px; }
+.hero-copy { position: relative; z-index: 2; }
+.hero-copy .eyebrow { display: block; margin-bottom: 16px; }
+.hero h1 { color: #fff; margin: 0 0 28px; }
+.hero .sub { font-size: var(--type-body-lg); line-height: 1.55; color: var(--tvm-on-dark-70); max-width: 30em; }
+.hero-cta { display: flex; gap: 14px; margin: 32px 0 22px; flex-wrap: wrap; }
+.trust { display: flex; gap: 22px; flex-wrap: wrap; }
+.trust .t { display: inline-flex; align-items: center; gap: 7px; font-size: 14.5px; font-weight: 500; color: var(--tvm-on-dark-70); }
+.trust .t svg { color: var(--tvm-forest-green); flex-shrink: 0; }
+
+/* ---------- Demo widget ---------- */
+.widget-col { position: relative; z-index: 2; }
+/* hero receptionist people — sit behind the widget, overlapping ~15% of their height */
+.hero-people {
+  position: absolute; left: 0; top: 0; width: 100%; height: auto;
+  transform: translateY(-85%);
+  z-index: 2; pointer-events: none;
+  filter: drop-shadow(0 28px 44px rgba(0,0,0,0.42));
+}
+/* radial gradient behind the people to draw the eye */
+.hero-people-glow {
+  position: absolute; left: 50%; top: 0; width: 98%; aspect-ratio: 1 / 1;
+  transform: translate(-50%, -82%);
+  z-index: 1; pointer-events: none;
+  background: radial-gradient(circle at 50% 50%, rgba(0,168,124,0.44), rgba(76,29,149,0.22) 46%, transparent 70%);
+  filter: blur(28px);
+}
+/* aura behind the widget — draws the eye */
+.widget-aura {
+  position: absolute; inset: -12% -8%; z-index: 0; pointer-events: none;
+  background:
+    radial-gradient(60% 55% at 50% 42%, rgba(0,168,124,0.30), transparent 70%),
+    radial-gradient(70% 60% at 72% 78%, rgba(76,29,149,0.34), transparent 72%);
+  filter: blur(34px);
+  animation: auraFloat 9s var(--ease-soft) infinite alternate;
+}
+@keyframes auraFloat { from { transform: translateY(-6px) scale(1); opacity: 0.9; } to { transform: translateY(10px) scale(1.05); opacity: 1; } }
+
+.widget {
+  position: relative; z-index: 3;
+  background: linear-gradient(180deg, var(--tvm-ink-800), #0d0d24);
+  border: 1px solid rgba(124,58,237,0.22);
+  border-radius: var(--radius-lg); padding: 22px; box-shadow: var(--shadow-lift), inset 0 1px 0 rgba(255,255,255,0.04);
+  min-height: 408px; display: flex; flex-direction: column; cursor: default;
+}
+.widget.ended { cursor: pointer; }
+
+/* play/pause/restart control — appears bottom-right, overlaying the widget edge */
+.widget-ctrl {
+  position: absolute; right: -16px; bottom: -16px; z-index: 6;
+  width: 52px; height: 52px; border-radius: 50%;
+  background: var(--tvm-deep-teal); border: 3px solid var(--tvm-ink-800);
+  display: grid; place-items: center; cursor: pointer; padding: 0;
+  box-shadow: var(--shadow-teal);
+  opacity: 0; transform: scale(0.4); pointer-events: none;
+  transition: opacity var(--dur-base) var(--ease-out), transform var(--dur-base) var(--ease-back, var(--ease-out)), background var(--dur-base);
+}
+.widget-ctrl.show { opacity: 1; transform: scale(1); pointer-events: auto; }
+.widget-ctrl:hover { transform: scale(1.08); filter: brightness(1.04); }
+.widget-ctrl:active { transform: scale(0.95); }
+.ctrl-ic {
+  grid-area: 1 / 1; display: grid; place-items: center; color: #fff;
+  opacity: 0; transform: scale(0.5) rotate(-35deg);
+  transition: opacity var(--dur-base) var(--ease-out), transform var(--dur-base) var(--ease-out);
+}
+.ctrl-play svg { margin-left: 2px; }
+.widget-ctrl[data-state="pause"] .ctrl-pause,
+.widget-ctrl[data-state="play"] .ctrl-play,
+.widget-ctrl[data-state="restart"] .ctrl-restart {
+  opacity: 1; transform: scale(1) rotate(0);
+}
+.widget-top { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.live-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--tvm-forest-green); position: relative; }
+.live-dot.pulsing::after { content: ""; position: absolute; inset: -5px; border-radius: 50%; border: 2px solid var(--tvm-forest-green); animation: ring 1.6s var(--ease-out) infinite; }
+@keyframes ring { 0% { transform: scale(0.7); opacity: 0.9; } 100% { transform: scale(1.8); opacity: 0; } }
+.widget-status { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--tvm-on-dark-70); transition: color var(--dur-base); }
+.widget-timer { margin-left: auto; font-size: 13px; font-variant-numeric: tabular-nums; color: var(--tvm-on-dark-50); }
+
+.wave { display: flex; align-items: center; justify-content: center; gap: 4px; height: 56px; }
+.wave span { width: 4px; height: 12px; border-radius: 3px; background: var(--tvm-deep-teal); transform-origin: center; }
+
+.widget-stage { flex: 1; position: relative; }
+
+/* idle play state */
+.play-wrap { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; transition: opacity var(--dur-base); }
+.widget.calling .play-wrap { opacity: 0; pointer-events: none; }
+.play-btn { width: 86px; height: 86px; border-radius: 50%; background: var(--tvm-deep-teal); border: none; cursor: pointer; display: grid; place-items: center; position: relative; box-shadow: var(--shadow-teal); transition: transform var(--dur-fast) var(--ease-out); }
+.play-btn:hover { transform: scale(1.05); }
+.play-btn:active { transform: scale(0.96); }
+.play-ring { position: absolute; inset: 0; border-radius: 50%; border: 2px solid var(--tvm-deep-teal); animation: ring 2s var(--ease-out) infinite; }
+.play-btn svg { color: #fff; margin-left: 4px; }
+.play-label { font-family: var(--font-display); font-size: 20px; letter-spacing: 0.02em; color: #fff; }
+.play-note { font-size: 13px; color: var(--tvm-on-dark-50); }
+
+/* single caption (one speaker at a time) */
+.caption-wrap {
+  position: absolute; left: 0; right: 0; top: 0; bottom: 54px; transform: none;
+  opacity: 0; transition: opacity var(--dur-base) var(--ease-out);
+  display: flex; align-items: center; pointer-events: none;
+}
+.caption-wrap.show { opacity: 1; }
+.caption-wrap.agent { justify-content: flex-start; }
+.caption-wrap.caller { justify-content: flex-end; }
+.caption {
+  max-width: 86%; padding: 16px 18px; border-radius: 16px;
+  font-size: 16px; line-height: 1.5; position: relative;
+  transition: opacity 0.18s var(--ease-out), transform 0.18s var(--ease-out);
+  display: flex; flex-direction: column; gap: 6px;
+}
+.caption-wrap.agent .caption { background: var(--tvm-deep-teal); color: #fff; border-bottom-left-radius: 5px; }
+.caption-wrap.caller .caption { background: var(--tvm-ink-700); color: #fff; border-bottom-right-radius: 5px; border: 1px solid var(--tvm-on-dark-15); }
+.caption-label { font-family: var(--font-body); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.13em; }
+.caption-wrap.agent .caption-label { color: rgba(255,255,255,0.78); }
+.caption-wrap.caller .caption-label { color: var(--tvm-teal-300); }
+.caption-text { font-weight: 500; }
+
+/* data-capture pills */
+.pills { position: absolute; left: 0; right: 0; bottom: 0; display: flex; flex-wrap: wrap; gap: 7px; }
+.pill { font-size: 12.5px; font-weight: 600; padding: 6px 11px; border-radius: var(--radius-pill); background: rgba(0,168,124,0.16); color: var(--tvm-teal-300); border: 1px solid rgba(0,168,124,0.32); animation: pillIn 0.34s var(--ease-out) both; }
+@keyframes pillIn { from { opacity: 0; transform: scale(0.88) translateY(4px); } to { opacity: 1; transform: none; } }
+.pill.urgent { background: rgba(124,58,237,0.2); color: #c4b5fd; border-color: rgba(124,58,237,0.45); }
+
+/* SMS lead summary */
+.sms { position: absolute; right: 0; bottom: 0; left: 0; transform: translateY(20px); opacity: 0; pointer-events: none; transition: opacity var(--dur-slow) var(--ease-out), transform var(--dur-slow) var(--ease-out); }
+.sms.show { opacity: 1; transform: none; pointer-events: auto; }
+.sms-card { background: #fff; border-radius: 18px; padding: 14px 16px; box-shadow: 0 24px 60px -20px rgba(0,0,0,0.6); color: var(--tvm-near-black); }
+.sms-head { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+.sms-app { width: 26px; height: 26px; border-radius: 7px; background: var(--tvm-forest-green); display: grid; place-items: center; flex-shrink: 0; }
+.sms-app svg { color: #fff; }
+.sms-title { font-weight: 600; font-size: 13px; flex: 1; }
+.sms-time { font-size: 12px; color: var(--tvm-on-light-45); }
+.sms-fields { display: grid; grid-template-columns: auto 1fr; gap: 4px 14px; font-size: 13.5px; line-height: 1.45; }
+.sms-fields .k { color: var(--tvm-on-light-45); font-weight: 500; }
+.sms-fields .v { font-weight: 500; }
+.sms-fields .v.strong { font-weight: 700; }
+.sms-fields .v.accent { color: var(--tvm-forest-green); font-weight: 600; }
+
+/* ---------- Social proof ---------- */
+.social { background: var(--tvm-deep-teal); overflow: hidden; padding: 22px 0; }
+.ticker { display: flex; gap: 60px; width: max-content; animation: scroll 38s linear infinite; }
+.social:hover .ticker { animation-play-state: paused; }
+@keyframes scroll { to { transform: translateX(-50%); } }
+.quote { display: inline-flex; align-items: center; gap: 14px; white-space: nowrap; }
+.quote .q { color: #fff; font-weight: 600; font-size: 16px; }
+.quote .src { color: rgba(255,255,255,0.8); font-size: 14px; }
+.stars { display: inline-flex; gap: 2px; }
+
+/* ---------- Light sections ---------- */
+.light { background: var(--surface-light); color: var(--tvm-on-light); }
+.light h2 { color: var(--tvm-near-black); }
+.section-head { max-width: 32em; margin-bottom: 56px; }
+.section-head.center { margin-left: auto; margin-right: auto; text-align: center; }
+.section-head .eyebrow { display: block; margin-bottom: 14px; }
+
+/* Problem columns */
+.cols-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+.problem-col { display: flex; align-items: flex-start; gap: 18px; }
+.problem-col .ic { width: 56px; height: 56px; border-radius: var(--radius-md); background: #fff; border: 1px solid var(--tvm-mint-200); display: grid; place-items: center; flex-shrink: 0; box-shadow: var(--shadow-card); }
+.problem-col .ic svg { color: var(--tvm-deep-teal); width: 26px; height: 26px; }
+.problem-col p { font-size: var(--type-body); line-height: 1.55; color: var(--tvm-on-light-70); }
+.closing { text-align: center; margin-top: 56px; font-size: var(--type-lead); font-weight: 600; color: var(--tvm-near-black); }
+
+/* ---------- How it works — inline icon + 2-line title + connectors ---------- */
+.steps { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr; align-items: start; gap: 0 8px; }
+.step { position: relative; }
+.step-num { font-size: 12px; font-weight: 600; letter-spacing: 0.14em; color: var(--tvm-forest-green); text-transform: uppercase; }
+.step-head { display: flex; align-items: center; gap: 16px; margin: 16px 0 16px; }
+.step-ic { width: 64px; height: 64px; flex-shrink: 0; border-radius: var(--radius-md); background: linear-gradient(180deg, var(--tvm-ink-800), #101028); border: 1px solid var(--tvm-on-dark-15); display: grid; place-items: center; box-shadow: var(--shadow-card); }
+.step-ic svg { color: var(--tvm-deep-teal); width: 30px; height: 30px; }
+.step-head h3 { color: #fff; font-size: 23px; letter-spacing: 0.01em; line-height: 1.04; }
+.step p { color: var(--tvm-on-dark-70); font-size: var(--type-body); line-height: 1.55; padding-right: 18px; }
+.step-link { display: flex; align-items: center; justify-content: center; padding-top: 56px; color: var(--tvm-on-dark-50); }
+.step-link svg { width: 30px; height: 30px; opacity: 0.55; }
+.center-note { text-align: center; margin-top: 56px; color: var(--tvm-on-dark-70); font-size: var(--type-body); line-height: 1.6; }
+
+/* ---------- Features — detailed icons ---------- */
+.features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+.feature { background: linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0.012)); border: 1px solid var(--tvm-on-dark-15); border-radius: var(--radius-md); padding: 28px; transition: transform var(--dur-base) var(--ease-out), border-color var(--dur-base); }
+.feature:hover { transform: translateY(-3px); border-color: rgba(0,168,124,0.45); }
+.feature-ic { width: 56px; height: 56px; border-radius: 14px; background: rgba(0,168,124,0.12); border: 1px solid rgba(0,168,124,0.3); display: grid; place-items: center; margin-bottom: 20px; }
+.feature-ic svg { color: var(--tvm-deep-teal); width: 28px; height: 28px; }
+.feature h3 { color: #fff; font-size: 24px; letter-spacing: 0.01em; margin-bottom: 8px; }
+.feature p { color: var(--tvm-on-dark-70); font-size: var(--type-body); line-height: 1.5; }
+
+/* ---------- Integrations — CRM logos ---------- */
+#integrations { padding-bottom: var(--section-y); }
+.int-grid { display: grid; grid-template-columns: 1fr 0.92fr; gap: 56px; align-items: start; }
+.int-main .section-head { margin-bottom: 40px; }
+.int-main .int-note { margin-bottom: 0; }
+
+/* people + flat "job booked" SaaS illustration */
+.int-visual { position: relative; min-height: 520px; margin-top: 48px; display: flex; align-items: flex-end; justify-content: center; }
+.int-people { position: absolute; top: 5px; left: 50%; transform: translateX(-50%); z-index: 1; width: 112%; max-width: 570px; height: auto; object-fit: contain; filter: drop-shadow(0 30px 40px rgba(8,8,26,0.16)); }
+.booked-ui {
+  position: absolute; z-index: 2; left: 50%; bottom: 0; transform: translateX(-50%);
+  width: min(495px, 120%);
+  background: #fff; border: 1px solid var(--tvm-on-light-12); border-radius: var(--radius-md);
+  box-shadow: 0 30px 60px -22px rgba(8,8,26,0.4); overflow: hidden;
+}
+.booked-bar { display: flex; align-items: center; gap: 10px; padding: 11px 18px; background: #f6fbf9; border-bottom: 1px solid var(--tvm-on-light-12); }
+.booked-dots { display: inline-flex; gap: 5px; }
+.booked-dots i { width: 8px; height: 8px; border-radius: 50%; background: #d6e2dd; display: block; }
+.booked-app { display: inline-flex; align-items: center; gap: 7px; font-size: 12px; font-weight: 600; color: var(--tvm-on-light-70); }
+.booked-sync { margin-left: auto; display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 600; color: var(--tvm-forest-green); }
+.booked-sync-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--tvm-forest-green); box-shadow: 0 0 0 3px rgba(22,163,74,0.16); }
+.booked-body { display: flex; align-items: center; gap: 16px; padding: 18px 20px; }
+.booked-check { width: 40px; height: 40px; flex-shrink: 0; border-radius: 50%; background: var(--tvm-deep-teal); display: grid; place-items: center; box-shadow: var(--shadow-teal); }
+.booked-detail { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.booked-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.13em; color: var(--tvm-forest-green); }
+.booked-title { font-size: 15px; font-weight: 700; color: var(--tvm-near-black); line-height: 1.25; }
+.booked-meta { font-size: 12.5px; color: var(--tvm-on-light-45); }
+.booked-new { margin-left: auto; align-self: flex-start; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; color: var(--tvm-deep-teal); background: rgba(0,168,124,0.12); border: 1px solid rgba(0,168,124,0.28); border-radius: var(--radius-pill); padding: 3px 8px; }
+.booked-week { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; padding: 0 20px 18px; }
+.booked-week span { text-align: center; font-size: 11px; font-weight: 600; color: var(--tvm-on-light-45); padding: 7px 0; border-radius: 7px; background: #f3f6f5; }
+.booked-week span.on { background: var(--tvm-deep-teal); color: #fff; box-shadow: var(--shadow-teal); }
+
+.crm-logos { display: flex; flex-wrap: wrap; gap: 16px; align-items: stretch; }
+.crm-logo { display: flex; align-items: center; gap: 11px; background: #fff; border: 1px solid var(--tvm-mint-200); border-radius: var(--radius-md); padding: 18px 26px; box-shadow: var(--shadow-card); min-height: 64px; }
+.crm-name { font-weight: 700; font-size: 20px; color: var(--tvm-near-black); letter-spacing: -0.02em; }
+.crm-name.lower { text-transform: lowercase; }
+.crm-m8 { color: var(--tvm-deep-teal); }
+.crm-dim { color: var(--tvm-on-light-45); font-weight: 600; }
+.crm-mark { width: 34px; height: 34px; object-fit: contain; flex-shrink: 0; }
+.crm-mark.rounded { border-radius: 8px; }
+.crm-formitize { color: #0095f1; }
+.crm-logo.more { background: transparent; border-style: dashed; color: var(--tvm-on-light-45); font-weight: 600; font-size: 15px; box-shadow: none; align-items: center; }
+.int-note { margin-top: 22px; font-size: 14px; color: var(--tvm-on-light-45); }
+
+/* ---------- Wider than trades ---------- */
+.violet { background: var(--tvm-deep-violet); color: #fff; }
+.violet .hero-lines { background-image: linear-gradient(to right, rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.06) 1px, transparent 1px); }
+.violet .eyebrow { color: rgba(255,255,255,0.7); }
+.violet h2 { color: #fff; }
+.violet .body { font-size: var(--type-body-lg); line-height: 1.6; color: rgba(255,255,255,0.85); max-width: 38em; margin-top: 20px; }
+.trades-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: 46px; }
+.trade { display: flex; align-items: center; gap: 12px; padding: 16px 18px; border: 1px solid rgba(255,255,255,0.18); border-radius: var(--radius-md); background: rgba(255,255,255,0.04); transition: background var(--dur-base); }
+.trade:hover { background: rgba(255,255,255,0.09); }
+.trade svg { color: #fff; flex-shrink: 0; width: 22px; height: 22px; }
+.trade span { font-weight: 600; font-size: 15px; }
+
+/* ---------- Pricing — two-column composition ---------- */
+.pricing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+.pricing-aside .eyebrow { display: block; margin-bottom: 14px; }
+.pricing-lede { font-size: var(--type-body-lg); line-height: 1.6; color: var(--tvm-on-dark-70); margin-top: 20px; max-width: 26em; }
+.pricing-photo { position: relative; margin-top: 36px; border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--tvm-on-dark-15); box-shadow: var(--shadow-lift); }
+.pricing-photo img { width: 100%; height: 300px; object-fit: cover; object-position: center 30%; }
+.pricing-badge { position: absolute; left: 18px; bottom: 18px; right: 18px; display: flex; align-items: center; gap: 11px; background: rgba(255,255,255,0.96); backdrop-filter: blur(6px); border-radius: 14px; padding: 12px 14px; box-shadow: 0 16px 40px -18px rgba(0,0,0,0.6); }
+.pricing-badge .sms-app { background: var(--tvm-forest-green); }
+.pricing-badge-text { display: flex; flex-direction: column; line-height: 1.3; }
+.pricing-badge-text strong { font-size: 13.5px; color: var(--tvm-near-black); }
+.pricing-badge-text span { font-size: 12.5px; color: var(--tvm-on-light-45); }
+
+.pricing-main { display: flex; flex-direction: column; }
+.price-card { background: #fff; color: var(--tvm-near-black); border: 2px solid var(--tvm-deep-teal); border-radius: var(--radius-lg); padding: 40px; box-shadow: var(--shadow-lift); position: relative; }
+.price-card .name { font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--tvm-forest-green); }
+.price-row { display: flex; align-items: baseline; gap: 14px; margin: 14px 0 4px; }
+.price-was { font-family: var(--font-display); font-size: 30px; color: var(--tvm-on-light-45); text-decoration: line-through; }
+.price-now { font-family: var(--font-display); font-size: 64px; line-height: 1; color: var(--tvm-near-black); }
+.price-now small { font-size: 22px; }
+.price-tag { font-size: 14px; font-weight: 600; color: var(--tvm-forest-green); margin-bottom: 24px; }
+.price-list { display: grid; gap: 12px; margin: 0 0 28px; padding: 0; list-style: none; }
+.price-list li { display: flex; align-items: center; gap: 10px; font-size: 15.5px; font-weight: 500; }
+.price-list svg { color: var(--tvm-forest-green); flex-shrink: 0; }
+.price-cta { display: flex; flex-direction: column; gap: 12px; }
+.price-cta .btn { justify-content: center; }
+.price-cta .btn-secondary { color: var(--tvm-near-black); border-color: var(--tvm-on-light-12); }
+.price-cta .btn-secondary:hover { border-color: var(--tvm-on-light-45); }
+.price-quote { margin-top: 24px; font-size: 14px; font-style: italic; color: var(--tvm-on-light-70); line-height: 1.5; }
+.price-foot { margin-top: 24px; font-size: 14px; color: var(--tvm-on-dark-70); line-height: 1.6; }
+
+/* ---------- FAQ ---------- */
+.faq-list { max-width: 760px; margin: 0 auto; }
+.faq-item { border-bottom: 1px solid var(--tvm-on-light-12); }
+.faq-q { width: 100%; background: none; border: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 24px 0; text-align: left; font-family: var(--font-body); font-size: 19px; font-weight: 600; color: var(--tvm-near-black); }
+.faq-q .pm { flex-shrink: 0; transition: transform var(--dur-base) var(--ease-out); color: var(--tvm-deep-teal); }
+.faq-item.open .pm { transform: rotate(45deg); }
+.faq-a { max-height: 0; overflow: hidden; transition: max-height var(--dur-base) var(--ease-soft); }
+.faq-a p { padding: 0 0 24px; font-size: var(--type-body); line-height: 1.6; color: var(--tvm-on-light-70); max-width: 62ch; }
+
+/* ---------- Final CTA ---------- */
+.final { background: var(--tvm-deep-teal); text-align: center; position: relative; }
+.final-bg { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(60% 80% at 50% 0%, rgba(255,255,255,0.16), transparent 60%); }
+.final h2 { color: #fff; position: relative; }
+.final .sub { font-size: var(--type-body-lg); color: rgba(255,255,255,0.92); max-width: 30em; margin: 20px auto 0; line-height: 1.55; position: relative; }
+.final-cta { display: flex; gap: 14px; justify-content: center; margin: 32px 0 18px; flex-wrap: wrap; position: relative; }
+.final .phone { font-size: 14.5px; color: rgba(255,255,255,0.85); position: relative; }
+
+/* ---------- Footer ---------- */
+.footer { background: var(--tvm-near-black); border-top: 1px solid var(--tvm-on-dark-15); }
+.footer-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 40px; padding: 60px 0 40px; }
+.footer-brand { display: flex; flex-direction: column; height: 100%; }
+.footer .brand img { width: 48px; height: 48px; }
+.footer .brand span { font-size: 20px; }
+.footer .footer-feature { margin-top: auto; padding-top: 40px; font-family: var(--font-display); font-size: clamp(30px, 3.2vw, 46px); line-height: 1.0; letter-spacing: -0.02em; color: #fff; }
+.footer h4 { font-family: var(--font-body); font-size: 13px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--tvm-on-dark-50); margin: 0 0 16px; font-weight: 600; }
+.footer-col a, .footer-col p { display: block; font-size: 15px; color: var(--tvm-on-dark-70); text-decoration: none; margin-bottom: 10px; }
+.footer-col a:hover { color: #fff; }
+.footer-bottom { border-top: 1px solid var(--tvm-on-dark-15); padding: 24px 0; font-size: 12.5px; color: var(--tvm-on-dark-50); line-height: 1.6; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 920px) {
+  .hero-grid { grid-template-columns: 1fr; gap: 40px; padding-bottom: 80px; }
+  .cols-3, .features-grid { grid-template-columns: 1fr; gap: 26px; }
+  .steps { grid-template-columns: 1fr; gap: 28px; }
+  .step-link { display: none; }
+  .step p { padding-right: 0; }
+  .trades-row { grid-template-columns: repeat(2, 1fr); }
+  .pricing-grid { grid-template-columns: 1fr; gap: 36px; }
+  .int-grid { grid-template-columns: 1fr; gap: 12px; }
+  .int-visual { min-height: 400px; margin-top: 8px; margin-bottom: 20px; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .nav-links { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ticker, .widget-aura { animation: none; }
+  .wave span { animation: none !important; }
+}
+</style>
+<script src="dc65a4f3-ff6a-4c6a-a5d3-2effcb520954"></script>
+
+
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="#top">
+      <img src="2031c0b2-f0cc-446d-9c0a-b746d055c20a" alt="Tradie Voice Mate">
+      <span>Tradie Voice Mate</span>
+    </a>
+    <div class="nav-links">
+      <a href="#how">How It Works</a>
+      <a href="#features">Features</a>
+      <a href="#integrations">Integrations</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <a class="btn btn-primary" href="#pricing">Start your trial</a>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header id="top" class="hero">
+  <div class="hero-bg" aria-hidden="true">
+    <div class="hero-lines"></div>
+    <div class="hero-glow"></div>
+  </div>
+  <div class="wrap hero-grid" data-comment-anchor="275a58aa5d-div">
+    <div class="hero-copy">
+      <span class="eyebrow">Your digital receptionist · 24/7</span>
+      <h1 class="h-hero">While You're On The Job,<br>It's Got The <span class="accent-teal">Phone.</span></h1>
+      <p class="sub">Tradie Voice Mate answers every missed call for you — takes down the job details, handles the questions, and texts you a summary. Whether you're on the tools, in the ute, or it's 10pm on a Sunday.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary btn-lg" href="#pricing">Start your trial <span aria-hidden="true">→</span></a>
+        <a class="btn btn-secondary btn-lg" href="#how">Reserve your demo</a>
+      </div>
+      <div class="trust">
+        <span class="t"><i data-lucide="check" width="17" height="17"></i> No setup fee</span>
+        <span class="t"><i data-lucide="check" width="17" height="17"></i> No lock-in contract</span>
+        <span class="t"><i data-lucide="check" width="17" height="17"></i> First month 80% off</span>
+      </div>
+    </div>
+
+    <!-- Demo widget -->
+    <div class="widget-col">
+      <div class="widget-aura" aria-hidden="true"></div>
+      <div class="hero-people-glow" aria-hidden="true"></div>
+      <img class="hero-people" src="96666902-bde5-4794-a07b-56818a16bb16" alt="The Tradie Voice Mate digital receptionist team">
+      <div class="widget" id="widget" data-comment-anchor="9b24f1cc94-div">
+        <audio id="demoAudio" src="10d965b0-eed5-4e42-8e54-0ae22e699c06" preload="auto"></audio>
+        <button class="widget-ctrl" id="widgetCtrl" aria-label="Pause" data-state="pause">
+          <span class="ctrl-ic ctrl-pause" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1.6"></rect><rect x="14" y="5" width="4" height="14" rx="1.6"></rect></svg></span>
+          <span class="ctrl-ic ctrl-play" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg></span>
+          <span class="ctrl-ic ctrl-restart" aria-hidden="true"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 2.6-6.3"></path><path d="M3 4v5h5"></path></svg></span>
+        </button>
+        <div class="widget-top">
+          <span class="live-dot pulsing" id="liveDot"></span>
+          <span class="widget-status" id="status">Incoming call</span>
+          <span class="widget-timer" id="timer">0:00</span>
+        </div>
+        <div class="wave" id="wave"></div>
+        <div class="widget-stage" data-comment-anchor="8782617a8c-div">
+          <div class="play-wrap" id="playWrap">
+            <button class="play-btn" id="playBtn" aria-label="Hear a live call">
+              <span class="play-ring" aria-hidden="true"></span>
+              <i data-lucide="play" width="34" height="34" fill="#fff"></i>
+            </button>
+            <span class="play-label">Hear a live call</span>
+            <span class="play-note">Or call our demo line: (07) 4519 0301</span>
+          </div>
+          <div class="caption-wrap" id="captionWrap" data-comment-anchor="467a2282c8-div">
+            <div class="caption" id="caption"></div>
+          </div>
+          <div class="pills" id="pills"></div>
+          <div class="sms" id="sms">
+            <div class="sms-card">
+              <div class="sms-head">
+                <span class="sms-app"><i data-lucide="message-square" width="15" height="15"></i></span>
+                <span class="sms-title">New lead — Tall Timber Tree Services</span>
+                <span class="sms-time">now</span>
+              </div>
+              <div class="sms-fields">
+                <span class="k">Name</span><span class="v">John</span>
+                <span class="k">Job</span><span class="v strong">Red gum removal — leaning near house</span>
+                <span class="k">Urgency</span><span class="v accent">ASAP</span>
+                <span class="k">Postcode</span><span class="v">3144</span>
+                <span class="k">Callback</span><span class="v">Next Thursday ~5pm</span>
+                <span class="k">Phone</span><span class="v">0437 414 424</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ SOCIAL PROOF ============ -->
+<section class="social" aria-label="Customer testimonials">
+  <div class="ticker" id="ticker"></div>
+</section>
+
+<!-- ============ PROBLEM ============ -->
+<section class="section light">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">The call you missed today</span>
+      <h2 class="h-display">One Missed Call Is<br>One Lost Job.</h2>
+    </div>
+    <div class="cols-3">
+      <div class="problem-col">
+        <div class="ic" data-comment-anchor="87ade394ee-div"><i data-lucide="phone-missed"></i></div>
+        <p>You're on site, can't answer. They call your competitor instead. The job's gone before you even know about it.</p>
+      </div>
+      <div class="problem-col">
+        <div class="ic"><i data-lucide="clock"></i></div>
+        <p>You're chasing leads at 9pm. Writing down details on the back of your hand. Playing phone tag all the next day.</p>
+      </div>
+      <div class="problem-col">
+        <div class="ic"><i data-lucide="trending-down"></i></div>
+        <p>In trades, the first one to answer gets the job. Every time you miss a call, that's someone else's invoice. It adds up fast.</p>
+      </div>
+    </div>
+    <p class="closing">A digital receptionist doesn't care what time it is. It's always ready.</p>
+  </div>
+</section>
+
+<!-- ============ HOW IT WORKS ============ -->
+<section id="how" class="section">
+  <div class="hero-bg subtle" aria-hidden="true"><div class="hero-lines"></div></div>
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Simple as</span>
+      <h2 class="h-display" style="color:#fff">Set Up In Minutes.<br>Runs Itself From There.</h2>
+    </div>
+    <div class="steps">
+      <div class="step" data-comment-anchor="13d1383ff7-div">
+        <span class="step-num">Step 1</span>
+        <div class="step-head">
+          <div class="step-ic"><i data-lucide="phone-forwarded"></i></div>
+          <h3>Forward your<br>missed calls</h3>
+        </div>
+        <p>Takes 2 minutes. When a call goes unanswered, it forwards to your Tradie Voice Mate line. That's the setup done.</p>
+      </div>
+      <div class="step-link" aria-hidden="true"><i data-lucide="arrow-right"></i></div>
+      <div class="step">
+        <span class="step-num">Step 2</span>
+        <div class="step-head">
+          <div class="step-ic"><i data-lucide="mic"></i></div>
+          <h3>It has a real<br>conversation</h3>
+        </div>
+        <p>It answers, talks naturally, and grabs the details. Name, job, suburb, callback time — all captured.</p>
+      </div>
+      <div class="step-link" aria-hidden="true"><i data-lucide="arrow-right"></i></div>
+      <div class="step">
+        <span class="step-num">Step 3</span>
+        <div class="step-head">
+          <div class="step-ic"><i data-lucide="message-square-text"></i></div>
+          <h3>You get an<br>SMS summary</h3>
+        </div>
+        <p>The caller's name, job and number land on your phone. Your CRM updates automatically. Ready to call them back.</p>
+      </div>
+      <div class="step-link" aria-hidden="true"><i data-lucide="arrow-right"></i></div>
+      <div class="step">
+        <span class="step-num">Step 4</span>
+        <div class="step-head">
+          <div class="step-ic"><i data-lucide="calendar-check"></i></div>
+          <h3>Job gets booked<br>in your system</h3>
+        </div>
+        <p>We integrate with the leading CRMs to book jobs right into your system. No missed jobs, no mucking around.</p>
+      </div>
+    </div>
+    <p class="center-note">No scripts to write. No tech know-how needed.<br>We set up the system for your business — you just forward the calls.</p>
+  </div>
+</section>
+
+<!-- ============ FEATURES ============ -->
+<section id="features" class="section" style="padding-top:0">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">What it does for you</span>
+      <h2 class="h-display" style="color:#fff">A Receptionist That<br>Actually Earns Its Keep.</h2>
+    </div>
+    <div class="features-grid">
+      <div class="feature">
+        <div class="feature-ic"><i data-lucide="calendar-clock"></i></div>
+        <h3>24/7 coverage</h3>
+        <p>On site, in the ute, or 10pm Sunday — every call answered.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-ic" data-comment-anchor="0ff7bc02c5-div"><i data-lucide="message-square-text"></i></div>
+        <h3>SMS in 30 seconds</h3>
+        <p>Full lead details to your phone the moment the call ends.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-ic"><i data-lucide="audio-lines"></i></div>
+        <h3>Sounds like a real person</h3>
+        <p>A natural, Australian-accented conversation. Callers don't feel processed.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-ic"><i data-lucide="siren"></i></div>
+        <h3>Flags urgent jobs</h3>
+        <p>Emergency calls get priority-flagged so you know what to action first.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-ic"><i data-lucide="voicemail"></i></div>
+        <h3>Handles message taking</h3>
+        <p>For existing customers calling back, it switches to quick message-taking mode.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-ic"><i data-lucide="workflow"></i></div>
+        <h3>CRM connected</h3>
+        <p>Plugs into ServiceM8, Monday.com and Formitize. Job details land automatically.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ INTEGRATIONS ============ -->
+<section id="integrations" class="section light">
+  <div class="wrap int-grid" data-comment-anchor="9292e18808-div">
+    <div class="int-main">
+      <div class="section-head">
+        <span class="eyebrow">Works with your setup</span>
+        <h2 class="h-display">Already Using Job Management<br>Software? Even Better.</h2>
+        <p class="muted-light" style="margin-top:18px; font-size:var(--type-body); line-height:1.6;">Tradie Voice Mate plugs straight into the tools you're already running. No data re-entry. No double handling. The call happens, the details land in your system, and you get on with the job.</p>
+      </div>
+      <div class="crm-logos">
+        <div class="crm-logo" data-comment-anchor="ca76eb2c6a-span">
+          <img class="crm-mark rounded" src="f26deb59-f462-4b2e-ab72-4f23f0193fb9" alt="ServiceM8 logo">
+          <span class="crm-name">Service<span class="crm-m8">M8</span></span>
+        </div>
+        <div class="crm-logo" data-comment-anchor="8972f53c3a-div">
+          <img class="crm-mark" src="c9d71017-44e7-41ff-ba90-b75823ff5ace" alt="monday.com logo">
+          <span class="crm-name lower">monday<span class="crm-dim">.com</span></span>
+        </div>
+        <div class="crm-logo">
+          <img class="crm-mark rounded" src="b0513347-130e-4dca-9421-1669bff87d6a" alt="Formitize logo">
+          <span class="crm-name crm-formitize">Formitize</span>
+        </div>
+        <div class="crm-logo more">+ more — ask us</div>
+      </div>
+      <p class="int-note">Don't see your software? Get in touch — we're adding integrations regularly.</p>
+    </div>
+
+    <div class="int-visual">
+      <img class="int-people" src="4aa294d0-7258-4ffd-a8cd-8b672d30d26c" alt="A tradie team — the people Tradie Voice Mate books jobs for" data-comment-anchor="bafb38dbc8-img">
+      <div class="booked-ui" aria-hidden="true">
+        <div class="booked-bar">
+          <span class="booked-dots"><i></i><i></i><i></i></span>
+          <span class="booked-app">
+            <img class="crm-mark rounded" style="width:18px;height:18px" src="f26deb59-f462-4b2e-ab72-4f23f0193fb9" alt="">
+            ServiceM8 · Schedule
+          </span>
+          <span class="booked-sync"><span class="booked-sync-dot"></span> Synced</span>
+        </div>
+        <div class="booked-body">
+          <div class="booked-check">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          </div>
+          <div class="booked-detail">
+            <span class="booked-label">Job booked</span>
+            <strong class="booked-title">Red gum removal — leaning near house</strong>
+            <span class="booked-meta">John · 3144 · Thu ~5pm · 0437 414 424</span>
+          </div>
+          <span class="booked-new">NEW</span>
+        </div>
+        <div class="booked-week">
+          <span>Mon</span><span>Tue</span><span>Wed</span><span class="on">Thu</span><span>Fri</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</section>
+
+<!-- ============ WIDER THAN TRADES ============ -->
+<section class="section violet">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Not just for tradies</span>
+      <h2 class="h-display">Any Aussie Business That<br>Lives Or Dies By The Phone.</h2>
+      <p class="body">Tradie Voice Mate was built for the tools-in-hand, on-site world — but a digital receptionist works for any small business that can't always pick up. Restaurants, salons, clinics, landscapers, cleaners, vets, mechanics. If a missed call means a missed customer, this is for you.</p>
+    </div>
+    <div class="trades-row">
+      <div class="trade"><i data-lucide="wrench"></i><span>Plumbers</span></div>
+      <div class="trade"><i data-lucide="zap"></i><span>Electricians</span></div>
+      <div class="trade"><i data-lucide="trees"></i><span>Arborists</span></div>
+      <div class="trade"><i data-lucide="bug"></i><span>Pest Control</span></div>
+      <div class="trade"><i data-lucide="hard-hat"></i><span>Builders</span></div>
+      <div class="trade"><i data-lucide="utensils"></i><span>Restaurants</span></div>
+      <div class="trade"><i data-lucide="scissors"></i><span>Salons</span></div>
+      <div class="trade"><i data-lucide="car"></i><span>Mechanics</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRICING ============ -->
+<section id="pricing" class="section">
+  <div class="hero-bg subtle" aria-hidden="true"><div class="hero-lines"></div><div class="hero-glow soft"></div></div>
+  <div class="wrap pricing-grid">
+    <div class="pricing-aside">
+      <span class="eyebrow">Pricing</span>
+      <h2 class="h-display" style="color:#fff">Dead Simple.<br>No Surprises.</h2>
+      <p class="pricing-lede">One plan. Everything included. Your first month is 80% off — then it's month-to-month, and you can walk any time.</p>
+      <div class="pricing-photo">
+        <img src="ab803cc8-5d2c-4477-9bff-38e5a81119e7" alt="A tradie calling a lead back after the receptionist captured the job">
+        <div class="pricing-badge">
+          <span class="sms-app"><i data-lucide="message-square" width="14" height="14"></i></span>
+          <div class="pricing-badge-text">
+            <strong>New lead — John</strong>
+            <span>Red gum removal · ASAP · 3144</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pricing-main">
+      <div class="price-card" data-comment-anchor="d1d14a6240-div">
+        <span class="name">Tradie Voice Mate</span>
+        <div class="price-row">
+          <span class="price-was">$290</span>
+          <span class="price-now">$58<small>/first month</small></span>
+        </div>
+        <p class="price-tag">80% off — no promo code needed</p>
+        <ul class="price-list">
+          <li><i data-lucide="check" width="18" height="18"></i> Unlimited call answering, 24/7</li>
+          <li><i data-lucide="check" width="18" height="18"></i> SMS summaries after every call</li>
+          <li data-comment-anchor="bbcd22ee25-li"><i data-lucide="check" width="18" height="18"></i> CRM Integration unlocked after trial period</li>
+          <li><i data-lucide="check" width="18" height="18"></i> Custom setup for your business</li>
+          <li><i data-lucide="check" width="18" height="18"></i> No setup fee</li>
+          <li><i data-lucide="check" width="18" height="18"></i> No lock-in contract — cancel any time</li>
+        </ul>
+        <div class="price-cta">
+          <a class="btn btn-primary" href="#">Start your $58 trial <span aria-hidden="true">→</span></a>
+          <a class="btn btn-secondary" href="#how">Reserve your demo</a>
+        </div>
+        <p class="price-quote">"We hand-pick a small number of businesses to work with. If we reach out, take us up on it."</p>
+      </div>
+      <p class="price-foot">After the trial month, it's $290/month. No contracts, no lock-in. If it's not making you money, cancel. Simple as that.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section id="faq" class="section light">
+  <div class="wrap">
+    <div class="section-head center">
+      <span class="eyebrow">Fair questions</span>
+      <h2 class="h-display">Got A Question?<br>Good — Here's The Answers.</h2>
+    </div>
+    <div class="faq-list" id="faqList">
+      <div class="faq-item">
+        <button class="faq-q">How does the call forwarding work? <i class="pm" data-lucide="plus"></i></button>
+        <div class="faq-a"><p>You set up a simple call-forward from your existing business number so that when a call goes unanswered, it forwards to your Tradie Voice Mate line. Your existing number stays the same. Most providers take 2 minutes to set this up. We walk you through it.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Will my customers know they're not talking to a real person? <i class="pm" data-lucide="plus"></i></button>
+        <div class="faq-a"><p>It discloses that it's a digital receptionist in the greeting — legally required and the right thing to do. What surprises people is how natural the conversation feels. Most callers say it sounds more helpful than being put on hold.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">What if someone has a really unusual request? <i class="pm" data-lucide="plus"></i></button>
+        <div class="faq-a"><p>It's built to handle the common scenarios — new jobs, follow-ups, urgent calls, message-taking. Anything it can't confidently handle gets flagged for you to call back. It won't make things up.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">What job management software does it work with? <i class="pm" data-lucide="plus"></i></button>
+        <div class="faq-a"><p>Right now, ServiceM8, Monday.com, and Formitize. More on the way. If you're using something else, get in touch — we'll let you know what's coming.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">What if I want to cancel? <i class="pm" data-lucide="plus"></i></button>
+        <div class="faq-a"><p>No problem. No contracts, no lock-in, no awkward cancellation process. Just let us know.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">How long does setup take? <i class="pm" data-lucide="plus"></i></button>
+        <div class="faq-a"><p>We build and configure your system — usually live within 24 hours of signing up. The only thing you do is set up call forwarding, which takes about 2 minutes. We'll walk you through it.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FINAL CTA ============ -->
+<section class="section final">
+  <div class="final-bg" aria-hidden="true"></div>
+  <div class="wrap">
+    <h2 class="h-hero">Stop Missing Jobs.<br>Start Your Trial Today.</h2>
+    <p class="sub">$58 for your first month. No setup fee. No lock-in. If it doesn't earn its keep, walk away — no hard feelings.</p>
+    <div class="final-cta">
+      <a class="btn btn-inverted btn-lg" href="#pricing">Start your trial <span aria-hidden="true">→</span></a>
+      <a class="btn btn-inverted-ghost btn-lg" href="#how">Reserve your demo</a>
+    </div>
+    <p class="phone">Or call us directly: 0419 720 285 — we're real people, always happy to chat.</p>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="wrap footer-grid">
+    <div class="footer-brand">
+      <a class="brand" href="#top">
+        <img src="2031c0b2-f0cc-446d-9c0a-b746d055c20a" alt="Tradie Voice Mate">
+        <span>Tradie Voice Mate</span>
+      </a>
+      <p class="footer-feature" data-comment-anchor="9d0c60620c-p">Your calls,<br>covered.</p>
+    </div>
+    <div class="footer-col">
+      <h4 data-comment-anchor="ee12306a8a-h4">Product</h4>
+      <a href="#how">How It Works</a>
+      <a href="#features">Features</a>
+      <a href="#integrations">Integrations</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact Us</h4>
+      <a href="mailto:Tradievoicemate@gmail.com">Tradievoicemate@gmail.com</a>
+      <a href="tel:0422999097">0422 999 097</a>
+    </div>
+    <div class="footer-col">
+      <h4>Tradie Web Mate</h4>
+      <p>A Tradie Web Mate product.</p>
+      <a href="#">tradiewebmate.com.au</a>
+      <a href="#">0419 720 285</a>
+      <a href="#">info@tradiewebmate.com.au</a>
+    </div>
+  </div>
+  <div class="wrap footer-bottom">
+    © 2026 Tradie Voice Mate. ABN XX XXX XXX XXX. Built for Australian businesses.<br>
+    Calls are answered on a recorded line. See Privacy Policy for full details.
+  </div>
+</footer>
+
+<script src="0684feca-7ca0-48aa-a7c3-7aecede7acd4"></script>
+
+
+</body></html>

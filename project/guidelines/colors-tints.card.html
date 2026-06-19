@@ -1,0 +1,26 @@
+<!-- @dsCard group="Colors" viewport="700x150" name="Derived tints & shades" subtitle="Hover/active shades and surface tints derived from the core palette" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin: 0; font-family: var(--font-body); background: #fff; padding: 22px; }
+  .row { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; }
+  .sw { display: flex; flex-direction: column; gap: 8px; }
+  .chip { height: 64px; border-radius: var(--radius-sm); border: 1px solid var(--tvm-on-light-12); }
+  .name { font-size: 11px; font-weight: 600; color: var(--tvm-near-black); }
+  .hex { font-size: 10px; color: var(--tvm-on-light-45); text-transform: uppercase; }
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="sw"><div class="chip" style="background:var(--tvm-teal-700)"></div><div><div class="name">teal-700</div><div class="hex">CTA hover</div></div></div>
+    <div class="sw"><div class="chip" style="background:var(--tvm-teal-300)"></div><div><div class="name">teal-300</div><div class="hex">waveform hi</div></div></div>
+    <div class="sw"><div class="chip" style="background:var(--tvm-ink-800)"></div><div><div class="name">ink-800</div><div class="hex">dark card</div></div></div>
+    <div class="sw"><div class="chip" style="background:var(--tvm-ink-700)"></div><div><div class="name">ink-700</div><div class="hex">dark divider</div></div></div>
+    <div class="sw"><div class="chip" style="background:var(--tvm-violet-700)"></div><div><div class="name">violet-700</div><div class="hex">violet shade</div></div></div>
+    <div class="sw"><div class="chip" style="background:var(--tvm-mint-200)"></div><div><div class="name">mint-200</div><div class="hex">light border</div></div></div>
+  </div>
+</body>
+</html>

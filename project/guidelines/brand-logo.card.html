@@ -1,0 +1,32 @@
+<!-- @dsCard group="Brand" viewport="700x200" name="Logo lockup" subtitle="Phone-handset mark + wordmark. Mark carries the only gradient in the brand" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin: 0; font-family: var(--font-body); background: var(--tvm-near-black); padding: 30px; display: flex; align-items: center; gap: 48px; }
+  .lockup { display: flex; align-items: center; gap: 14px; }
+  .lockup img { height: 48px; width: 48px; }
+  .wm { color: #fff; font-weight: 600; font-size: 22px; letter-spacing: -0.01em; }
+  .wm small { display: block; font-weight: 400; font-size: 12px; color: var(--tvm-on-dark-50); letter-spacing: .04em; margin-top: 2px; }
+  .swatch { display: flex; align-items: center; gap: 10px; }
+  .dot { width: 34px; height: 34px; border-radius: 50%; }
+  .note { font-size: 12px; color: var(--tvm-on-dark-50); }
+</style>
+</head>
+<body>
+  <div class="lockup">
+    <img src="../assets/Tradie_Voice_Mate_Icon.png" alt="Tradie Voice Mate" />
+    <div class="wm">Tradie Voice Mate<small>Your calls, covered.</small></div>
+  </div>
+  <div>
+    <div class="swatch">
+      <span class="dot" style="background:var(--tvm-forest-green)"></span>
+      <span class="dot" style="background:var(--tvm-deep-teal)"></span>
+      <span class="dot" style="background:var(--tvm-deep-violet)"></span>
+    </div>
+    <div class="note" style="margin-top:8px">Mark gradient: green → teal → violet</div>
+  </div>
+</body>
+</html>

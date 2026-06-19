@@ -1,0 +1,58 @@
+<!-- @dsCard group="Components" viewport="700x300" name="Core — Button, Eyebrow, Tag, Tick" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../../styles.css" />
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>
+  body { margin: 0; font-family: var(--font-body); background: var(--tvm-near-black); padding: 26px; }
+  .grid { display: flex; flex-direction: column; gap: 22px; }
+  .rowflex { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+  .label { font-size: 11px; text-transform: uppercase; letter-spacing: .14em; color: var(--tvm-on-dark-50); margin-bottom: 10px; }
+  .onlight { background: var(--tvm-deep-teal); padding: 16px; border-radius: 14px; }
+</style>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    const { Button, Eyebrow, Tag, Tick } = window.TradieVoiceMateDesignSystem_9e482f;
+    function Demo() {
+      return (
+        <div className="grid">
+          <div>
+            <div className="label">Eyebrow + buttons</div>
+            <Eyebrow>Your digital receptionist · 24/7</Eyebrow>
+            <div className="rowflex" style={{ marginTop: 12 }}>
+              <Button variant="primary" trailingArrow>Start your trial</Button>
+              <Button variant="secondary">Reserve your demo</Button>
+              <Button variant="primary" disabled>Disabled</Button>
+            </div>
+          </div>
+          <div className="rowflex">
+            <div className="onlight rowflex">
+              <Button variant="inverted" trailingArrow>Start your trial</Button>
+              <Button variant="inverted-ghost">Reserve your demo</Button>
+            </div>
+          </div>
+          <div className="rowflex">
+            <Tag variant="data">Postcode · 3144</Tag>
+            <Tag variant="urgent">ASAP</Tag>
+            <Tag variant="solid">Live call</Tag>
+            <Tag variant="outline" style={{ color: 'var(--tvm-on-dark-70)', borderColor: 'var(--tvm-on-dark-15)' }}>ServiceM8</Tag>
+          </div>
+          <div className="rowflex" style={{ gap: 24 }}>
+            <Tick onDark>No setup fee</Tick>
+            <Tick onDark>No lock-in contract</Tick>
+            <Tick onDark>First month 80% off</Tick>
+          </div>
+        </div>
+      );
+    }
+    ReactDOM.createRoot(document.getElementById('root')).render(<Demo />);
+  </script>
+</body>
+</html>

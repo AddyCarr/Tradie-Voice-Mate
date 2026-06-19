@@ -1,0 +1,24 @@
+<!-- @dsCard group="Spacing" viewport="700x160" name="Radius & pills" subtitle="Soft cards, large panels, and rounded-full CTAs" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin: 0; font-family: var(--font-body); background: var(--tvm-pale-mint); padding: 26px; }
+  .row { display: flex; align-items: center; gap: 22px; }
+  .box { width: 88px; height: 64px; background: #fff; border: 1px solid var(--tvm-mint-200); display: grid; place-items: center; font-size: 11px; color: var(--tvm-on-light-45); }
+  .pill { background: var(--tvm-deep-teal); color: #fff; padding: 12px 22px; border-radius: var(--radius-pill); font-weight: 600; font-size: 14px; }
+  .lbl { font-size: 11px; color: var(--tvm-on-light-45); margin-top: 6px; text-align: center; }
+  .item { display: flex; flex-direction: column; align-items: center; }
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="item"><div class="box" style="border-radius:var(--radius-sm)">sm</div><div class="lbl">8px</div></div>
+    <div class="item"><div class="box" style="border-radius:var(--radius-md)">md</div><div class="lbl">14px · cards</div></div>
+    <div class="item"><div class="box" style="border-radius:var(--radius-lg)">lg</div><div class="lbl">22px · panels</div></div>
+    <div class="item"><div class="pill">Start your trial →</div><div class="lbl">pill · CTAs</div></div>
+  </div>
+</body>
+</html>
