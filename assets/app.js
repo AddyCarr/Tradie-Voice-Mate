@@ -138,7 +138,7 @@
     }
 
     /* ---- Premium scroll parallax (depth between layered images / widgets) ---- */
-    if (!reduceMotion && window.innerWidth > 760) {
+    if (!reduceMotion && window.innerWidth > 920) {
       var pxDefs = [
         { sel: '#top .hero-lines', base: '',                   amp: 26 },  // far background grid — slow
         { sel: '.hero-people',     base: 'translateY(-85%)',   amp: -34 }, // receptionist image, behind widget
