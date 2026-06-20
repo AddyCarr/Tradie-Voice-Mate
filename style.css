@@ -278,22 +278,27 @@ button { font-family: inherit; }
   background: none;
   border: none;
   cursor: pointer;
-  padding: 8px;
+  padding: 0;
+  position: relative;
+  width: 44px; height: 44px;
   color: #fff;
   -webkit-tap-highlight-color: transparent;
 }
 .nav-burger span {
-  display: block;
-  width: 22px;
+  position: absolute;
+  left: 11px; right: 11px;            /* 22px-wide bar, centered in the 44px box */
   height: 2px;
   background: currentColor;
   border-radius: 2px;
-  transition: transform var(--dur-base) var(--ease-out), opacity var(--dur-base);
-  margin: 5px 0;
+  transition: transform var(--dur-base) var(--ease-out), top var(--dur-base) var(--ease-out), opacity var(--dur-base);
 }
-.nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-.nav-burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
-.nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.nav-burger span:nth-child(1) { top: 15px; }
+.nav-burger span:nth-child(2) { top: 21px; }
+.nav-burger span:nth-child(3) { top: 27px; }
+/* Open: top & bottom bars slide to the centre line and cross into a clean X */
+.nav-burger.open span:nth-child(1) { top: 21px; transform: rotate(45deg); }
+.nav-burger.open span:nth-child(2) { opacity: 0; }
+.nav-burger.open span:nth-child(3) { top: 21px; transform: rotate(-45deg); }
 
 /* Mobile nav overlay */
 .nav-mobile-menu {
@@ -317,7 +322,7 @@ button { font-family: inherit; }
   transform: none;
   pointer-events: auto;
 }
-.nav-mobile-menu a {
+.nav-mobile-menu a:not(.btn) {
   display: block;
   font-size: 28px;
   font-family: var(--font-display);
@@ -329,8 +334,10 @@ button { font-family: inherit; }
   transition: color var(--dur-fast);
   letter-spacing: 0.02em;
 }
-.nav-mobile-menu a:hover { color: #fff; }
-.nav-mobile-menu .btn { margin-top: 20px; justify-content: center; }
+.nav-mobile-menu a:not(.btn):hover { color: #fff; }
+.nav-mobile-menu .btn { display: flex; width: 100%; justify-content: center; }
+.nav-mobile-menu .btn-primary { margin-top: 24px; }
+.nav-mobile-menu .btn-secondary { margin-top: 12px; }
 .nav .nav-cta-desktop { display: inline-flex; }
 
 /* ============================================================
@@ -468,7 +475,7 @@ button { font-family: inherit; }
 }
 .widget.calling .play-wrap { opacity: 0; pointer-events: none; }
 .play-btn {
-  width: 86px; height: 86px; border-radius: 50%;
+  width: 86px; height: 86px; border-radius: 50%; flex-shrink: 0;
   background: var(--tvm-deep-teal); border: none;
   cursor: pointer; display: grid; place-items: center;
   position: relative; box-shadow: var(--shadow-teal);
@@ -992,19 +999,19 @@ button { font-family: inherit; }
 @media (max-width: 920px) {
   .nav-links { display: none; }
   .nav-cta-desktop { display: none !important; }
-  .nav-burger { display: flex; flex-direction: column; align-items: center; }
+  .nav-burger { display: block; }
 
   .hero-grid {
     grid-template-columns: 1fr;
-    gap: 40px;
-    padding-top: 80px;
-    padding-bottom: 60px;
+    gap: 26px;
+    padding-top: 52px;
+    padding-bottom: 56px;
   }
   /* Hero: image flows in-flow, centered above the widget (no float/overlap with copy) */
   .hero-people {
     position: relative;
     left: auto; top: auto;
-    width: auto; max-width: 280px; height: auto;
+    width: auto; max-width: 220px; height: auto;
     margin: 0 auto -14px;
     transform: none;
   }
@@ -1091,11 +1098,15 @@ button { font-family: inherit; }
 
   .brand span { font-size: 16px; }
 
-  .hero-grid { padding-top: 60px; padding-bottom: 48px; gap: 32px; }
-  .hero h1 { margin-bottom: 20px; }
+  /* Condense the hero so the widget reaches the first screen */
+  .hero-grid { padding-top: 32px; padding-bottom: 44px; gap: 22px; }
+  .hero-copy .eyebrow { margin-bottom: 10px; }
+  .hero h1 { margin-bottom: 14px; }
   .hero .sub { font-size: 1rem; }
-  .hero-cta { gap: 10px; }
-  .btn-lg { padding: 16px 24px; font-size: 16px; }
+  /* Two CTAs share one row, 50% each */
+  .hero-cta { gap: 10px; margin: 20px 0 14px; flex-wrap: nowrap; }
+  .hero-cta .btn { flex: 1 1 0; min-width: 0; justify-content: center; gap: 6px; }
+  .btn-lg { padding: 15px 10px; font-size: 15px; }
   .trust { gap: 14px; }
 
   /* Compact hero widget: short until the call starts, then expands smoothly.
@@ -1171,8 +1182,7 @@ button { font-family: inherit; }
    RESPONSIVE — SMALL MOBILE (≤ 400px)
    ============================================================ */
 @media (max-width: 400px) {
-  .hero-cta { flex-direction: column; }
-  .hero-cta .btn { justify-content: center; }
+  .btn-lg { padding: 14px 8px; font-size: 14px; }
   .final-cta { flex-direction: column; align-items: center; }
   .price-now { font-size: 42px; }
 }
