@@ -969,7 +969,7 @@ button { font-family: inherit; }
   line-height: 1.0; letter-spacing: -0.02em; color: #fff;
 }
 .footer h4 { font-family: var(--font-body); font-size: 13px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--tvm-on-dark-50); margin: 0 0 16px; font-weight: 600; }
-.footer-col a, .footer-col p { display: block; font-size: 15px; color: var(--tvm-on-dark-70); text-decoration: none; margin-bottom: 10px; transition: color var(--dur-fast); overflow-wrap: break-word; word-break: break-all; }
+.footer-col a, .footer-col p { display: block; font-size: 15px; color: var(--tvm-on-dark-70); text-decoration: none; margin-bottom: 10px; transition: color var(--dur-fast); overflow-wrap: break-word; }
 @media (hover: hover) {
   .footer-col a:hover { color: #fff; }
 }
@@ -1014,6 +1014,9 @@ button { font-family: inherit; }
   }
   .widget-col .widget { width: 100%; }
   .hero-copy { order: 1; }
+  /* Allow flex/grid children to shrink below their content width so the
+     waveform and widget can't force horizontal overflow on small screens */
+  .hero-copy, .widget-col, .widget, .widget-stage, .wave { min-width: 0; }
 
   .cols-3, .features-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
 
@@ -1031,12 +1034,17 @@ button { font-family: inherit; }
   .wider-copy { text-align: left; }
   .wider-copy .body { margin-left: 0; }
 
-  .pricing-grid { grid-template-columns: 1fr; gap: 36px; }
+  /* Single column on mobile, reordered: title + body, then price card, then photo */
+  .pricing-grid { display: flex; flex-direction: column; gap: 36px; }
+  .pricing-aside { display: contents; }
+  .pricing-head { order: 1; }
+  .pricing-main { order: 2; }
+  .pricing-photo { order: 3; margin-top: 0; }
 
   .int-grid { grid-template-columns: 1fr; gap: 12px; }
   /* Keep the team image mostly visible above/behind the booked-ui mockup, like desktop */
   .int-visual { min-height: 460px; margin-top: 24px; }
-  .int-people { width: 86%; max-width: 320px; top: 0; }
+  .int-people { width: 86%; max-width: 320px; top: 40px; }
   .booked-ui { width: min(380px, 92%); }
 
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px 16px; }
@@ -1065,9 +1073,11 @@ button { font-family: inherit; }
   .price-card { padding: 36px 28px 32px; }
   .price-now { font-size: 54px; }
 
-  /* Footer: brand spans full width, link columns sit two-up */
-  .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px 16px; }
+  /* Footer: brand full width; Product narrow (37%) + Contact wide (63%) so the
+     email fits one line; "Tradie Web Mate" spans its own full-width row */
+  .footer-grid { grid-template-columns: 37% 63%; gap: 32px 16px; }
   .footer-brand { grid-column: 1 / -1; padding-bottom: 20px; border-bottom: 1px solid var(--tvm-on-dark-15); }
+  .footer-grid > .footer-col:last-child { grid-column: 1 / -1; }
   .footer .footer-feature { font-size: clamp(24px, 8vw, 36px); padding-top: 24px; }
 }
 
@@ -1088,10 +1098,21 @@ button { font-family: inherit; }
   .btn-lg { padding: 16px 24px; font-size: 16px; }
   .trust { gap: 14px; }
 
-  .widget { padding: 16px; min-height: 360px; }
-  .play-btn { width: 72px; height: 72px; }
+  /* Compact hero widget: short until the call starts, then expands smoothly.
+     The play button is allowed to overlap the waveform in this resting state. */
+  .widget {
+    padding: 16px; min-height: 220px;
+    transition: min-height var(--dur-slow) var(--ease-out), box-shadow var(--dur-slow) var(--ease-out);
+  }
+  .widget.calling, .widget.ended { min-height: 380px; }
+  .play-btn { width: 72px; height: 72px; margin-bottom: 8px; }
   .play-btn svg { width: 28px; height: 28px; }
+  .play-wrap { gap: 8px; }
+  .play-note { display: none; }   /* drop the demo-line text on mobile */
   .caption { font-size: 14px; padding: 12px 14px; }
+
+  /* Drop the first trust marker ("No setup fee") on mobile */
+  .trust .t:first-child { display: none; }
 
   .problem-h-v2 { font-size: clamp(2.25rem, 12vw, 4rem); }
   .problem-trio-v2 { grid-template-columns: 1fr; }
