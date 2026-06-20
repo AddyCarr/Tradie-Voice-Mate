@@ -1130,6 +1130,9 @@ button { font-family: inherit; }
   .play-wrap { gap: 8px; }
   .play-note { display: none; }   /* drop the demo-line text on mobile */
   .caption { font-size: 14px; padding: 12px 14px; }
+  /* Align messages to the top (closer to the waveform) so longer ones don't
+     run into the info pills at the bottom */
+  .caption-wrap { align-items: flex-start; }
 
   /* Drop the first trust marker ("No setup fee") on mobile */
   .trust .t:first-child { display: none; }
