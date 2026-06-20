@@ -1050,7 +1050,7 @@ button { font-family: inherit; }
 
   .int-grid { grid-template-columns: 1fr; gap: 12px; }
   /* Keep the team image mostly visible above/behind the booked-ui mockup, like desktop */
-  .int-visual { min-height: 460px; margin-top: 24px; }
+  .int-visual { min-height: 460px; margin-top: -12px; }
   .int-people { width: 86%; max-width: 320px; top: 40px; }
   .booked-ui { width: min(380px, 92%); }
 
