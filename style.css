@@ -763,7 +763,7 @@ button { font-family: inherit; }
   100% { transform: translateX(-50%) translateY(0) scale(1.00); opacity: 0.82; }
 }
 .int-people {
-  position: absolute; top: 5px; left: 50%; transform: translateX(-50%);
+  position: absolute; top: 45px; left: 50%; transform: translateX(-50%);
   z-index: 1; width: 112%; max-width: 570px; height: auto; object-fit: contain;
   filter: drop-shadow(0 30px 40px rgba(8,8,26,0.16));
 }
@@ -844,9 +844,9 @@ button { font-family: inherit; }
 .wider-tabs .trade svg { color: inherit; }
 .wider-tabs .trade span { font-family: var(--font-display); font-size: 22px; font-weight: 400; letter-spacing: 0.01em; color: inherit; }
 .wider-more { margin-top: 14px; font-size: 13px; color: rgba(255,255,255,0.38); font-style: italic; }
-.wider-copy { text-align: right; }
+.wider-copy { text-align: left; }
 .wider-copy .eyebrow { display: block; margin-bottom: 14px; }
-.wider-copy .body { margin-left: auto; margin-top: 20px; }
+.wider-copy .body { margin-left: 0; margin-top: 20px; }
 
 /* ============================================================
    PRICING
@@ -969,7 +969,7 @@ button { font-family: inherit; }
   line-height: 1.0; letter-spacing: -0.02em; color: #fff;
 }
 .footer h4 { font-family: var(--font-body); font-size: 13px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--tvm-on-dark-50); margin: 0 0 16px; font-weight: 600; }
-.footer-col a, .footer-col p { display: block; font-size: 15px; color: var(--tvm-on-dark-70); text-decoration: none; margin-bottom: 10px; transition: color var(--dur-fast); }
+.footer-col a, .footer-col p { display: block; font-size: 15px; color: var(--tvm-on-dark-70); text-decoration: none; margin-bottom: 10px; transition: color var(--dur-fast); overflow-wrap: break-word; word-break: break-all; }
 @media (hover: hover) {
   .footer-col a:hover { color: #fff; }
 }
@@ -1039,7 +1039,7 @@ button { font-family: inherit; }
   .int-people { width: 86%; max-width: 320px; top: 0; }
   .booked-ui { width: min(380px, 92%); }
 
-  .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px 24px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px 16px; }
 }
 
 /* ============================================================
@@ -1066,7 +1066,7 @@ button { font-family: inherit; }
   .price-now { font-size: 54px; }
 
   /* Footer: brand spans full width, link columns sit two-up */
-  .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px 24px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px 16px; }
   .footer-brand { grid-column: 1 / -1; padding-bottom: 20px; border-bottom: 1px solid var(--tvm-on-dark-15); }
   .footer .footer-feature { font-size: clamp(24px, 8vw, 36px); padding-top: 24px; }
 }
