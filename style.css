@@ -359,6 +359,7 @@ button { font-family: inherit; }
   font-size: var(--type-body-lg); line-height: 1.55;
   color: var(--tvm-on-dark-70); max-width: 30em;
 }
+.sub-mobile { display: none; }
 .hero-cta { display: flex; gap: 14px; margin: 32px 0 22px; flex-wrap: wrap; }
 .trust { display: flex; gap: 22px; flex-wrap: wrap; }
 .trust .t {
@@ -1107,6 +1108,9 @@ button { font-family: inherit; }
   .hero-copy .eyebrow { margin-bottom: 10px; }
   .hero h1 { margin-bottom: 14px; }
   .hero .sub { font-size: 1rem; }
+  /* Shorter hero body copy on mobile */
+  .sub-desktop { display: none; }
+  .sub-mobile { display: block; }
   /* Two CTAs share one row, 50% each */
   .hero-cta { gap: 10px; margin: 20px 0 14px; flex-wrap: nowrap; }
   .hero-cta .btn { flex: 1 1 0; min-width: 0; justify-content: center; gap: 6px; }
