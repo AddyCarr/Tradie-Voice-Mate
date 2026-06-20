@@ -772,7 +772,7 @@ button { font-family: inherit; }
   100% { transform: translateX(-50%) translateY(0) scale(1.00); opacity: 0.82; }
 }
 .int-people {
-  position: absolute; top: 5px; left: 50%; transform: translateX(-50%);
+  position: absolute; top: 45px; left: 50%; transform: translateX(-50%);
   z-index: 1; width: 112%; max-width: 570px; height: auto; object-fit: contain;
   filter: drop-shadow(0 30px 40px rgba(8,8,26,0.16));
 }
@@ -853,9 +853,9 @@ button { font-family: inherit; }
 .wider-tabs .trade svg { color: inherit; }
 .wider-tabs .trade span { font-family: var(--font-display); font-size: 22px; font-weight: 400; letter-spacing: 0.01em; color: inherit; }
 .wider-more { margin-top: 14px; font-size: 13px; color: rgba(255,255,255,0.38); font-style: italic; }
-.wider-copy { text-align: right; }
+.wider-copy { text-align: left; }
 .wider-copy .eyebrow { display: block; margin-bottom: 14px; }
-.wider-copy .body { margin-left: auto; margin-top: 20px; }
+.wider-copy .body { margin-left: 0; margin-top: 20px; }
 
 /* ============================================================
    PRICING
@@ -978,7 +978,7 @@ button { font-family: inherit; }
   line-height: 1.0; letter-spacing: -0.02em; color: #fff;
 }
 .footer h4 { font-family: var(--font-body); font-size: 13px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--tvm-on-dark-50); margin: 0 0 16px; font-weight: 600; }
-.footer-col a, .footer-col p { display: block; font-size: 15px; color: var(--tvm-on-dark-70); text-decoration: none; margin-bottom: 10px; transition: color var(--dur-fast); }
+.footer-col a, .footer-col p { display: block; font-size: 15px; color: var(--tvm-on-dark-70); text-decoration: none; margin-bottom: 10px; transition: color var(--dur-fast); overflow-wrap: break-word; word-break: break-all; }
 @media (hover: hover) {
   .footer-col a:hover { color: #fff; }
 }
@@ -1048,7 +1048,7 @@ button { font-family: inherit; }
   .int-people { width: 86%; max-width: 320px; top: 0; }
   .booked-ui { width: min(380px, 92%); }
 
-  .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px 24px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px 16px; }
 }
 
 /* ============================================================
@@ -1075,7 +1075,7 @@ button { font-family: inherit; }
   .price-now { font-size: 54px; }
 
   /* Footer: brand spans full width, link columns sit two-up */
-  .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px 24px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px 16px; }
   .footer-brand { grid-column: 1 / -1; padding-bottom: 20px; border-bottom: 1px solid var(--tvm-on-dark-15); }
   .footer .footer-feature { font-size: clamp(24px, 8vw, 36px); padding-top: 24px; }
 }
@@ -1502,6 +1502,11 @@ button { font-family: inherit; }
 <section class="section violet">
   <div class="hero-bg" aria-hidden="true"><div class="hero-lines"></div></div>
   <div class="wrap wider-grid">
+    <div class="wider-copy">
+      <span class="eyebrow">Not just for tradies</span>
+      <h2 class="h-display">Any Aussie Business<br>That Lives Or Dies<br>By The Phone.</h2>
+      <p class="body">Tradie Voice Mate was built for the tools-in-hand, on-site world — but a digital receptionist works for any small business that can't always pick up. Restaurants, salons, clinics, landscapers, cleaners, vets, mechanics. If a missed call means a missed customer, this is for you.</p>
+    </div>
     <div class="wider-left">
       <div class="wider-tabs">
         <div class="trade reveal" style="transition-delay:0ms"><i data-lucide="wrench"></i><span>Plumbers</span></div>
@@ -1515,11 +1520,6 @@ button { font-family: inherit; }
       </div>
       <div class="wider-more">+ more — we're always regularly adding industries</div>
     </div>
-    <div class="wider-copy">
-      <span class="eyebrow">Not just for tradies</span>
-      <h2 class="h-display">Any Aussie Business<br>That Lives Or Dies<br>By The Phone.</h2>
-      <p class="body">Tradie Voice Mate was built for the tools-in-hand, on-site world — but a digital receptionist works for any small business that can't always pick up. Restaurants, salons, clinics, landscapers, cleaners, vets, mechanics. If a missed call means a missed customer, this is for you.</p>
-    </div>
   </div>
 </section>
 
@@ -1527,21 +1527,6 @@ button { font-family: inherit; }
 <section id="pricing" class="section">
   <div class="hero-bg subtle" aria-hidden="true"><div class="hero-lines"></div><div class="hero-glow soft"></div></div>
   <div class="wrap pricing-grid">
-    <div class="pricing-aside">
-      <span class="eyebrow">Pricing</span>
-      <h2 class="h-display" style="color:#fff">Dead Simple.<br>No Surprises.</h2>
-      <p class="pricing-lede">One plan. Everything included. Your first month is 80% off — then it's month-to-month, and you can walk any time.</p>
-      <div class="pricing-photo">
-        <img src="project/assets/img/tradie-phone-3.jpg" alt="A tradie calling a lead back after the receptionist captured the job" loading="lazy">
-        <div class="pricing-badge">
-          <span class="sms-app"><i data-lucide="message-square" width="14" height="14"></i></span>
-          <div class="pricing-badge-text">
-            <strong>New lead — John</strong>
-            <span>Red gum removal · ASAP · 3144</span>
-          </div>
-        </div>
-      </div>
-    </div>
     <div class="pricing-main">
       <div class="price-card">
         <span class="price-badge"><i data-lucide="sparkles"></i> First month 80% off</span>
@@ -1565,6 +1550,21 @@ button { font-family: inherit; }
         </div>
       </div>
       <p class="price-foot">After the trial month, it's $290/month. No contracts, no lock-in. If it's not making you money, cancel. Simple as that.</p>
+    </div>
+    <div class="pricing-aside">
+      <span class="eyebrow">Pricing</span>
+      <h2 class="h-display" style="color:#fff">Dead Simple.<br>No Surprises.</h2>
+      <p class="pricing-lede">One plan. Everything included. Your first month is 80% off — then it's month-to-month, and you can walk any time.</p>
+      <div class="pricing-photo">
+        <img src="project/assets/img/tradie-phone-3.jpg" alt="A tradie calling a lead back after the receptionist captured the job" loading="lazy">
+        <div class="pricing-badge">
+          <span class="sms-app"><i data-lucide="message-square" width="14" height="14"></i></span>
+          <div class="pricing-badge-text">
+            <strong>New lead — John</strong>
+            <span>Red gum removal · ASAP · 3144</span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
