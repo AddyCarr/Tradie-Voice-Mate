@@ -348,7 +348,7 @@ button { font-family: inherit; }
 .nav .nav-cta-desktop { display: inline-flex; }
 
 /* ============================================================
-   OPTUS CALL FORWARDING — SIDE PAGE (DYNAMIC / PERSONALISED)
+   CALL FORWARDING — DYNAMIC SIDE PAGE
    ============================================================ */
 @keyframes ripplePulse{0%{box-shadow:0 0 0 0 rgba(0,168,124,0.40)}70%{box-shadow:0 0 0 20px rgba(0,168,124,0)}100%{box-shadow:0 0 0 0 rgba(0,168,124,0)}}
 @keyframes callRipple{0%{box-shadow:0 0 0 0 rgba(0,168,124,0.32)}70%{box-shadow:0 0 0 18px rgba(0,168,124,0)}100%{box-shadow:0 0 0 0 rgba(0,168,124,0)}}
@@ -429,24 +429,6 @@ button { font-family: inherit; }
 .cf-copy.is-disabled { opacity:0.35; cursor:not-allowed; box-shadow:none; }
 .cf-copy.is-disabled:hover { filter:none; }
 
-/* ---- Share link row ---- */
-.cf-share {
-  display:flex; align-items:center; justify-content:center; gap:10px; flex-wrap:wrap;
-  margin-top: clamp(24px,3vw,32px); font-size:13.5px; color:var(--tvm-on-dark-50);
-}
-.cf-share[hidden] { display:none; }
-.cf-share code {
-  font-family:ui-monospace,Menlo,monospace; font-size:12.5px; color:var(--tvm-on-dark-70);
-  background:rgba(255,255,255,0.05); border:1px solid var(--tvm-on-dark-15);
-  border-radius:8px; padding:6px 10px; max-width:60vw; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
-}
-.cf-share button {
-  background:none; border:1px solid var(--tvm-on-dark-15); color:var(--tvm-on-dark-70);
-  border-radius:8px; padding:6px 12px; font-family:var(--font-body); font-size:12.5px; font-weight:600;
-  cursor:pointer; transition:border-color .2s, color .2s;
-}
-@media (hover:hover){ .cf-share button:hover{ border-color:var(--tvm-deep-teal); color:#fff; } }
-
 /* Carousel section + panel */
 .cf-section { position:relative; padding: clamp(24px,4vw,48px) 0 clamp(56px,8vw,96px); }
 .cf-panel {
@@ -501,6 +483,13 @@ button { font-family: inherit; }
   background:rgba(0,168,124,0.1); border:1px solid rgba(0,168,124,0.3);
   border-radius:var(--radius-pill); padding:11px 18px; font-size:14.5px; font-weight:600; color:var(--tvm-teal-300);
 }
+.cf-tip-warn {
+  margin-top:14px; display:flex; align-items:flex-start; gap:10px;
+  background:rgba(124,58,237,0.14); border:1px solid rgba(124,58,237,0.4);
+  border-radius:14px; padding:13px 16px; font-size:13.5px; font-weight:500; line-height:1.5; color:#e9d5ff;
+}
+.cf-tip-warn svg { flex-shrink:0; margin-top:1px; color:#c4b5fd; }
+.cf-tip-warn strong { color:#fff; font-weight:700; }
 .cf-code-block { margin-top:24px; }
 .cf-code-label { font-size:12px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:var(--tvm-on-dark-50); margin-bottom:10px; }
 .cf-code-label .tap-note { display:none; font-weight:700; color:var(--tvm-forest-green); margin-left:4px; }
@@ -535,10 +524,6 @@ button { font-family: inherit; }
 .cf-dots { display:flex; align-items:center; gap:9px; }
 .cf-dot { height:10px; width:10px; border-radius:999px; border:none; padding:0; cursor:pointer; background:rgba(255,255,255,0.22); transition:width .3s, background .3s; }
 
-.cf-help { text-align:center; margin: clamp(28px,4vw,40px) auto 0; font-size:14.5px; color:var(--tvm-on-dark-50); max-width:44em; }
-.cf-help a { color:var(--tvm-teal-300); text-decoration:none; font-weight:600; }
-@media (hover:hover){ .cf-help a:hover{ text-decoration:underline; } }
-
 /* Slim side-page footer */
 .cf-footer { background:var(--tvm-near-black); border-top:1px solid var(--tvm-on-dark-15); }
 .cf-footer-top {
@@ -569,6 +554,7 @@ button { font-family: inherit; }
   .cf-step h3 { font-size:23px; }
   .cf-step p { font-size:14.5px; margin-top:9px; line-height:1.5; display:none; }
   .cf-tip { margin-top:14px; }
+  .cf-tip-warn { font-size:13px; }
   .cf-code-block { margin-top:14px; }
   /* hide the large low-opacity step numeral for a more compact card */
   .cf-step-num { display:none; }
@@ -590,8 +576,10 @@ button { font-family: inherit; }
   .cf-code-row code:active { background:rgba(0,168,124,0.12); }
   .cf-code-row code.is-placeholder::before { display:none; }
   .cf-code-label .tap-note { display:inline; }
+  /* single-line input: in a column flex the base flex-basis becomes height,
+     so force auto height and full width */
   .cf-numgate-form { flex-direction:column; }
-  .cf-numgate-input { max-width:none; }
+  .cf-numgate-input { flex:0 0 auto; width:100%; max-width:none; }
 }
 @media (prefers-reduced-motion: reduce) {
   .cf-phone, .cf-tap-home, .cf-tap-call, .cf-code-row code::before { animation:none !important; }
@@ -633,18 +621,18 @@ button { font-family: inherit; }
     <div class="cf-hero-inner">
       <span class="eyebrow cf-eyebrow"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"></path><path d="m16 2 5 5"></path><path d="M21 2v5h-5"></path></svg> Setup guide &#183; Optus</span>
       <h1>Set Up Call Forwarding<br>On <span class="accent-teal">Optus</span>.</h1>
-      <p class="cf-sub">Point every missed call straight at your receptionist. Five quick codes, about two minutes, and you’re covered. Follow along on the phone below.</p>
+      <p class="cf-sub">Point every missed call straight at your receptionist. Five quick steps, about two minutes, and you’re covered. Follow along on the phone below.</p>
     </div>
 
-    <!-- Personalisation gate: shown until a valid AU mobile number is known -->
+    <!-- Personalisation gate: shown until a valid number is known -->
     <div class="cf-numgate" id="cfNumGate">
-      <p class="cf-numgate-title">Enter your mobile number to personalise this guide</p>
-      <p class="cf-numgate-sub">We’ll fill in your number below so every code is ready to dial — no typing required.</p>
+      <p class="cf-numgate-title">Enter your number to personalise this guide</p>
+      <p class="cf-numgate-sub">We’ll fill it into every code below so it’s ready to dial — no typing required.</p>
       <form class="cf-numgate-form" id="cfNumGateForm" autocomplete="off">
-        <input class="cf-numgate-input" id="cfNumGateInput" type="tel" inputmode="tel" placeholder="04XX XXX XXX" aria-label="Your mobile number" maxlength="14">
+        <input class="cf-numgate-input" id="cfNumGateInput" type="tel" inputmode="tel" placeholder="e.g. 03 4421 6904" aria-label="Your number" maxlength="20">
         <button class="btn btn-primary cf-numgate-btn" type="submit">Personalise guide</button>
       </form>
-      <p class="cf-numgate-error" id="cfNumGateError" hidden>That doesn’t look like a valid Australian mobile number — try again.</p>
+      <p class="cf-numgate-error" id="cfNumGateError" hidden>That doesn’t look like a valid Australian number — try again.</p>
     </div>
 
     <!-- Confirmation badge: shown once a valid number is applied -->
@@ -669,7 +657,7 @@ button { font-family: inherit; }
           <div class="cf-screen">
             <div class="cf-screen-inner">
               <div class="cf-phone-track" data-track="phone">
-                <div class="cf-slide"><img src="project/assets/optus/optus-home-screen.png" alt="Phone screen"><div class="cf-tap-home"></div></div><div class="cf-slide"><img src="project/assets/optus/optus-dialpad-screen.png" alt="Phone screen"><div class="cf-typed">##002#</div><div class="cf-tap-call"></div></div><div class="cf-slide"><img src="project/assets/optus/optus-dialpad-screen.png" alt="Phone screen"><div class="cf-typed is-placeholder" data-tpl="**61*{NUM}**10#">**61*+61XXXXXXXXX**10#</div><div class="cf-tap-call"></div></div><div class="cf-slide"><img src="project/assets/optus/optus-dialpad-screen.png" alt="Phone screen"><div class="cf-typed is-placeholder" data-tpl="**62*{NUM}#">**62*+61XXXXXXXXX#</div><div class="cf-tap-call"></div></div><div class="cf-slide"><img src="project/assets/optus/optus-dialpad-screen.png" alt="Phone screen"><div class="cf-typed is-placeholder" data-tpl="**67*{NUM}#">**67*+61XXXXXXXXX#</div><div class="cf-tap-call"></div></div>
+                <div class="cf-slide"><img src="project/assets/optus/optus-home-screen.png" alt="Phone screen"><div class="cf-tap-home"></div></div><div class="cf-slide"><img src="project/assets/optus/optus-dialpad-screen.png" alt="Phone screen"><div class="cf-typed">##002#</div><div class="cf-tap-call"></div></div><div class="cf-slide"><img src="project/assets/optus/optus-dialpad-screen.png" alt="Phone screen"><div class="cf-typed is-placeholder" data-tpl="**61*{NUM}**10#">**61*61XXXXXXXXX**10#</div><div class="cf-tap-call"></div></div><div class="cf-slide"><img src="project/assets/optus/optus-dialpad-screen.png" alt="Phone screen"><div class="cf-typed is-placeholder" data-tpl="**62*{NUM}#">**62*61XXXXXXXXX#</div><div class="cf-tap-call"></div></div><div class="cf-slide"><img src="project/assets/optus/optus-dialpad-screen.png" alt="Phone screen"><div class="cf-typed is-placeholder" data-tpl="**67*{NUM}#">**67*61XXXXXXXXX#</div><div class="cf-tap-call"></div></div>
               </div>
             </div>
           </div>
@@ -678,7 +666,7 @@ button { font-family: inherit; }
         <!-- CARD -->
         <div class="cf-cardwrap">
           <div class="cf-card" data-track="card">
-            <div class="cf-step"><div class="cf-step-num">01</div><div class="cf-step-eyebrow">Step 01 · Optus</div><h3>Open Your Phone App</h3><p>Tap the green Phone app to open the keypad. You’ll enter a short code for each type of forwarding — we’ve laid them all out for you here.</p><div class="cf-tip"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>Tap the green Phone app to begin</div></div><div class="cf-step"><div class="cf-step-num">02</div><div class="cf-step-eyebrow">Step 02 · Optus</div><h3>Cancel Any Existing Forwarding</h3><div class="cf-note-line"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg><span>Dial the code below, press Call, then wait for the confirmation before moving on.</span></div><p>Clears any old forwarding rules so they don’t clash with your new setup. Start with a clean slate.</p><div class="cf-code-block"><div class="cf-code-label">Dial this code <span class="tap-note">(TAP TO COPY)</span></div><div class="cf-code-row"><code class="big">##002#</code><button class="cf-copy" data-code="##002#" type="button"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span class="copy-label">Copy</span></button></div></div></div><div class="cf-step"><div class="cf-step-num">03</div><div class="cf-step-eyebrow">Step 03 · Optus</div><h3>Forward Calls When Unanswered</h3><div class="cf-note-line"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg><span>Dial the code below, press Call, then wait for the confirmation before moving on.</span></div><p>Sends callers to your receptionist when you don’t pick up in time — the everyday missed call.</p><div class="cf-code-block"><div class="cf-code-label">Dial this code <span class="tap-note">(TAP TO COPY)</span></div><div class="cf-code-row"><code class="wide is-placeholder" data-tpl="**61*{NUM}**10#">**61*+61XXXXXXXXX**10#</code><button class="cf-copy is-disabled" data-code="**61*+61XXXXXXXXX**10#" disabled type="button"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span class="copy-label">Copy</span></button></div></div></div><div class="cf-step"><div class="cf-step-num">04</div><div class="cf-step-eyebrow">Step 04 · Optus</div><h3>Forward When Off Or Out Of Range</h3><div class="cf-note-line"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg><span>Dial the code below, press Call, then wait for the confirmation before moving on.</span></div><p>Covers calls that come in while your phone is switched off or has no signal — you won’t miss them.</p><div class="cf-code-block"><div class="cf-code-label">Dial this code <span class="tap-note">(TAP TO COPY)</span></div><div class="cf-code-row"><code class=" is-placeholder" data-tpl="**62*{NUM}#">**62*+61XXXXXXXXX#</code><button class="cf-copy is-disabled" data-code="**62*+61XXXXXXXXX#" disabled type="button"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span class="copy-label">Copy</span></button></div></div></div><div class="cf-step"><div class="cf-step-num">05</div><div class="cf-step-eyebrow">Step 05 · Optus</div><h3>Forward When Busy Or Declined</h3><div class="cf-note-line"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg><span>Dial the code below, press Call, then wait for the confirmation before moving on.</span></div><p>Catches callers when you’re already on a call or you tap decline. That’s every missed call covered.</p><div class="cf-code-block"><div class="cf-code-label">Dial this code <span class="tap-note">(TAP TO COPY)</span></div><div class="cf-code-row"><code class=" is-placeholder" data-tpl="**67*{NUM}#">**67*+61XXXXXXXXX#</code><button class="cf-copy is-disabled" data-code="**67*+61XXXXXXXXX#" disabled type="button"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span class="copy-label">Copy</span></button></div><div class="cf-done"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--tvm-forest-green)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"></path></svg>All done — your calls are covered.</div></div></div>
+            <div class="cf-step"><div class="cf-step-num">01</div><div class="cf-step-eyebrow">Step 01 · Optus</div><h3>Open Your Phone App</h3><p>Tap the green Phone app to open the keypad. You’ll enter a short code for each type of forwarding — we’ve laid them all out for you here.</p><div class="cf-tip"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"></path><path d="m16 2 5 5"></path><path d="M21 2v5h-5"></path></svg>Tap the green Phone app to begin</div></div><div class="cf-step"><div class="cf-step-num">02</div><div class="cf-step-eyebrow">Step 02 · Optus</div><h3>Cancel Any Existing Forwarding</h3><div class="cf-note-line"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg><span>Dial the code below, press Call, then wait for the confirmation before moving on.</span></div><p>Clears any old forwarding rules so they don’t clash with your new setup. Start with a clean slate.</p><div class="cf-code-block"><div class="cf-code-label">Dial this code <span class="tap-note">(TAP TO COPY)</span></div><div class="cf-code-row"><code class="big">##002#</code><button class="cf-copy" data-code="##002#" type="button"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span class="copy-label">Copy</span></button></div></div></div><div class="cf-step"><div class="cf-step-num">03</div><div class="cf-step-eyebrow">Step 03 · Optus</div><h3>Forward Calls When Unanswered</h3><div class="cf-note-line"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg><span>Dial the code below, press Call, then wait for the confirmation before moving on.</span></div><p>Sends callers to your receptionist when you don’t pick up in time — the everyday missed call.</p><div class="cf-code-block"><div class="cf-code-label">Dial this code <span class="tap-note">(TAP TO COPY)</span></div><div class="cf-code-row"><code class="wide is-placeholder" data-tpl="**61*{NUM}**10#">**61*61XXXXXXXXX**10#</code><button class="cf-copy is-disabled" data-code="**61*61XXXXXXXXX**10#" disabled type="button"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span class="copy-label">Copy</span></button></div></div></div><div class="cf-step"><div class="cf-step-num">04</div><div class="cf-step-eyebrow">Step 04 · Optus</div><h3>Forward When Off Or Out Of Range</h3><div class="cf-note-line"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg><span>Dial the code below, press Call, then wait for the confirmation before moving on.</span></div><p>Covers calls that come in while your phone is switched off or has no signal — you won’t miss them.</p><div class="cf-code-block"><div class="cf-code-label">Dial this code <span class="tap-note">(TAP TO COPY)</span></div><div class="cf-code-row"><code class="wide is-placeholder" data-tpl="**62*{NUM}#">**62*61XXXXXXXXX#</code><button class="cf-copy is-disabled" data-code="**62*61XXXXXXXXX#" disabled type="button"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span class="copy-label">Copy</span></button></div></div></div><div class="cf-step"><div class="cf-step-num">05</div><div class="cf-step-eyebrow">Step 05 · Optus</div><h3>Forward When Busy Or Declined</h3><div class="cf-note-line"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg><span>Dial the code below, press Call, then wait for the confirmation before moving on.</span></div><p>Catches callers when you’re already on a call or you tap decline. That’s every missed call covered.</p><div class="cf-code-block"><div class="cf-code-label">Dial this code <span class="tap-note">(TAP TO COPY)</span></div><div class="cf-code-row"><code class="wide is-placeholder" data-tpl="**67*{NUM}#">**67*61XXXXXXXXX#</code><button class="cf-copy is-disabled" data-code="**67*61XXXXXXXXX#" disabled type="button"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span class="copy-label">Copy</span></button></div><div class="cf-done"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--tvm-forest-green)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"></path></svg>All done — your calls are covered.</div></div></div>
           </div>
         </div>
       </div>
@@ -695,15 +683,6 @@ button { font-family: inherit; }
         </button>
       </div>
     </div>
-
-    <!-- shareable link -->
-    <div class="cf-share" id="cfShare" hidden>
-      <span>Your personalised link:</span>
-      <code id="cfShareUrl"></code>
-      <button type="button" id="cfShareCopy">Copy link</button>
-    </div>
-
-    <p class="cf-help">Stuck, or not on Optus? Give us a buzz on <a href="tel:0419720285">0419 720 285</a> &mdash; we’ll walk you through it.</p>
   </div>
 </section>
 
@@ -719,7 +698,6 @@ button { font-family: inherit; }
   <div class="cf-footer-bottom">&copy; 2026 Tradie Voice Mate. ABN 14 717 270 980. Built for Australian businesses.</div>
 </footer>
 
-<!-- SCRIPTS -->
 <script>
 (function () {
   /* ---- Mobile nav (same behaviour as the home page) ---- */
@@ -805,39 +783,34 @@ button { font-family: inherit; }
   });
   window.addEventListener('resize', fitCardHeight);
 
-  /* ---- Number personalisation ---- */
-  var MASK = '+61XXXXXXXXX';
+  /* ---- Number personalisation ----
+     Real numbers arrive as AU landlines in international format (61 + 1 state
+     digit + 8 digits, e.g. 61344216904). We reduce any accepted input to a
+     9-digit national significant number (NSN), then format it per carrier:
+       Optus code number = international, no plus (61 + NSN)  */
+  var MASK = '61XXXXXXXXX';
 
-  function formatAUNumber(raw) {
+  function toNSN(raw) {
     if (!raw) return null;
-    var digits = String(raw).replace(/[^\d+]/g, '');
-    if (digits.indexOf('+61') === 0) digits = digits.slice(3);
-    else if (digits.indexOf('61') === 0 && digits.length === 11) digits = digits.slice(2);
-    else if (digits.indexOf('0') === 0) digits = digits.slice(1);
-    if (!/^\d{9}$/.test(digits)) return null;
-    return '+61' + digits;
+    var d = String(raw).replace(/[^\d+]/g, '');
+    if (d.charAt(0) === '+') d = d.slice(1);
+    if (d.indexOf('61') === 0 && d.length === 11) d = d.slice(2);   /* 61 + 9 -> 9 */
+    else if (d.charAt(0) === '0' && d.length === 10) d = d.slice(1); /* 0 + 9 -> 9  */
+    if (!/^\d{9}$/.test(d)) return null;
+    return d;
   }
-  function displayFormat(num) {
-    /* +61412345678 -> +61 412 345 678, for on-screen readability */
-    var rest = num.slice(3);
-    return '+61 ' + rest.slice(0,3) + ' ' + rest.slice(3,6) + ' ' + rest.slice(6);
+  function codeNumber(nsn) { return '61' + nsn; }
+  function displayNumber(nsn) {
+    /* domestic, human-readable: 0X XXXX XXXX */
+    return '0' + nsn.slice(0, 1) + ' ' + nsn.slice(1, 5) + ' ' + nsn.slice(5);
   }
 
   function numberFromLocation() {
     var m = location.pathname.match(/\/call-forwarding\/optus\/([^\/?#]+)/i);
-    if (m) {
-      var f = formatAUNumber(decodeURIComponent(m[1]));
-      if (f) return f;
-    }
+    if (m) { var f = toNSN(decodeURIComponent(m[1])); if (f) return f; }
     var q = new URLSearchParams(location.search).get('number');
-    if (q) {
-      var f2 = formatAUNumber(q);
-      if (f2) return f2;
-    }
-    try {
-      var stored = sessionStorage.getItem('cfNumber');
-      if (stored) return stored;
-    } catch (_) {}
+    if (q) { var f2 = toNSN(q); if (f2) return f2; }
+    try { var s = sessionStorage.getItem('cfNumber'); if (s && /^\d{9}$/.test(s)) return s; } catch (_) {}
     return null;
   }
 
@@ -848,13 +821,10 @@ button { font-family: inherit; }
   var personalized = document.getElementById('cfPersonalized');
   var personalizedNumberEl = document.getElementById('cfPersonalizedNumber');
   var editBtn = document.getElementById('cfEditNumber');
-  var shareRow = document.getElementById('cfShare');
-  var shareUrlEl = document.getElementById('cfShareUrl');
-  var shareCopyBtn = document.getElementById('cfShareCopy');
 
-  function applyNumber(num) {
-    var isReal = !!num;
-    var display = isReal ? num : MASK;
+  function applyNumber(nsn) {
+    var isReal = !!nsn;
+    var display = isReal ? codeNumber(nsn) : MASK;
     root.querySelectorAll('[data-tpl]').forEach(function (el) {
       var tpl = el.getAttribute('data-tpl');
       var text = tpl.replace('{NUM}', display);
@@ -874,29 +844,22 @@ button { font-family: inherit; }
     if (isReal) {
       numGate.hidden = true;
       personalized.hidden = false;
-      personalizedNumberEl.textContent = displayFormat(num);
-      shareRow.hidden = false;
-      shareUrlEl.textContent = location.href;
-      try { sessionStorage.setItem('cfNumber', num); } catch (_) {}
+      personalizedNumberEl.textContent = displayNumber(nsn);
+      try { sessionStorage.setItem('cfNumber', nsn); } catch (_) {}
     } else {
       numGate.hidden = false;
       personalized.hidden = true;
-      shareRow.hidden = true;
     }
   }
 
   numGateForm.addEventListener('submit', function (e) {
     e.preventDefault();
-    var f = formatAUNumber(numGateInput.value);
-    if (!f) {
-      numGateError.hidden = false;
-      numGateInput.focus();
-      return;
-    }
+    var f = toNSN(numGateInput.value);
+    if (!f) { numGateError.hidden = false; numGateInput.focus(); return; }
     numGateError.hidden = true;
     var url = new URL(location.href);
-    url.searchParams.set('number', f.replace('+61', '0'));
-    history.replaceState(null, '', url.toString().replace(/%2B/gi, '+'));
+    url.searchParams.set('number', '61' + f);
+    history.replaceState(null, '', url.toString());
     applyNumber(f);
   });
   numGateInput.addEventListener('input', function () { numGateError.hidden = true; });
@@ -906,13 +869,6 @@ button { font-family: inherit; }
     applyNumber(null);
     numGateInput.value = '';
     numGateInput.focus();
-  });
-
-  shareCopyBtn.addEventListener('click', function () {
-    try { if (navigator.clipboard) navigator.clipboard.writeText(location.href); } catch (_) {}
-    var orig = shareCopyBtn.textContent;
-    shareCopyBtn.textContent = 'Copied';
-    setTimeout(function () { shareCopyBtn.textContent = orig; }, 1500);
   });
 
   /* Copy buttons on the code cards (desktop) */
@@ -950,5 +906,6 @@ button { font-family: inherit; }
   applyNumber(numberFromLocation());
 })();
 </script>
+
 </body>
 </html>
