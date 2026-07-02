@@ -5,9 +5,9 @@
 #
 # https://tradievoicemate.com.au/call-forwarding/optus/0412345678
 #   -> serves optus-call-forwarding-dynamic.html
-#
-# Add a matching line for Telstra (or any future carrier) once that guide exists:
-#   RewriteRule ^call-forwarding/telstra/([^/]+)/?$ /telstra-call-forwarding-dynamic.html [L]
+# https://tradievoicemate.com.au/call-forwarding/telstra/0412345678
+#   -> serves telstra-call-forwarding-dynamic.html
 
 RewriteEngine On
 RewriteRule ^call-forwarding/optus/([^/]+)/?$ /optus-call-forwarding-dynamic.html [L]
+RewriteRule ^call-forwarding/telstra/([^/]+)/?$ /telstra-call-forwarding-dynamic.html [L]
