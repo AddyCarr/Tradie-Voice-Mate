@@ -59,11 +59,10 @@
       <p class="cf-numgate-error" id="cfNumGateError" hidden>That doesn’t look like a valid Australian number — try again.</p>
     </div>
 
-    <!-- Confirmation badge: shown once a valid number is applied -->
+    <!-- Confirmation: the agent's digital receptionist line -->
     <div class="cf-personalized" id="cfPersonalized" hidden>
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"></path></svg>
-      <span>Personalised for <strong id="cfPersonalizedNumber"></strong></span>
-      <button type="button" class="cf-edit-link" id="cfEditNumber">Not you? Edit</button>
+      <span>The phoneline for your custom digital receptionist is <a id="cfPersonalizedNumber" href="#"></a></span>
     </div>
   </div>
 </header>
@@ -225,9 +224,9 @@
   }
   function codeNumber(nsn) { return '0' + nsn; }
   function displayNumber(nsn) {
-    /* domestic, grouped 4-3-3 (e.g. 0412 345 678) */
+    /* domestic AU landline, grouped 2-4-4 (e.g. 02 5950 5667) */
     var dom = '0' + nsn;
-    return dom.slice(0, 4) + ' ' + dom.slice(4, 7) + ' ' + dom.slice(7);
+    return dom.slice(0, 2) + ' ' + dom.slice(2, 6) + ' ' + dom.slice(6);
   }
 
   function numberFromLocation() {
@@ -245,7 +244,6 @@
   var numGateError = document.getElementById('cfNumGateError');
   var personalized = document.getElementById('cfPersonalized');
   var personalizedNumberEl = document.getElementById('cfPersonalizedNumber');
-  var editBtn = document.getElementById('cfEditNumber');
 
   function applyNumber(nsn) {
     var isReal = !!nsn;
@@ -270,6 +268,7 @@
       numGate.hidden = true;
       personalized.hidden = false;
       personalizedNumberEl.textContent = displayNumber(nsn);
+      personalizedNumberEl.href = 'tel:+61' + nsn;
       try { sessionStorage.setItem('cfNumber', nsn); } catch (_) {}
     } else {
       numGate.hidden = false;
@@ -288,13 +287,6 @@
     applyNumber(f);
   });
   numGateInput.addEventListener('input', function () { numGateError.hidden = true; });
-
-  editBtn.addEventListener('click', function () {
-    try { sessionStorage.removeItem('cfNumber'); } catch (_) {}
-    applyNumber(null);
-    numGateInput.value = '';
-    numGateInput.focus();
-  });
 
   /* Copy buttons on the code cards (desktop) */
   root.querySelectorAll('button.cf-copy').forEach(function (b) {
