@@ -232,8 +232,18 @@
 
   var welcomeCtx = { name: '', business: '' };
   function deslug(s) {
-    return decodeURIComponent(s).replace(/[-_+]+/g, ' ').trim().replace(/\s+/g, ' ')
-      .replace(/\b\w/g, function (c) { return c.toUpperCase(); });
+    /* separators -> spaces; '~' before a letter forces it uppercase (for
+       initials/acronyms, e.g. a~j~c-plumbing -> AJC Plumbing) and is dropped */
+    s = decodeURIComponent(s).replace(/[-_+]+/g, ' ').trim().replace(/\s+/g, ' ');
+    var out = '', atWordStart = true, forceUpper = false;
+    for (var i = 0; i < s.length; i++) {
+      var ch = s.charAt(i);
+      if (ch === '~') { forceUpper = true; continue; }
+      if (ch === ' ') { out += ch; atWordStart = true; forceUpper = false; continue; }
+      out += (atWordStart || forceUpper) ? ch.toUpperCase() : ch;
+      atWordStart = false; forceUpper = false;
+    }
+    return out;
   }
   function numberFromLocation() {
     var m = location.pathname.match(/\/call-forwarding\/([^\/]+)\/([^\/]+)\/telstra\/([^\/?#]+)/i);
