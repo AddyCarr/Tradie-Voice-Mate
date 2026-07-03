@@ -417,6 +417,8 @@ button { font-family: inherit; }
 }
 .cf-personalized[hidden] { display:none; }
 .cf-personalized svg { flex-shrink:0; }
+.cf-personalized a { color:inherit; font-weight:700; text-decoration:underline; text-underline-offset:2px; }
+@media (hover:hover){ .cf-personalized a:hover{ color:#fff; } }
 .cf-edit-link {
   background:none; border:none; padding:0; margin-left:4px;
   font-family:var(--font-body); font-size:13px; font-weight:600;
@@ -635,11 +637,10 @@ button { font-family: inherit; }
       <p class="cf-numgate-error" id="cfNumGateError" hidden>That doesn’t look like a valid Australian number — try again.</p>
     </div>
 
-    <!-- Confirmation badge: shown once a valid number is applied -->
+    <!-- Confirmation: the agent's digital receptionist line -->
     <div class="cf-personalized" id="cfPersonalized" hidden>
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"></path></svg>
-      <span>Personalised for <strong id="cfPersonalizedNumber"></strong></span>
-      <button type="button" class="cf-edit-link" id="cfEditNumber">Not you? Edit</button>
+      <span>The phoneline for your custom digital receptionist is <a id="cfPersonalizedNumber" href="#"></a></span>
     </div>
   </div>
 </header>
@@ -801,9 +802,9 @@ button { font-family: inherit; }
   }
   function codeNumber(nsn) { return '+61' + nsn; }
   function displayNumber(nsn) {
-    /* domestic, grouped 4-3-3 (e.g. 0412 345 678) */
+    /* domestic AU landline, grouped 2-4-4 (e.g. 02 5950 5667) */
     var dom = '0' + nsn;
-    return dom.slice(0, 4) + ' ' + dom.slice(4, 7) + ' ' + dom.slice(7);
+    return dom.slice(0, 2) + ' ' + dom.slice(2, 6) + ' ' + dom.slice(6);
   }
 
   function numberFromLocation() {
@@ -821,7 +822,6 @@ button { font-family: inherit; }
   var numGateError = document.getElementById('cfNumGateError');
   var personalized = document.getElementById('cfPersonalized');
   var personalizedNumberEl = document.getElementById('cfPersonalizedNumber');
-  var editBtn = document.getElementById('cfEditNumber');
 
   function applyNumber(nsn) {
     var isReal = !!nsn;
@@ -846,6 +846,7 @@ button { font-family: inherit; }
       numGate.hidden = true;
       personalized.hidden = false;
       personalizedNumberEl.textContent = displayNumber(nsn);
+      personalizedNumberEl.href = 'tel:+61' + nsn;
       try { sessionStorage.setItem('cfNumber', nsn); } catch (_) {}
     } else {
       numGate.hidden = false;
@@ -864,13 +865,6 @@ button { font-family: inherit; }
     applyNumber(f);
   });
   numGateInput.addEventListener('input', function () { numGateError.hidden = true; });
-
-  editBtn.addEventListener('click', function () {
-    try { sessionStorage.removeItem('cfNumber'); } catch (_) {}
-    applyNumber(null);
-    numGateInput.value = '';
-    numGateInput.focus();
-  });
 
   /* Copy buttons on the code cards (desktop) */
   root.querySelectorAll('button.cf-copy').forEach(function (b) {
