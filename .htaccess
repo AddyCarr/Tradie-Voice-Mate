@@ -1,13 +1,26 @@
 # Tradie Voice Mate — pretty URLs for personalised call-forwarding guides.
 # Internal rewrite only: the browser keeps the pretty URL, Apache just serves
-# the underlying static file. The page's own JS reads the number back out of
+# the underlying static file. The page's own JS reads the fields back out of
 # location.pathname, so nothing needs to be passed as a query string here.
 #
-# https://tradievoicemate.com.au/call-forwarding/optus/0412345678
-#   -> serves optus-call-forwarding-dynamic.html
-# https://tradievoicemate.com.au/call-forwarding/telstra/0412345678
-#   -> serves telstra-call-forwarding-dynamic.html
+# Onboarding / welcome (business + first name + carrier + number):
+#   https://tradievoicemate.com.au/call-forwarding/top-plumbing/matt/optus/0412345678
+#     -> serves optus-call-forwarding-welcome.html
+#   https://tradievoicemate.com.au/call-forwarding/top-plumbing/matt/telstra/0412345678
+#     -> serves telstra-call-forwarding-welcome.html
+#
+# Standard (carrier + number):
+#   https://tradievoicemate.com.au/call-forwarding/optus/0412345678
+#     -> serves optus-call-forwarding-dynamic.html
+#   https://tradievoicemate.com.au/call-forwarding/telstra/0412345678
+#     -> serves telstra-call-forwarding-dynamic.html
 
 RewriteEngine On
+
+# Welcome pages first (more specific: 4 path segments after call-forwarding)
+RewriteRule ^call-forwarding/[^/]+/[^/]+/optus/([^/]+)/?$ /optus-call-forwarding-welcome.html [L]
+RewriteRule ^call-forwarding/[^/]+/[^/]+/telstra/([^/]+)/?$ /telstra-call-forwarding-welcome.html [L]
+
+# Standard pages (2 path segments after call-forwarding)
 RewriteRule ^call-forwarding/optus/([^/]+)/?$ /optus-call-forwarding-dynamic.html [L]
 RewriteRule ^call-forwarding/telstra/([^/]+)/?$ /telstra-call-forwarding-dynamic.html [L]
